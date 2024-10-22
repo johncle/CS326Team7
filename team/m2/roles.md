@@ -34,6 +34,8 @@ Updated and assigned everyones roles with the descriptions
 ## Connor Cargill - Communication Lead
 - **Role**:  Facilitates communication within the team. Connor is responsible for maintaining and managing the team’s discord workspace and ensuring that all members stay informed and engaged.
 - **Top 3 Commits**:
+    1. [update ui-diagrams.md](https://github.com/johncle/CS326Team7/commit/78a56b375d2e6d55b4f7386a860535efd72ab03f): Added Home Screen - Music Discovery, Mood and Event Playlist Generation, and Community and Social Sharing Screen diagrams, explanations and use cases to `ui-diagrams.md` 
+
 
 ## Ahad - Documentation Lead
 - **Role**: Responsible for overseeing the organization and maintenance of all project documentation. Ahad ensures that all documents are up to date, well-organized, and accessible to team members. 
