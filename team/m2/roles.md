@@ -26,7 +26,7 @@
 ## Sidharth Jain - Quality Control
 - **Role**:  Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Sidharth is responsible for proofreading and ensuring the accuracy of all documents before submission.
 - **Top 3 Commits**:
-  1. [roles.md commit] (https://github.com/johncle/CS326Team7/commit/08764e1af923331a7d3c0626fd16149390b0117e)
+  1. [roles.md commit](https://github.com/johncle/CS326Team7/commit/08764e1af923331a7d3c0626fd16149390b0117e)
 Updated and assigned everyones roles with the descriptions
 
 ## Connor Cargill - Communication Lead
