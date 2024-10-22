@@ -8,6 +8,6 @@
   3. [update users.md](https://github.com/johncle/CS326Team7/commit/bc74cfcf82c27a65a7dbfad1c777fe599d15acd8): Drafted `users.md` with suggestions from team members.
 
 ## Jeffrey Deng - Task Manager
-- **Role**: Responsible for organizing and tracking team tasks. David manages the team’s Trello board and ensures that all tasks are properly assigned and completed on time.
+- **Role**: Responsible for organizing and tracking team tasks. Jeffrey manages the team’s Trello board and ensures that all tasks are properly assigned and completed on time.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/johncle/CS326Team7/commit/77e66dcd282025d7128ca9f0e408ac1ad27d6bb7): Drafted `data.md` with suggestions from team members.
