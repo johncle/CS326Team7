@@ -1,17 +1,77 @@
-### Description of `data.md` File
+# Application Data
 
-The `data.md` file is where your team will describe the types of data your web application will handle. This document should provide a high-level overview of the data that is critical to your application's functionality, including any user data, input data, or system-generated data. The focus should be on describing what data your application will use and how it will be structured, but you do not need to describe the specific storage methods or databases at this stage.
+## Overview
 
-Your description should include:
+### 1. User Profile
+- **Description**: Stores personal information about the user, including preferences, social connections, and music activity.
+- **Attributes**:
+  - `user_id` (string): A unique identifier for the user.
+  - `name` (string): The user’s full name.
+  - `email` (string): The user’s email address.
+  - `profile_picture` (string): URL to the user’s profile picture.
+  - `preferences` (number[][]): A matrix representing the user’s music preferences, potentially generated using machine learning models (e.g., TensorFlow.js).
+  - `friends` (User[]): A list of the user’s friends within the app.
+  - `chats` (Chat[]): A list of the chats the user is involved in.
+  - `liked_songs` (Song[]): A list of songs the user has liked.
+- **Data Source**: User input during registration, updates through profile editing, and system-generated data (for preferences and likes).
 
-1. **Data Types**: List and describe each type of data that your application will use. For example, user profiles, expenses, transactions, or settings. For each data type, explain what kind of information is captured.
-   
-2. **Attributes**: For each data type, list the key attributes or fields that will be stored. For example, for a "User Profile" data type, relevant attributes might include name, email, and user preferences. Include any relevant metadata, such as timestamps or IDs.
+### 2. Chat
+- **Description**: Represents conversations between users, either one-on-one or within a group.
+- **Attributes**:
+  - `is_group` (boolean): Indicates whether the chat is a group chat (3 or more participants).
+  - `participants` (User[]): A list of users involved in the chat.
+  - `message` (string): The message content exchanged within the chat.
+  - `picture` (string): A URL to the chat's display picture (optional, usually for group chats).
+- **Data Source**: User input when sending messages, and system-generated when creating a new chat.
 
-3. **Relationships Between Data**: If applicable, explain how different types of data are related to each other. For example, a user profile might be related to multiple expense entries, or a savings goal might be related to a user’s transactions. This will help in understanding how your application organizes and uses data.
+### 3. Song
+- **Description**: Stores detailed information about individual songs available on the platform.
+- **Attributes**:
+  - `song_id` (string): A unique identifier for each song.
+  - `title` (string): The title of the song.
+  - `artist` (string): The artist who performed the song.
+  - `album_name` (string): The name of the album to which the song belongs.
+  - `album` (Playlist): The album details as a playlist object.
+  - `picture` (string): URL to the album or song’s cover picture.
+  - `duration` (string): The song's length in minutes and seconds.
+  - `song_url` (string): URL to stream or download the song.
+  - `likes` (number): The number of likes the song has received.
+  - `tags` (string[]): A list of tags or keywords associated with the song (e.g., genre, mood).
+- **Data Source**: Third-party music APIs for song data and user interactions (e.g., liking songs).
 
-4. **Data Sources**: Describe where the data comes from. Is it user-input data, data from third-party APIs, or system-generated data? This is important for understanding the flow of data into your application.
+### 4. Playlist
+- **Description**: Represents user-created or system-generated collections of songs.
+- **Attributes**:
+  - `playlist_id` (string): A unique identifier for the playlist.
+  - `creator` (User): The user who created the playlist.
+  - `songs` (Song[]): A list of songs in the playlist.
+  - `name` (string): The playlist’s title.
+  - `picture` (string): URL to the playlist’s cover image.
+  - `description` (string): A brief description of the playlist.
+- **Data Source**: User-generated when creating playlists or system-generated (for personalized or event-based playlists).
 
-This file serves as a foundational guide to your application’s data, ensuring that your team understands what information will be handled and how it is organized. Although you don’t need to discuss specific storage methods at this point, this document will help guide decisions related to data management as the project progresses.
+### 5. Listening Session
+- **Description**: Represents a shared listening experience where users can listen to the same playlist simultaneously.
+- **Attributes**:
+  - `session_id` (string): A unique identifier for the listening session.
+  - `playlist` (Playlist): The playlist being listened to in the session.
+  - `host` (User): The user who initiated the listening session.
+  - `participants` (User[]): A list of users currently participating in the session.
+  - `start_time` (timestamp): The time when the session started.
+  - `end_time` (timestamp): The time when the session ended.
+- **Data Source**: System-generated when a user starts a listening session.
 
-Please see the [example file](https://github.com/umass-cs-326/ms02-example/blob/main/team/m2/data.md?plain=1) and format yours accordingly.
+## Relationships Between Data
+
+- **User to Playlist**: A user can create multiple playlists, establishing a one-to-many relationship.
+- **User to Song**: A user can like multiple songs, creating a many-to-many relationship.
+- **User to Chat**: A user can participate in many chats, both individual and group-based.
+- **Playlist to Song**: A playlist contains many songs, forming a one-to-many relationship.
+- **User to Listening Session**: A user can host or join multiple listening sessions, creating a one-to-many relationship between users and sessions.
+- **Playlist to Listening Session**: Each listening session revolves around a single playlist.
+
+## Data Sources
+
+- **User-Input Data**: User data (profile, preferences, playlists, chats) is largely user-generated via the app’s interfaces.
+- **Third-Party APIs**: Music tracks and metadata are retrieved from third-party APIs (such as Spotify, Apple Music).
+- **System-Generated Data**: Preferences (via machine learning), timestamps, and session data are generated by the system based on user activity.
