@@ -28,6 +28,8 @@
 - **Top 3 Commits**:
   1. [roles.md commit](https://github.com/johncle/CS326Team7/commit/08764e1af923331a7d3c0626fd16149390b0117e)
 Updated and assigned everyones roles with the descriptions
+  2. [UI Update](https://github.com/johncle/CS326Team7/commit/6e001951e996431e2da3360ad8641e88f0750e73)
+  Added the UI diagram for the Audio Visualisor Feature 
 
 ## Connor Cargill - Communication Lead
 - **Role**:  Facilitates communication within the team. Connor is responsible for maintaining and managing the team’s discord workspace and ensuring that all members stay informed and engaged.
