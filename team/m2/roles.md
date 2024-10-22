@@ -21,6 +21,7 @@
 ## Jimmy - Note Taker
 - **Role**: Records detailed notes during meetings and ensures that action items are clearly communicated. Jimmy is responsible for distributing meeting minutes to the team after each session.
 - **Top 3 Commits**:
+  1. [Initial Commit](https://github.com/johncle/CS326Team7/commit/22967a182c1cfcfe35b2293190716dfd135ae1d0): 
  
 ## Sidharth Jain - Quality Control
 - **Role**:  Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Sidharth is responsible for proofreading and ensuring the accuracy of all documents before submission.
