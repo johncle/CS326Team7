@@ -9,3 +9,8 @@
 -   **Task** Updated problem.md
 -   **Details**: Wrote problem description, proposed solution, key features, and justification
 -   **Link to Commit**: [update problem.md](https://github.com/johncle/CS326Team7/commit/b23457f3797324eac858844615f7c51ba3308fb8)
+
+### October 21, 2024
+-   **Task** Updated users.md
+-   **Details**: Wrote descriptions for primary audience, user needs, and why these users matter
+-   **Link to Commit**: [update users.md](https://github.com/johncle/CS326Team7/commit/bc74cfcf82c27a65a7dbfad1c777fe599d15acd8)

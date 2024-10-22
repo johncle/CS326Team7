@@ -1,15 +1,64 @@
-### Description of `ui-diagrams.md` File
+# 1. Home Screen - Music Discovery
+![Home Screen - Music Discovery](https://github.com/user-attachments/assets/69366d1a-fbb8-47f9-a44b-d787c16bea31)
 
-The `ui-diagrams.md` file is where your team will visually and descriptively explain how your web application will look and function from the user’s perspective. This document is essential for planning the user interface (UI) and ensuring that your application’s design is aligned with your users' needs.
+## Diagram Explanation:
+This is the primary landing screen for users after they log in. At the top, there is a navigation bar with links for Home, Playlists, Tags, Communities, and Profile settings. The center of the screen displays a curated feed of songs based on the user's listening history and preferences. The sidebar offers a search bar where users can input tags (like genre, mood, tempo) to search for new songs or playlists.
 
-Your description should include:
+- **Navigation Bar**: Allows users to switch between core sections such as Playlists, Communities, and their Profile.
+- **Main Content Area**: Showcases song recommendations based on the user’s recent activity, including curated playlists and newly released songs.
+- **Sidebar**: Provides a search function for filtering music by specific tags, genres, and moods.
 
-1. **UI Diagrams**: Include diagrams or sketches of the key screens or interfaces of your application. These diagrams should show the layout, key elements, and user interactions on each screen. You can use wireframes, mockups, or hand-drawn sketches, as long as they are clear and demonstrate the major components of your UI.
+## Use Case:
+**Scenario**: A user logs in and wants to discover new music that fits their current mood.  
+**User Action**: The user browses the recommendation feed in the center, selects a genre tag from the sidebar (e.g., "Chill"), and a new playlist tailored to that mood appears.  
+**Goal**: The user is able to find songs that match their current vibe and add them to their personal playlist.
 
-2. **Explanation of Each Diagram**: Along with each diagram, provide a brief description of what the user will see and do on that screen. Explain how the user will interact with the application, what actions they can take, and how each screen connects to the overall user experience.
+---
 
-3. **Use Cases**: For each diagram, describe the specific user scenarios or "use cases" that demonstrate how users will interact with the application. For example, explain how a user might navigate from one screen to another, complete a task, or achieve a goal within the application.
+# 2. Mood and Event Playlist Generation
+![Mood and Event Playlist Generation](https://github.com/user-attachments/assets/a1e19242-5773-4ac0-ad6d-9b3e3d044f07)
 
-This file should give a clear picture of how users will engage with your web application and provide insight into the layout and design decisions your team is making. It will help you align your design with your target users and ensure that your UI supports the problem-solving goals of your application. You should have no more than 3-4 at this stage. We are looking for you to give us the general idea, not all possible UI components, features, and configurations.
+## Diagram Explanation:
+This screen enables users to create a playlist for specific moods or events. The layout includes a playlist name field at the top, a dropdown menu to select moods (e.g., "Happy," "Study," "Party"), and a section below to drag and drop songs into the playlist.
 
-Please see the [example file](https://github.com/umass-cs-326/ms02-example/blob/main/team/m2/ui-diagrams.md?plain=1) and format yours accordingly.
+
+- **Playlist Creation Form**: Users can name the playlist and select a mood or event to automatically generate songs.
+- **Drag & Drop Feature**: Users can easily add songs from their recommended tracks or search results into their playlists.
+
+## Use Case:
+**Scenario**: A user wants to create a "Study" playlist.  
+**User Action**: The user clicks on the "Create Playlist" button, selects "Study" from the mood dropdown, and the system automatically recommends songs. The user manually adds or removes songs based on preference.  
+**Goal**: The user completes the playlist and listens to it while studying.
+
+---
+
+# 3. Community and Social Sharing Screen
+![Community and Social Sharing Screen](https://github.com/user-attachments/assets/207404e0-038f-4c88-8ad3-c1ae12018229)
+
+
+## Diagram Explanation:
+This screen displays user communities and friends. Users can join communities based on genres or moods, interact by sharing songs, and view recommendations from friends.
+
+- **Community Section**: Allows users to join groups with similar musical tastes.
+- **Friend List and Messaging**: Users can see what their friends are listening to and share recommendations via chat.
+
+## Use Case:
+**Scenario**: A user wants to share a song they discovered with their group of friends.  
+**User Action**: The user selects the "Friends" tab, sends a link to the song in the group chat, and starts a discussion.  
+**Goal**: The user shares music and receives feedback from friends, building a social experience around song discovery.
+<img width="888" alt="Screenshot 2024-10-21 at 10 17 56 PM" src="https://github.com/user-attachments/assets/69366d1a-fbb8-47f9-a44b-d787c16bea31">
+
+
+# 4. Audio Visualiser
+![audio Visualisor](https://github.com/user-attachments/assets/20d44151-47c0-4a50-8c7a-cb0e60ae8295)
+
+## Diagram Explanation:
+A reactive 3D audio waveform that reacts to the audio selected. It uses a particle system, which changes the location of the particles based on various features of the audio.
+
+- **Song Input Box**: Users can select the song they would like the visualiser to visualize.
+- **Visualiser**: The reactive particle system.
+
+## Use Case:
+**Scenario**: A user wants to see how their favorite song ‘looks’.  
+**User Action**: They enter the name of the song.  
+**Goal**: The particle system element analyzes the song and changes based on its features.
