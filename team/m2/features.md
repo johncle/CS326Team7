@@ -4,12 +4,11 @@
 
 ## Music Discovery Algorithm
 
-This feature will analyze the user’s listening preferences by identifying favorite tags such as genre, mood, and instrumentation. 
+This feature will analyze the user’s listening preferences by identifying favorite tags such as genre, mood, and instrumentation.
 The algorithm will learn the user’s preferences and recommend songs that match their favorite tags, enhancing the personalization of recommendations. The Music Discovery Algorithm helps solve the problem of finding new music by using a tag-based system that learns and evolves with the user’s preferences, making the discovery process more intuitive and tailored.
 
-
 **Assigned to**: Jeffery Deng
-  
+
 ## Tag-Based Search (Filter In/Out)
 
 Users will be able to search for songs by filtering in or out specific tags. For example, a user might search for “upbeat jazz” or exclude “sad” songs from their results. This gives users granular control over the types of songs they want to discover or avoid.
@@ -21,13 +20,13 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 This feature allows users to create playlists for specific moods or events, like “workout,” “relaxing,” or “celebration.” By utilizing tags like “upbeat” or “calm,” and integrating sentiment analysis, the system curates playlists that match the user’s mood or activity. The AI DJ can suggest songs based on the user’s current emotional state and previous preferences. This feature simplifies the playlist creation process by automatically selecting songs based on user moods or events, saving time and enhancing the user’s listening experience.
 
-**Assigned to**: Connor Cargill
+**Assigned to**: John Le
 
 ## Music Remixer
 
 This feature enables users to remix songs directly within the app. They can adjust tempo, add beats, and create personalized versions of their favorite tracks. This adds an element of creativity and interaction to the platform, allowing users to not just discover music but engage with it actively. The Music Remixer promotes user engagement by providing creative tools, allowing users to personalize and remix tracks according to their preferences.
 
-**Assigned to**: John Le
+**Assigned to**: Connor Cargill
 
 ## Community and Song Sharing
 
@@ -35,7 +34,7 @@ Users can add friends, create or join communities, and share music with others. 
 
 **Assigned to**: Jimmy Nguyen
 
-## Tentative - Chat Feature
+## Chat Feature
 
 This feature would enable users to chat with friends and community members directly within the app. They could discuss and recommend music in real-time, fostering deeper social interaction around music discovery. The chat feature would enhance the platform’s social functionality, allowing users to engage in real-time discussions about their favorite tracks and playlists.
 
