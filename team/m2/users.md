@@ -1,15 +1,13 @@
-### Description of `users.md` File
+# Target Users
 
-The `users.md` file is where your team will define the target audience for your web application. Understanding who your users are is critical to building an application that meets their needs and solves their problems. This document should provide a clear picture of your intended users and explain why your application will be valuable to them.
+## Primary Audience
 
-Your description should include:
+The primary users of **Sonar** are music enthusiasts who want a simple, effective way to discover and share songs that match their personal preferences. Whether they're in the mood for something familiar or feeling adventurous and open to new genres, **Sonar** offers tailored recommendations that fit their needs. The platform also caters to those who enjoy the social aspect of music by making it easy to share songs with friends or communities, whether their tastes align or differ. **Sonar** provides a space for both personal music discovery and shared listening experiences, appealing to users who value both individuality and connection in their musical journeys.
 
-1. **Primary Audience**: Identify the key groups of people who will benefit from using your application. Consider characteristics like age, occupation, experience, or any specific needs that define your audience. Be as specific as possible, but ensure that these user groups align with the problem your application addresses.
+## User Needs
 
-2. **User Needs**: For each identified user group, explain their specific needs or challenges that your application will help solve. This section should tie back to the problem you described in the `problem.md` file, demonstrating how your application provides value to these users.
+The primary users of **Sonar** are music lovers who want a more streamlined way to discover new songs that resonate with their tastes. They need a platform that not only provides personalized recommendations based on their listening habits but also allows them to explore beyond their usual genres, offering a chance to branch out and try music they wouldn’t normally encounter. These users also value the ability to share their favorite tracks and discoveries with others, seeking a social space where they can connect with like-minded individuals or introduce their music to friends with different tastes.
 
-3. **Why These Users Matter**: Provide a brief justification for why these users are important to the success of your project. Explain why solving this problem for these specific groups will have an impact, either personally or professionally.
+## Why These Users Matter
 
-Your `users.md` file should give your team a clear understanding of who you are designing for, ensuring that your project stays focused on meeting the needs of your target users. Keep the descriptions concise but detailed enough to guide your design and development decisions.
-
-Please see the [example file](https://github.com/umass-cs-326/ms02-example/blob/main/team/m2/users.md?plain=1) and format yours accordingly.
+These users are crucial to **Sonar** because they help foster a vibrant community of music discovery and social engagement. By sharing music and building playlists together, they create a social environment where music becomes a shared experience, not just a solitary activity. Moreover, as users explore and are recommended less-popular or underrated artists, **Sonar** can become a platform where hidden talent gets recognized, giving these artists a chance to reach a wider audience. This type of musical exploration can also inspire users to delve deeper into the world of music, potentially motivating some to create their own, contributing to the next generation of musicians and creative voices.

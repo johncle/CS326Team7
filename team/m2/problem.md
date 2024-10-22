@@ -1,15 +1,22 @@
-### Description of `problem.md` File
+# Problem Statement
 
-The `problem.md` file is where your team will describe the core issue your web application aims to solve and how your application addresses it. This document is crucial for laying the foundation of your project, as it clearly defines the problem, explains why it matters, and introduces your proposed solution.
+## Problem Description
 
-Your description should include:
+Music is something that is universally enjoyed, but sometimes listening to the same songs repeatedly can get boring. When people want to discover new music, finding songs they actually like isn't always easy. They may not know where to look, or when they do, they might be unhappy with the recommendations they get. With so much music out there, finding new tracks that fit their tastes can feel frustrating and time-consuming.
 
-1. **Problem Description**: Clearly state the problem your target users face. Why is this a relevant or important issue? Describe the real-world impact of the problem and the pain points your users experience.
+## Proposed Solution
 
-2. **Proposed Solution**: Detail how your web application will address the problem. What features or functionalities will your application include to help solve the issue? The solution should be directly tied to the problem, demonstrating a clear benefit to the users.
+Our web application, **Sonar**, aims to provide an engaging way for users to discover new music that aligns with their tastes and preferences. By utilizing recommendation algorithms and personalized features, Sonar simplifies the process of finding enjoyable songs while fostering communities where users can share their experiences with others.
 
-3. **Why This Matters**: Explain the importance of solving this problem. How will solving this issue improve the lives or experiences of your target users? This section helps justify the need for your application and sets the stage for its development.
+Key features include:
 
-This markdown file should be short, concise, but thorough, providing enough detail to clearly communicate your project’s purpose. Your problem statement is key to ensuring that your entire project stays focused and aligned with the identified need.
+- **Music Discovery**: Sonar's personalized recommendation algorithm curates songs tailored to a user's favorite genres, listening habits, and song preferences.
+- **Mood and Event Playlists**: Users can generate playlists for specific moods or events such as chill, study, or rage.
+- **Tag Search**: Users can search for songs based on specific tags such as genre, mood, tempo, instrumentation, etc.
+- **Communities**: Users can add friends, join communities, and share songs within these groups.
 
-Please see the [example file](https://github.com/umass-cs-326/ms02-example/blob/main/team/m2/problem.md?plain=1) and format yours accordingly.
+By combining personalized recommendations, curated playlists, and social sharing features, Sonar will enhance the way users discover and engage with music, making music discovery more enjoyable and community-driven.
+
+## Why This Matters
+
+Music is not only a key source of personal enjoyment, but also an important way people connect with others. Whether it's bonding over shared tastes or discovering new artists together, music plays a big role in social interactions. However, finding new bangers can often be a slow and frustrating process, especially when existing playlists might not provide users with what they want. By allowing users to filter music based on tags, discovering and sharing new songs becomes easier and more enjoyable, helping people connect with others through shared playlists and recommendations.
