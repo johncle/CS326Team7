@@ -1,6 +1,6 @@
-## Contribution Log for 
+## Contribution Log for Jimmy Nguyen
 
-### October , 2024
+### October 21, 2024
 -   **Task**:
 -   **Details**: 
 -   **Link to Commit**: 
