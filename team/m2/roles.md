@@ -13,3 +13,23 @@
   1. [Commit 1](https://github.com/johncle/CS326Team7/commit/77e66dcd282025d7128ca9f0e408ac1ad27d6bb7): Drafted `data.md` with suggestions from team members.
   2. [Commit 2](https://github.com/johncle/CS326Team7/commit/d277b30b7f3049924648015d8f6586fce3c8d9fc): Updated `roles.md`
   3. [Create tasks.md](https://github.com/johncle/CS326Team7/commit/9144d9703d3ebeb0aedfcf54a03cad10d4a43171): Created tasks.md to keep track of remaining tasks for this milestone.
+ 
+## Pavel - Time Keeper
+- **Role**: Manages the timing of all team activities. Pavel ensures that meetings start and end on time, keeps track of deadlines, and reminds the team of upcoming due dates
+- **Top 3 Commits**:
+
+## Jimmy - Note Taker
+- **Role**: Records detailed notes during meetings and ensures that action items are clearly communicated. Jimmy is responsible for distributing meeting minutes to the team after each session.
+- **Top 3 Commits**:
+ 
+## Sidharth Jain - Quality Control
+- **Role**:  Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Sidharth is responsible for proofreading and ensuring the accuracy of all documents before submission.
+- **Top 3 Commits**:
+
+## Connor Cargill - Communication Lead
+- **Role**:  Facilitates communication within the team. Connor is responsible for maintaining and managing the team’s discord workspace and ensuring that all members stay informed and engaged.
+- **Top 3 Commits**:
+
+## Ahad - Documentation Lead
+- **Role**: Responsible for overseeing the organization and maintenance of all project documentation. Ahad ensures that all documents are up to date, well-organized, and accessible to team members. 
+- **Top 3 Commits**:
