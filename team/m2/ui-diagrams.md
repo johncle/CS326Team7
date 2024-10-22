@@ -50,6 +50,7 @@ This screen displays user communities and friends. Users can join communities ba
 
 
 # 4. Audio Visualiser
+![audio Visualisor](https://github.com/user-attachments/assets/20d44151-47c0-4a50-8c7a-cb0e60ae8295)
 
 ## Diagram Explanation:
 A reactive 3D audio waveform that reacts to the audio selected. It uses a particle system, which changes the location of the particles based on various features of the audio.
