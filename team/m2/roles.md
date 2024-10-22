@@ -1,20 +1,8 @@
-### Description of `roles.md` File
+# Team Roles and Commit Contributions
 
-The `roles.md` file is where your team will outline the non-technical roles and responsibilities of each team member. Every team member should be assigned a unique role that focuses on a specific task related to the overall management and organization of the project. These roles are critical for ensuring that the team functions effectively and efficiently throughout the course of the project.
-
-Each role should be designed to:
-
-1. **Support Team Organization**: Ensure that the team stays on schedule, communicates effectively, and manages its tasks and meetings well.
-2. **Assign Clear Responsibilities**: Each role should focus on a specific aspect of managing the team, such as coordinating meetings, tracking tasks, or ensuring that deadlines are met. These roles are not technical (i.e., not related to front-end or back-end development) but are focused on project management and team collaboration.
-3. **Unique for Each Team Member**: Every team member must have a distinct role, ensuring that each individual has clear responsibilities that do not overlap with others.
-
-For each role, you should include:
-
-1. **Role Name**: Clearly define the role (e.g., Project Manager, Timekeeper, Note-Taker).
-2. **Role Description**: Briefly describe the key responsibilities of the role and how it helps the team stay organized.
-3. **Assigned Team Member**: State which team member is responsible for this role.
-4. **Top 3 Commits**: List the top 3 commits made by each member in this milestone and link to them in the GitHub repository. Include a short description of what was completed in each commit. These commits should demonstrate the member’s contributions to the project, particularly related to their role.
-
-The `roles.md` file will help ensure accountability and make sure that each team member contributes to the project’s organization and overall success. This document will evolve as the project progresses, with each member’s contributions being clearly tracked.
-
-Please see the [example file](https://github.com/umass-cs-326/ms02-example/blob/main/team/m2/roles.md?plain=1) and format yours accordingly.
+## John Le - Project Manager
+- **Role**: Oversees the overall project timeline, ensures that milestones are met, and coordinates the team’s efforts. John is responsible for setting meeting agendas and ensuring that the team stays focused on project goals.
+- **Top 3 Commits**:
+  1. [Initial commit](https://github.com/johncle/CS326Team7/commit/7ffef6cc63f027a5ad35c68cec22401b6f9279b6): Created the initial GitHub repository and set up the project structure, including the `team/m2` folder for milestone submissions.
+  2. [update problem.md](https://github.com/johncle/CS326Team7/commit/b23457f3797324eac858844615f7c51ba3308fb8): Drafted `problem.md` with suggestions from team members.
+  3. [update users.md](https://github.com/johncle/CS326Team7/commit/bc74cfcf82c27a65a7dbfad1c777fe599d15acd8): Drafted `users.md` with suggestions from team members.
