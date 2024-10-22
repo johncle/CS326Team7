@@ -1,4 +1,3 @@
-
 ## Contribution Log for Jeffrey Deng
 
 ### October 21, 2024
