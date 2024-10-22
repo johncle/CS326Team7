@@ -12,3 +12,4 @@
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/johncle/CS326Team7/commit/77e66dcd282025d7128ca9f0e408ac1ad27d6bb7): Drafted `data.md` with suggestions from team members.
   2. [Commit 2](https://github.com/johncle/CS326Team7/commit/d277b30b7f3049924648015d8f6586fce3c8d9fc): Updated `roles.md`
+  3. [Create tasks.md](https://github.com/johncle/CS326Team7/commit/9144d9703d3ebeb0aedfcf54a03cad10d4a43171): Created tasks.md to keep track of remaining tasks for this milestone.
