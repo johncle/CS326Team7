@@ -1,0 +1,26 @@
+{
+  "name": "sonar",
+  "version": "1.0.0",
+  "description": "cs326 project - team 7",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server . -p 3000 -c-1 -o -s",
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johncle/CS326Team7.git"
+  },
+  "author": "johncle",
+  "contributors": [],
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/johncle/CS326Team7/issues"
+  },
+  "homepage": "https://github.com/johncle/CS326Team7#readme",
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "vite": "^5.4.11"
+  }
+}
