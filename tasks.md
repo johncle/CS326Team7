@@ -1,7 +1,8 @@
 Current Tasks
-- [X] data.md
+
+- [x] data.md
 - [ ] features.md
-- [X] problems.md
+- [x] problems.md
 - [ ] roles.md
 - [ ] ui-diagrams.md
-- [X] users.md
+- [x] users.md
