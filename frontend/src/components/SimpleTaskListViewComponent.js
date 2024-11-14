@@ -1,3 +1,4 @@
+// this is not part of the app, is an example of how to use BaseComponent from class
 import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
