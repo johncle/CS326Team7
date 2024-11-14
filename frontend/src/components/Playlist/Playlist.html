@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="profile-image.jpg" alt="Profile" class="profile-image">
+      <nav class="nav">
+        <a href="#">Playlists</a>
+        <a href="#" class="active">Discover new</a>
+        <a href="#">Tags</a>
+        <a href="#">Communities</a>
+        <a href="#">Profile</a>
+        <a href="#">Log out</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+      </div>
+
+      <section class="curated-for-you">
+        <h2>Curated for you</h2>
+        <div class="card-container">
+          <div class="card">Top 50 hits<br><span>New releases</span></div>
+          <div class="card">Live performances<br><span>Your playlists</span></div>
+          <div class="card">Discover new<br><span>Recommended for you</span></div>
+          <div class="card">Throwback hits<br><span>Discover new</span></div>
+          <div class="card">M</div>
+        </div>
+      </section>
+
+      <section class="playlist-grid">
+        <h2>Curated for you</h2>
+        <div class="playlist-item">
+          <span class="playlist-icon">🎶</span>
+          <span class="playlist-title">Top songs</span>
+          <span class="playlist-info">New</span>
+          <span class="playlist-action">Listen now</span>
+        </div>
+        <div class="playlist-item">
+          <span class="playlist-icon">🎧</span>
+          <span class="playlist-title">Recommended for you</span>
+          <span class="playlist-info">Featured</span>
+          <span class="playlist-action">Explore</span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

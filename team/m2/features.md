@@ -7,7 +7,7 @@ The algorithm will learn the user’s preferences and recommend songs that match
 
 **Point Value:** 5 points
 
-**Assigned to**: Jeffery Deng
+**Assigned to**: Jeffrey Deng
 
 ## Tag-Based Search (Filter In/Out)
 
