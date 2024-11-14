@@ -1,15 +1,15 @@
 import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
-import { Navbar } from "../Navbar/Navbar.js";
+import { TaskComponent } from "../TaskComponent/TaskComponent.js";
 
-export class HomePage extends BaseComponent {
+export class SimpleTaskListViewComponent extends BaseComponent {
   #container = null; // Private variable to store the container element
   #tasks = []; // To store task data
 
   constructor() {
     super();
-    this.loadCSS("NavBar");
+    this.loadCSS("SimpleTaskListViewComponent");
   }
 
   // Method to render the component and return the container
