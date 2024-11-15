@@ -1,13 +1,12 @@
 import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
-import "../../main.css";
 
 /**
  * Navbar is always displayed, except for login page. Used to switch pages/views
  */
 export class Navbar extends BaseComponent {
-  #navbar = null;
+  #container = null;
   #hub = EventHub.getInstance();
 
   constructor() {
@@ -17,20 +16,20 @@ export class Navbar extends BaseComponent {
 
   // Method to render the component and return the container
   render() {
-    if (this.#navbar) {
-      return this.#navbar;
+    if (this.#container) {
+      return this.#container;
     }
 
-    this.#createNavbar();
-    this.#setupNavbarContent();
+    this.#createContainer();
+    this.#setupContainerContent();
 
-    return this.#navbar;
+    return this.#container;
   }
 
   // Creates the container element for the component
-  #createNavbar() {
-    this.#navbar = document.createElement("nav");
-    this.#navbar.classList.add(
+  #createContainer() {
+    this.#container = document.createElement("nav");
+    this.#container.classList.add(
       "navbar",
       "navbar-expand-lg",
       "bg-tertiary-color",
@@ -38,12 +37,12 @@ export class Navbar extends BaseComponent {
   }
 
   // Sets up the basic HTML structure of the component
-  #setupNavbarContent() {
-    this.#navbar.innerHTML = `
+  #setupContainerContent() {
+    this.#container.innerHTML = `
       <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div id="navbarNavAltMarkup">
           <div class="navbar-nav me-auto">
-            <button class="nav-link" data-page="home">
+            <button class="nav-link" data-page="">
               <img src="src/assets/sonar.svg" class="logo" alt="Sonar logo" />
             </button>
             <button class="nav-link active" aria-current="page" data-page="home">
@@ -59,9 +58,10 @@ export class Navbar extends BaseComponent {
     `;
 
     // adds onclick event to navigate to page and update active navbar button
-    const buttons = this.#navbar.querySelectorAll("button[data-page]");
+    const buttons = this.#container.querySelectorAll("button[data-page]");
     buttons.forEach((button) => {
-      const pageName = button.getAttribute("data-page");
+      // icon has data-page="" to redirect to home page
+      const pageName = button.getAttribute("data-page") || "home";
       button.addEventListener("click", () => {
         this.#navigateTo(pageName);
         this.#setActivePage(pageName);
@@ -79,16 +79,16 @@ export class Navbar extends BaseComponent {
   }
 
   /**
-   * Sets "active" class for active page button
+   * Sets "active" class for active page button which highlights the button in the navbar
    * @param {string} pageName
    */
   #setActivePage(pageName) {
     // remove active class from current page button
-    const curActive = this.#navbar.querySelector("button.active");
+    const curActive = this.#container.querySelector("button.active");
     curActive.classList.remove("active");
 
     // add active class to new page button
-    const newActive = this.#navbar.querySelector(
+    const newActive = this.#container.querySelector(
       `button[data-page=${pageName}]`,
     );
     newActive.classList.add("active");
