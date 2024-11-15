@@ -1,8 +1,8 @@
-// import { HomePage } from "../HomePage/HomePage.js";
-// import { TagsPage } from "../TagsPage/TagsPage.js";
-// import { CommunitiesPage } from "../CommunitiesPage/CommunitiesPage.js";
-// import { ProfilePage } from "../ProfilePage/ProfilePage.js";
-// import { LoginPage } from "../LoginPage/LoginPage.js";
+import { HomePage } from "../HomePage/HomePage.js";
+import { TagsPage } from "../TagsPage/TagsPage.js";
+import { CommunitiesPage } from "../CommunitiesPage/CommunitiesPage.js";
+import { ProfilePage } from "../ProfilePage/ProfilePage.js";
+import { LoginPage } from "../LoginPage/LoginPage.js";
 import { Navbar } from "../Navbar/Navbar.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 
@@ -23,12 +23,12 @@ export class AppControllerComponent {
   constructor() {
     this.#hub = EventHub.getInstance();
     this.#navbar = new Navbar();
-    // this.#homePage = new HomePage();
-    // this.#tagsPage = new TagsPage();
-    // this.#communitiesPage = new CommunitiesPage();
+    this.#homePage = new HomePage();
+    this.#tagsPage = new TagsPage();
+    this.#communitiesPage = new CommunitiesPage();
+    this.#profilePage = new ProfilePage();
+    this.#loginPage = new LoginPage();
     // this.#searchPage = new SearchPage();
-    // this.#profilePage = new ProfilePage();
-    // this.#loginPage = new LoginPage();
   }
 
   // Render the AppController component and return the container
@@ -71,34 +71,34 @@ export class AppControllerComponent {
 
     switch (this.#currentView) {
       case "home":
-        // viewContainer.appendChild(this.#homePage.render());
         viewContainer.appendChild(this.#navbar.render());
+        viewContainer.appendChild(this.#homePage.render());
         break;
       case "tags":
-        // viewContainer.appendChild(this.#tagsPage.render());
         viewContainer.appendChild(this.#navbar.render());
+        viewContainer.appendChild(this.#tagsPage.render());
         break;
       case "communities":
-        // viewContainer.appendChild(this.#communitiesPage.render());
         viewContainer.appendChild(this.#navbar.render());
+        viewContainer.appendChild(this.#communitiesPage.render());
         break;
       case "profile":
-        // viewContainer.appendChild(this.#profilePage.render());
         viewContainer.appendChild(this.#navbar.render());
+        viewContainer.appendChild(this.#profilePage.render());
         break;
       case "login":
-        // viewContainer.appendChild(this.#loginPage.render());
         // do not render navbar for login page
+        viewContainer.appendChild(this.#loginPage.render());
         break;
       case "search":
-        // viewContainer.appendChild(this.#searchPage.render());
         viewContainer.appendChild(this.#navbar.render());
+        // viewContainer.appendChild(this.#searchPage.render());
         break;
       default:
-        // page not found, TODO: for now load home page but later use 404 page
+        // page not found, should be impossible with predefined page names but idk, show home page
         console.log(`page name '${this.#currentView}' is invalid`);
-        // viewContainer.appendChild(this.#homePage.render());
         viewContainer.appendChild(this.#navbar.render());
+        viewContainer.appendChild(this.#homePage.render());
     }
   }
 }

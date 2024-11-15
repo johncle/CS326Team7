@@ -1,5 +1,5 @@
 /* base styles for all pages */
-#app {
+:root {
   --primary-color: #a9a9a9;
   --secondary-color: #343434;
   --background-color: #161616;
@@ -21,6 +21,10 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
+
+#viewContainer {
+  display: flex;
   height: 100%;
 }
 
