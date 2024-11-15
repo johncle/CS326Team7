@@ -1,21 +1,34 @@
 // import { HomePage } from "../HomePage/HomePage.js";
 // import { TagsPage } from "../TagsPage/TagsPage.js";
 // import { CommunitiesPage } from "../CommunitiesPage/CommunitiesPage.js";
+// import { ProfilePage } from "../ProfilePage/ProfilePage.js";
 // import { LoginPage } from "../LoginPage/LoginPage.js";
 import { Navbar } from "../Navbar/Navbar.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
-  #currentView = "main"; // Track the current view ('main' or 'simple')
-  navbar = null; // Instance of the main task list component
-  #taskInputComponent = null; // Instance of the task input component
-  #simpleTaskListViewComponent = null; // Instance of the simple view component
+  #currentView = "home"; // Track the current view ("home" | "tags" | "communities" | "profile" | "login" | "search")
   #hub = null; // EventHub instance for managing events
+
+  // component instances
+  #navbar = null;
+  #homePage = null;
+  #tagsPage = null;
+  #communitiesPage = null;
+  #profilePage = null;
+  #loginPage = null;
+  #searchPage = null;
 
   constructor() {
     this.#hub = EventHub.getInstance();
-    this.navbar = new Navbar();
+    this.#navbar = new Navbar();
+    // this.#homePage = new HomePage();
+    // this.#tagsPage = new TagsPage();
+    // this.#communitiesPage = new CommunitiesPage();
+    // this.#searchPage = new SearchPage();
+    // this.#profilePage = new ProfilePage();
+    // this.#loginPage = new LoginPage();
   }
 
   // Render the AppController component and return the container
@@ -23,8 +36,6 @@ export class AppControllerComponent {
     this.#createContainer();
     this.#setupContainerContent();
     this.#attachEventListeners();
-
-    this.navbar.render();
 
     // Initially render the main view
     this.#renderCurrentView();
@@ -40,42 +51,17 @@ export class AppControllerComponent {
 
   // Sets up the HTML structure for the container
   #setupContainerContent() {
-    this.#container.innerHTML = `
-      <div id="viewContainer"></div>
-      <button id="switchViewBtn">Switch to Simple View</button>
-    `;
+    this.#container.innerHTML = `<div id="viewContainer"></div>`;
   }
 
   // Attaches the necessary event listeners
   #attachEventListeners() {
-    const switchViewBtn = this.#container.querySelector("#switchViewBtn");
-
-    // Event listener for switching views
-    switchViewBtn.addEventListener("click", () => {
-      this.#toggleView();
-    });
-
-    // Subscribe to events from the EventHub to manage switching
-    this.#hub.subscribe("SwitchToSimpleView", () => {
-      this.#currentView = "simple";
+    // Subscribe to SwitchPage event from Navbar
+    this.#hub.subscribe("SwitchPage", (pageName) => {
+      console.log("app switch page:", pageName);
+      this.#currentView = pageName;
       this.#renderCurrentView();
     });
-
-    this.#hub.subscribe("SwitchToMainView", () => {
-      this.#currentView = "main";
-      this.#renderCurrentView();
-    });
-  }
-
-  // Toggles the view between main and simple
-  #toggleView() {
-    if (this.#currentView === "main") {
-      this.#currentView = "simple";
-      this.#hub.publish("SwitchToSimpleView", null);
-    } else {
-      this.#currentView = "main";
-      this.#hub.publish("SwitchToMainView", null);
-    }
   }
 
   // Renders the current view based on the #currentView state
@@ -83,21 +69,36 @@ export class AppControllerComponent {
     const viewContainer = this.#container.querySelector("#viewContainer");
     viewContainer.innerHTML = ""; // Clear existing content
 
-    // Update the button text based on the current view
-    const switchViewBtn = this.#container.querySelector("#switchViewBtn");
-    switchViewBtn.textContent =
-      this.#currentView === "main"
-        ? "Switch to Simple View"
-        : "Switch to Main View";
-
-    viewContainer.appendChild(this.navbar.render());
-    // if (this.#currentView === "main") {
-    //   // Render the main task list view
-    //   viewContainer.appendChild(this.#taskInputComponent.render());
-    //   viewContainer.appendChild(this.navbar.render());
-    // } else {
-    //   // Render the simple task list view
-    //   viewContainer.appendChild(this.#simpleTaskListViewComponent.render());
-    // }
+    switch (this.#currentView) {
+      case "home":
+        // viewContainer.appendChild(this.#homePage.render());
+        viewContainer.appendChild(this.#navbar.render());
+        break;
+      case "tags":
+        // viewContainer.appendChild(this.#tagsPage.render());
+        viewContainer.appendChild(this.#navbar.render());
+        break;
+      case "communities":
+        // viewContainer.appendChild(this.#communitiesPage.render());
+        viewContainer.appendChild(this.#navbar.render());
+        break;
+      case "profile":
+        // viewContainer.appendChild(this.#profilePage.render());
+        viewContainer.appendChild(this.#navbar.render());
+        break;
+      case "login":
+        // viewContainer.appendChild(this.#loginPage.render());
+        // do not render navbar for login page
+        break;
+      case "search":
+        // viewContainer.appendChild(this.#searchPage.render());
+        viewContainer.appendChild(this.#navbar.render());
+        break;
+      default:
+        // page not found, TODO: for now load home page but later use 404 page
+        console.log(`page name '${this.#currentView}' is invalid`);
+        // viewContainer.appendChild(this.#homePage.render());
+        viewContainer.appendChild(this.#navbar.render());
+    }
   }
 }

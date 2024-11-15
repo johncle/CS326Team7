@@ -5,9 +5,10 @@
     flex-direction: column;
   }
   .navbar {
-    width: 28%;
+    width: 20%;
     height: 100vh;
     align-items: flex-start;
+    /* color: var(--primary-color); */
   }
   .navbar-brand {
     margin-left: 0.5em;
