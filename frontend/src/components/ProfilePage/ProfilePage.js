@@ -2,12 +2,12 @@ import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 
-export class LoginPage extends BaseComponent {
+export class ProfilePage extends BaseComponent {
   #container = null; // Private variable to store the container element
 
   constructor() {
     super();
-    this.loadCSS("LoginPage");
+    this.loadCSS("ProfilePage");
   }
 
   // Method to render the component and return the container
@@ -26,13 +26,13 @@ export class LoginPage extends BaseComponent {
   // Creates the container element for the component
   #createContainer() {
     this.#container = document.createElement("div");
-    this.#container.classList.add("login-page");
+    this.#container.classList.add("profile-page");
   }
 
   // Sets up the basic HTML structure of the component
   #setupContainerContent() {
     this.#container.innerHTML = `
-      <h2>Login Page</h2>
+      <h2>Profile Page</h2>
     `;
   }
 

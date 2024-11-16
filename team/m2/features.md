@@ -1,4 +1,4 @@
-# Application Features
+# Core Features
 
 ## Music Discovery Algorithm
 
@@ -7,7 +7,7 @@ The algorithm will learn the user’s preferences and recommend songs that match
 
 **Point Value:** 5 points
 
-**Assigned to**: Jeffrey Deng
+**Assigned to:** Jeffery Deng
 
 ## Tag-Based Search (Filter In/Out)
 
@@ -16,7 +16,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 5 points
 
-**Assigned to**: Pavel Tverdokhlebov
+**Assigned to:** Pavel Tverdokhlebov
 
 ## Mood and Event Playlists (AI DJ)
 
@@ -24,7 +24,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 5 points
 
-**Assigned to**: John Le
+**Assigned to:** John Le
 
 ## Music Remixer
 
@@ -32,7 +32,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 5 points
 
-**Assigned to**: Connor Cargill
+**Assigned to:** Connor Cargill
 
 ## Community and Song Sharing
 
@@ -40,7 +40,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 5 points
 
-**Assigned to**: Jimmy Nguyen
+**Assigned to:** Jimmy Nguyen
 
 ## Chat Feature
 
@@ -48,7 +48,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 5 points
 
-**Assigned to**: Ahad Yildiz
+**Assigned to:** Ahad Yildiz
 
 ## Reactive Audio Visualizer
 
@@ -56,47 +56,103 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 5 points
 
-**Assigned to**: Sidharth Jain
+**Assigned to:** Sidharth Jain
+
+[//]: # "---------------------------------------------------------------------"
+
+# Pages
+
+## App Controller
+
+**Description:** The app is structured as an event-driven single page application where pages (views) are loaded and unloaded dynamically.
+
+**Point Value:** 5 points
+
+**Assigned to:** John Le
+
+**Depends on:** Navbar, Home Page, Tags Page, Communities Page, Search Page, Login Page, Music Page
 
 ## Home Page
 
 **Description:** The home page is the first thing a user sees (after logging in). It serves to let the user discover new music in the form of songs and playlists that are curated for the user, as well as trending songs/albums. It also shows playlists created by the user for easy access.
 
-**Point Value:** 5 points
+**Point Value:** 4 points
 
-**Assigned to**: John Le
+**Assigned to:** John Le
+
+**Depends on:** Playlist Collection
 
 ## Tags Page
 
 **Description:** The tags page shows playlists based on certain tags that can cover moods, genres, tempos, or events. For example, there could be playlists for chill, RnB, uptempo, and party.
 
-**Point Value:** 5 points
+**Point Value:** 4 points
 
-**Assigned to**:
+**Assigned to:**
 
 ## Communities Page
 
-**Description:** The communities page allows users to create and join communities.
+**Description:** The communities page allows users to create and join communities, and chat with others.
 
 **Point Value:** 4 points
 
-**Assigned to**:
+**Assigned to:**
+
+## Login Page
+
+**Description:** The login page is where users connect their Spotify account to Sonar, allowing them to access the website and search for songs.
+
+**Point Value:** 4 points
+
+**Assigned to:**
 
 ## Search Page
 
 **Description:** The search page allows users to use advanced search for songs either by title or by tags, which can filter in or out specific tags. After submitting, it shows song/playlist results.
 
-**Point Value:** 5 points
+**Point Value:** 4 points
 
-**Assigned to**: Pavel?
+**Assigned to:** Pavel?
+
+## Music Page
+
+**Description:** Page that clicking on a playlist leads to, showing a list of individual song(s).
+
+**Point Value:** 4 points
+
+**Assigned to:**
+
+[//]: # "---------------------------------------------------------------------"
+
+# Components
 
 ## Navbar
 
-**Description:** Navigation bar on left side to change between different views: Home, Tags, Communities, Profile, Log out.
+**Description:** Navigation bar on left side to change between different views: Home, Tags, Communities, Profile, Log out. Potentially Search.
 
 **Point Value:** 2 points
 
-**Assigned to**: John Le
+**Assigned to:** John Le
+
+**Depends on:** Navbar Button
+
+## Playlist
+
+**Description:** Box button for presenting a song/playlist/album
+
+**Point Value:** 2 points
+
+**Assigned to:** Jeffrey Deng
+
+## Playlist Collection
+
+**Description:** Scrollable (horizontally) list of playlist for grouping related playlists together by tag/category
+
+**Point Value:** 3 points
+
+**Assigned to:** Jeffrey?
+
+**Depends on:** Playlist
 
 ## Search bar
 
@@ -104,14 +160,30 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 4 points
 
-**Assigned to**: Pavel?
+**Assigned to:** Pavel?
+
+[//]: # "---------------------------------------------------------------------"
+
+# Subcomponents
+
+## Navbar Button
+
+**Description:** A button on the navbar that when clicked, sends an event SwitchPage(pageName) that AppController listens to for changing the page.
+
+**Point Value:** 1 point
+
+**Assigned to:** John Le
+
+[//]: # "---------------------------------------------------------------------"
 
 # Feature template:
 
-## Feature
+## Feature A
 
 **Description:** Does thing
 
-**Point Value:** 3 points
+**Point Value:** 1-5 points
 
-**Assigned to**: Bob
+**Assigned to:** Bob
+
+**Depends on:** _(Optional)_ Feature B, Feature C

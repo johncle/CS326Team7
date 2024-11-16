@@ -2,9 +2,12 @@ import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 
+/**
+ * Navbar is always displayed, except for login page. Used to switch pages/views
+ */
 export class Navbar extends BaseComponent {
-  #container = null; // Private variable to store the container element
-  #tasks = []; // To store task data
+  #container = null;
+  #hub = EventHub.getInstance();
 
   constructor() {
     super();
@@ -17,26 +20,19 @@ export class Navbar extends BaseComponent {
       return this.#container;
     }
 
-    this.#createNavbar();
+    this.#createContainer();
     this.#setupContainerContent();
-    // this.#attachEventListeners();
 
     return this.#container;
   }
 
-  // Method to set the list of tasks to display
-  setTasks(tasks) {
-    this.#tasks = tasks;
-    // this.#renderTasks();
-  }
-
   // Creates the container element for the component
-  #createNavbar() {
+  #createContainer() {
     this.#container = document.createElement("nav");
     this.#container.classList.add(
       "navbar",
       "navbar-expand-lg",
-      "bg-body-tertiary",
+      "bg-tertiary-color",
     );
   }
 
@@ -44,52 +40,57 @@ export class Navbar extends BaseComponent {
   #setupContainerContent() {
     this.#container.innerHTML = `
       <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a href="#"><img src="src/assets/sonar.svg" class="logo" alt="Sonar logo" /></a>
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="#">Tags</a>
-            <a class="nav-link" href="#">Communities</a>
-          </div>
-          <div class="navbar-nav">
-            <a class="nav-link" href="#">Profile</a>
-            <a class="nav-link" href="#">Logout</a>
+        <div id="navbarNavAltMarkup">
+          <div class="navbar-nav me-auto">
+            <button class="nav-link" data-page="">
+              <img src="src/assets/sonar.svg" class="logo" alt="Sonar logo" />
+            </button>
+            <button class="nav-link active" aria-current="page" data-page="home">
+              Home
+            </button>
+            <button class="nav-link" data-page="tags">Tags</button>
+            <button class="nav-link" data-page="communities">Communities</button>
+            <button class="nav-link" data-page="profile">Profile</button>
+            <button class="nav-link" data-page="login">Logout</button>
           </div>
         </div>
       </div>
     `;
+
+    // adds onclick event to navigate to page and update active navbar button
+    const buttons = this.#container.querySelectorAll("button[data-page]");
+    buttons.forEach((button) => {
+      // icon has data-page="" to redirect to home page
+      const pageName = button.getAttribute("data-page") || "home";
+      button.addEventListener("click", () => {
+        this.#navigateTo(pageName);
+        this.#setActivePage(pageName);
+      });
+    });
   }
 
-  // // Renders the tasks in the list
-  // #renderTasks() {
-  //   const taskList = this.#container.querySelector("#simpleTaskList");
-  //   taskList.innerHTML = ""; // Clear existing content
+  /**
+   * Switches pages when clicking navbar buttons
+   * @param {string} pageName "home" | "tags" | "communities" | "profile" | "login" | "search"
+   *  - switch to "login" page when user clicks "Logout"
+   */
+  #navigateTo(pageName) {
+    this.#hub.publish(Events.SwitchPage, pageName);
+  }
 
-  //   this.#tasks.forEach((taskData) => {
-  //     const taskContainer = document.createElement("li");
-  //     taskContainer.classList.add("task-item");
+  /**
+   * Sets "active" class for active page button which highlights the button in the navbar
+   * @param {string} pageName
+   */
+  #setActivePage(pageName) {
+    // remove active class from current page button
+    const curActive = this.#container.querySelector("button.active");
+    curActive.classList.remove("active");
 
-  //     // Create a new TaskComponent for each task
-  //     const task = new TaskComponent(taskData);
-  //     taskContainer.appendChild(task.render());
-  //     taskList.appendChild(taskContainer);
-  //   });
-  // }
-
-  // // Attaches the event listeners to the component
-  // #attachEventListeners() {
-  //   const backToMainViewBtn =
-  //     this.#container.querySelector("#backToMainViewBtn");
-
-  //   const hub = EventHub.getInstance();
-  //   hub.subscribe(Events.NewTask, (taskData) => {
-  //     this.#tasks.push(taskData);
-  //     this.#renderTasks();
-  //   });
-
-  //   hub.subscribe(Events.UnStoreTasks, () => {
-  //     this.#tasks = [];
-  //     this.#renderTasks();
-  //   });
-  // }
+    // add active class to new page button
+    const newActive = this.#container.querySelector(
+      `button[data-page=${pageName}]`,
+    );
+    newActive.classList.add("active");
+  }
 }
