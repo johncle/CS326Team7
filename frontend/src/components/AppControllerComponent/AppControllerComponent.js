@@ -97,7 +97,7 @@ export class AppControllerComponent {
         viewContainer.appendChild(this.#navbar.render());
         // viewContainer.appendChild(this.#searchPage.render());
         break;
-      case "Visualizor":
+      case "visualizor":
         viewContainer.appendChild(this.#navbar.render());
         viewContainer.appendChild(this.#visualizorPage.render());
         break;
