@@ -97,7 +97,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 4 points
 
-**Assigned to:**
+**Assigned to:** Jimmy Nguyen
 
 ## Login Page
 
