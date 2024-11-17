@@ -1,0 +1,25 @@
+/* large screen, left vertical navbar */
+/* @media (min-width: 992px) { */
+.navbar,
+.navbar-collapse,
+.navbar-expand-lg .navbar-nav {
+  flex-direction: column;
+}
+.navbar {
+  width: 12em;
+  height: 100vh;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+.navbar-brand {
+  margin-left: 0.5em;
+  padding-bottom: 0;
+  border-bottom: 4px solid #464646;
+}
+form input {
+  margin-bottom: 0.7em;
+}
+.logo {
+  width: 25%;
+}
+/* } */

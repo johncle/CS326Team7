@@ -1,0 +1,28 @@
+{
+  "name": "sonar",
+  "version": "1.0.0",
+  "description": "cs326 project - team 7",
+  "scripts": {
+    "dev": "echo \"cd to the frontend or backend folder first\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johncle/CS326Team7.git"
+  },
+  "author": "johncle",
+  "contributors": [],
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/johncle/CS326Team7/issues"
+  },
+  "homepage": "https://github.com/johncle/CS326Team7#readme",
+  "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "3.3.3"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}

@@ -18,3 +18,24 @@ By combining personalized recommendations, curated playlists, and social sharing
 ## Why This Matters
 
 Music is not only a key source of personal enjoyment, but also an important way people connect with others. Whether it's bonding over shared tastes or discovering new artists together, music plays a big role in social interactions. However, finding new bangers can often be a slow and frustrating process, especially when existing playlists might not provide users with what they want. By allowing users to filter music based on tags, discovering and sharing new songs becomes easier and more enjoyable, helping people connect with others through shared playlists and recommendations.
+
+## How It Works
+
+### General App Structure
+
+The app is structured as an event-driven single page application where the only html file in use is a barebones `index.html`, which sources `main.js`. This instantiates the App Controller in `AppControllerComponent.js` and creates a blank div for it. The App Controller is the main core of the app and handles nearly all of the functionality for loading components and handling events.
+
+### Components
+
+Each components should have its own folder with the `componentName.js` and `componentName.css`. All components should extend `BaseComponent`, which requires you to implement the `render()` method. This should create an HTML DOM element, add innerHTML and any JS functionality to it such as event listeners, and return the HTML element.
+
+To use it, import the component into the App Controller and render it by adding it's `render()` output to the App Controller's `viewContainer` using `viewContainer.appendChild(componentName.render())`
+
+### Event Handling
+
+Event handling is structured using the observer or publisher/subscriber pattern. It works by having a singleton EventHub that stores events in an internal object.
+
+- "Singleton" means there is only one central instance of this EventHub for the entire app, so please don't create new ones
+- You can get the EventHub instance anywhere in the app with `EventHub.getInstance()`
+
+You can have a component subscribe (listen) to an event with `EventHub.subscribe(event, listener)` where `event` is a string and `listener` is a callback function describing what to do with incoming data. When any class publishes data to that event with `EventHub.publish(event, data)` where `data` is anything you want, all listeners to that event call their functions with that data.
