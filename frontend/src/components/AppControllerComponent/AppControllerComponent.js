@@ -5,6 +5,7 @@ import { ProfilePage } from "../ProfilePage/ProfilePage.js";
 import { LoginPage } from "../LoginPage/LoginPage.js";
 import { Navbar } from "../Navbar/Navbar.js";
 import { EventHub } from "../../eventhub/EventHub.js";
+import { VisualizorPage } from "../THREEjs/VisualizorPage.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
@@ -19,6 +20,7 @@ export class AppControllerComponent {
   #profilePage = null;
   #loginPage = null;
   #searchPage = null;
+  #visualizorPage = null;
 
   constructor() {
     this.#hub = EventHub.getInstance();
@@ -28,6 +30,7 @@ export class AppControllerComponent {
     this.#communitiesPage = new CommunitiesPage();
     this.#profilePage = new ProfilePage();
     this.#loginPage = new LoginPage();
+    this.#visualizorPage = new VisualizorPage();
     // this.#searchPage = new SearchPage();
   }
 
@@ -93,6 +96,10 @@ export class AppControllerComponent {
       case "search":
         viewContainer.appendChild(this.#navbar.render());
         // viewContainer.appendChild(this.#searchPage.render());
+        break;
+      case "Visualizor":
+        viewContainer.appendChild(this.#navbar.render());
+        viewContainer.appendChild(this.#visualizorPage.render());
         break;
       default:
         // page not found, should be impossible with predefined page names but idk, show home page
