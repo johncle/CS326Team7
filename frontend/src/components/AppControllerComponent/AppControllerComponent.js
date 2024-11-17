@@ -8,7 +8,7 @@ import { EventHub } from "../../eventhub/EventHub.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
-  #currentView = "home"; // Track the current view ("home" | "tags" | "communities" | "profile" | "login" | "search")
+  #currentView = "login"; // Track the current view ("home" | "tags" | "communities" | "profile" | "login" | "search")
   #hub = null; // EventHub instance for managing events
 
   // component instances
