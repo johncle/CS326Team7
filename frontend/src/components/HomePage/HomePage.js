@@ -11,7 +11,11 @@ export class HomePage extends BaseComponent {
   constructor() {
     super();
     this.loadCSS("HomePage");
-    this.#categories = {};
+    this.#categories = {
+      "Curated for you": new PlaylistList(),
+      "Discover New": new PlaylistList(),
+      Trending: new PlaylistList(),
+    };
   }
 
   // Method to render the component and return the container
@@ -30,7 +34,6 @@ export class HomePage extends BaseComponent {
   // Creates the container element for the component
   #createContainer() {
     this.#container = document.createElement("div");
-    this.#container.classList.add("home-page");
   }
 
   // Sets up the basic HTML structure of the component
@@ -40,10 +43,32 @@ export class HomePage extends BaseComponent {
     `;
     const mainDiv = this.#container.querySelector("#homepage");
 
-    Object.entries(this.#categories).forEach((playlistList) => {
-      const playlistDiv = document.createElement("div");
-      playlistDiv.classList.add("categories");
-      playlistDiv.appendChild(playlistList.render());
+    Object.entries(this.#categories).forEach((category) => {
+      // console.log(category);
+      const playlistList = category[1];
+      playlistList.render();
+      playlistList.setPlaylists([
+        {
+          icon: "icon1",
+          title: "title1",
+          category: "category1",
+          action: "action1",
+        },
+        {
+          icon: "icon2",
+          title: "title2",
+          category: "category2",
+          action: "action2",
+        },
+        {
+          icon: "icon3",
+          title: "title3",
+          category: "category3",
+          action: "action3",
+        },
+      ]);
+      mainDiv.classList.add("categories");
+      mainDiv.appendChild(playlistList.render());
     });
 
     // div.appendChild(this.#playlistList.render());
