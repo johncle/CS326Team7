@@ -1,0 +1,16 @@
+.tags-page {
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+.tags-page h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.playlists-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

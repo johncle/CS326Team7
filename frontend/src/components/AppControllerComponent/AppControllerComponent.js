@@ -8,7 +8,7 @@ import { EventHub } from "../../eventhub/EventHub.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
-  #currentView = "login"; // Track the current view ("home" | "tags" | "communities" | "profile" | "login" | "search")
+  #currentView = "home"; // Track the current view ("home" | "tags" | "communities" | "profile" | "login" | "search")
   #hub = null; // EventHub instance for managing events
 
   // component instances
@@ -57,7 +57,7 @@ export class AppControllerComponent {
   // Attaches the necessary event listeners
   #attachEventListeners() {
     // Subscribe to SwitchPage event from Navbar
-    this.#hub.subscribe("SwitchPage", (pageName) => {
+    this.#hub.subscribe(Events.SwitchPage, (pageName) => {
       console.log("app switch page:", pageName);
       this.#currentView = pageName;
       this.#renderCurrentView();

@@ -1,0 +1,24 @@
+.playlist-container {
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+.playlist-container h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.playlist-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.playlist-container li {
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.playlist-container li:hover {
+  color: var(--accent-color);
+}

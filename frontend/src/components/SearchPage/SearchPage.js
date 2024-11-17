@@ -33,14 +33,39 @@ export class SearchPage extends BaseComponent {
   #setupContainerContent() {
     this.#container.innerHTML = `
       <h2>Search Page</h2>
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search for songs, artists, or playlists..." />
+        <button class="search-button">Search</button>
+      </div>
+      <div class="search-results"></div>
     `;
   }
 
   // Attaches the event listeners to the component
   #attachEventListeners() {
+    const searchButton = this.#container.querySelector(".search-button");
+    const searchInput = this.#container.querySelector(".search-input");
+
+    searchButton.addEventListener("click", () => {
+      const query = searchInput.value.trim();
+      if (query) {
+        this.#publishSearchEvent(query);
+      }
+    });
+
+    searchInput.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") {
+        const query = searchInput.value.trim();
+        if (query) {
+          this.#publishSearchEvent(query);
+        }
+      }
+    });
+  }
+
+  // Publishes the search event with the query
+  #publishSearchEvent(query) {
     const hub = EventHub.getInstance();
-    // hub.subscribe(Events.NewTask, (taskData) => {
-    //   this.#tasks.push(taskData);
-    // });
+    hub.publish(Events.Search, { query });
   }
 }

@@ -1,6 +1,7 @@
 import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
+import { PlaylistComponent } from "../PlaylistComponent/PlaylistComponent.js";
 
 export class HomePage extends BaseComponent {
   #container = null; // Private variable to store the container element
@@ -20,6 +21,19 @@ export class HomePage extends BaseComponent {
     this.#createContainer();
     this.#setupContainerContent();
     this.#attachEventListeners();
+
+    // Example playlist data
+    const playlist = {
+      name: "My Favorite Songs",
+      songs: [
+        { title: "Song 1" },
+        { title: "Song 2" },
+        { title: "Song 3" }
+      ]
+    };
+
+    const playlistComponent = new PlaylistComponent(playlist);
+    this.#container.appendChild(playlistComponent.render());
 
     return this.#container;
   }
