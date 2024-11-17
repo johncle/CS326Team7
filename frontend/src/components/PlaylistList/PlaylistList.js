@@ -1,7 +1,7 @@
 import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
-import { Playlist } from "./Playlist.js";
+import { Playlist } from "../Playlist/Playlist.js";
 
 export class PlaylistList extends BaseComponent {
   #container = null;
@@ -46,10 +46,11 @@ export class PlaylistList extends BaseComponent {
 
   // Renders the playlists within the list
   #renderPlaylists() {
-    const playlistContainer = this.#container.querySelector("#playlistContainer");
+    const playlistContainer =
+      this.#container.querySelector("#playlistContainer");
     playlistContainer.innerHTML = ""; // Clear existing playlists
 
-    this.#playlists.forEach(playlistData => {
+    this.#playlists.forEach((playlistData) => {
       const playlistComponent = new Playlist(playlistData);
       playlistContainer.appendChild(playlistComponent.render());
     });
