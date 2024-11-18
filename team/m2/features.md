@@ -34,6 +34,8 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Assigned to:** Connor Cargill
 
+**Note:** This feature may be dropped because the Spotify Web Playback SDK is restricted to premium users.
+
 ## Community and Song Sharing
 
 **Description:** Users can add friends, create or join communities, and share music with others. This feature allows users to collaborate on playlists, recommend songs, and discover new music together within their community. This feature fosters a social environment, enhancing the music discovery process by enabling users to share and explore music collectively.
@@ -57,6 +59,8 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 **Point Value:** 5 points
 
 **Assigned to:** Sidharth Jain
+
+**Note:** This feature may be dropped because the Spotify Web Playback SDK is restricted to premium users.
 
 [//]: # "---------------------------------------------------------------------"
 
@@ -89,7 +93,6 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 **Point Value:** 4 points
 
 **Assigned to:** Connor Cargill
-
 
 ## Communities Page
 
@@ -183,7 +186,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Description:** Display a user's activity Overview that can be:
 Recently Played Tracks, list of songs the user has recently listened to, with album art and timestamps, and/or
-Top Tracks and Artists,  The user's favorite tracks and artists over a time period (e.g., past month or all-time).
+Top Tracks and Artists, The user's favorite tracks and artists over a time period (e.g., past month or all-time).
 
 **Point Value:** 3 points
 
