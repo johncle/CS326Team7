@@ -3,10 +3,16 @@
 ## John Le - Project Manager
 
 - **Role**: Oversees the overall project timeline, ensures that milestones are met, and coordinates the team’s efforts. John is responsible for setting meeting agendas and ensuring that the team stays focused on project goals.
-- **Top 3 Commits**:
+- **Top 3 Commits for Milestone 2**:
+
   1. [Initial commit](https://github.com/johncle/CS326Team7/commit/7ffef6cc63f027a5ad35c68cec22401b6f9279b6): Created the initial GitHub repository and set up the project structure, including the `team/m2` folder for milestone submissions.
   2. [update problem.md](https://github.com/johncle/CS326Team7/commit/b23457f3797324eac858844615f7c51ba3308fb8): Drafted `problem.md` with suggestions from team members.
   3. [update users.md](https://github.com/johncle/CS326Team7/commit/bc74cfcf82c27a65a7dbfad1c777fe599d15acd8): Drafted `users.md` with suggestions from team members.
+
+- **Top 3 Commits for Milestone 3**:
+  1. [terrible commit: restructured entire app to be single page app based on class examples (unfinished, broken), outlined basic components and pages in src/components/, setup bootstrap for ui components, setup prettier and corresponding precommit hooks for standardized formatting](https://github.com/johncle/CS326Team7/commit/44ffa082f8a4875bd6112469c0568f1bbe88305f): Saw on Piazza that course staff were expecting a single page app, so I started work on refactoring the initial multi-page structure into a SPA using components, which is completed in the "got navbar functioning and integrated it into app controller, but pages are not implemented yet" commit. I also set up developer tools such as prettier for formatting, husky and lint-staged for git precommit hooks, and bootstrap for css.
+  2. [got navbar functioning and integrated it into app controller, but pages are not implemented yet](https://github.com/johncle/CS326Team7/commit/3153d0eecfbadee6af29e378853c5c3976100526): Integrate navbar and app controller together so that pages (views) properly switch when the user clicks on links. This also sets a standard for how all pages should work with app controller.
+  3. [setup frontend directory structure and dev setup, scaffold homepage](https://github.com/johncle/CS326Team7/commit/955992c3ef48023f38143f91414a1a66c7f416aa): Setup base frontend branch for everyone to work on, and started work on homepage
 
 ## Jeffrey Deng - Task Manager
 

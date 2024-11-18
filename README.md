@@ -23,7 +23,7 @@ Music is not only a key source of personal enjoyment, but also an important way 
 
 ### General App Structure
 
-The app is structured as an event-driven single page application where the only html file in use is a barebones `index.html`, which sources `main.js`. This instantiates the App Controller in `AppControllerComponent.js` and creates a blank div for it. The App Controller is the main core of the app and handles nearly all of the functionality for loading components and handling glevents.
+The app is structured as an event-driven single page application where the only html file in use is a barebones `index.html`, which sources `main.js`. This instantiates the App Controller in `AppControllerComponent.js` and creates a blank div for it. The App Controller is the main core of the app and handles nearly all of the functionality for loading components and handling events.
 
 ### Components
 
