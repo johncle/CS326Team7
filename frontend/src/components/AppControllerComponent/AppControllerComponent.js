@@ -1,35 +1,32 @@
 import { HomePage } from "../HomePage/HomePage.js";
-import { TagsPage } from "../TagsPage/TagsPage.js";
+import { SearchPage } from "../SearchPage/SearchPage.js";
 import { CommunitiesPage } from "../CommunitiesPage/CommunitiesPage.js";
 import { ProfilePage } from "../ProfilePage/ProfilePage.js";
 import { LoginPage } from "../LoginPage/LoginPage.js";
 import { Navbar } from "../Navbar/Navbar.js";
 import { EventHub } from "../../eventhub/EventHub.js";
-import { SearchPage } from "../SearchPage/SearchPage.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
-  #currentView = "login"; // Track the current view ("home" | "tags" | "communities" | "profile" | "login" | "search")
+  #currentView = "login"; // Track the current view ("home" | "search" | "communities" | "profile" | "login")
   #hub = null; // EventHub instance for managing events
 
   // component instances
   #navbar = null;
   #homePage = null;
-  #tagsPage = null;
+  #searchPage = null;
   #communitiesPage = null;
   #profilePage = null;
   #loginPage = null;
-  #searchPage = null;
 
   constructor() {
     this.#hub = EventHub.getInstance();
     this.#navbar = new Navbar();
     this.#homePage = new HomePage();
-    this.#tagsPage = new TagsPage();
+    this.#searchPage = new SearchPage();
     this.#communitiesPage = new CommunitiesPage();
     this.#profilePage = new ProfilePage();
     this.#loginPage = new LoginPage();
-    this.#searchPage = new SearchPage();
   }
 
   // Render the AppController component and return the container
@@ -75,9 +72,9 @@ export class AppControllerComponent {
         viewContainer.appendChild(this.#navbar.render());
         viewContainer.appendChild(this.#homePage.render());
         break;
-      case "tags":
+      case "search":
         viewContainer.appendChild(this.#navbar.render());
-        viewContainer.appendChild(this.#tagsPage.render());
+        viewContainer.appendChild(this.#searchPage.render());
         break;
       case "communities":
         viewContainer.appendChild(this.#navbar.render());
@@ -90,10 +87,6 @@ export class AppControllerComponent {
       case "login":
         // do not render navbar for login page
         viewContainer.appendChild(this.#loginPage.render());
-        break;
-      case "search":
-        viewContainer.appendChild(this.#navbar.render());
-        viewContainer.appendChild(this.#searchPage.render());
         break;
 
       default:

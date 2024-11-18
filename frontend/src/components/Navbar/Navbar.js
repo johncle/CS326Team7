@@ -48,7 +48,7 @@ export class Navbar extends BaseComponent {
             <button class="nav-link active" aria-current="page" data-page="home">
               Home
             </button>
-            <button class="nav-link" data-page="tags">Tags</button>
+            <button class="nav-link" data-page="search">Search</button>
             <button class="nav-link" data-page="communities">Communities</button>
             <button class="nav-link" data-page="profile">Profile</button>
             <button class="nav-link" data-page="login">Logout</button>
@@ -71,7 +71,7 @@ export class Navbar extends BaseComponent {
 
   /**
    * Switches pages when clicking navbar buttons
-   * @param {string} pageName "home" | "tags" | "communities" | "profile" | "login" | "search"
+   * @param {string} pageName "home" | "search" | "communities" | "profile" | "login"
    *  - switch to "login" page when user clicks "Logout"
    */
   #navigateTo(pageName) {
