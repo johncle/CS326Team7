@@ -71,3 +71,21 @@ A reactive 3D audio waveform that reacts to the audio selected. It uses a partic
 **Scenario**: A user wants to see how their favorite song ‘looks’.  
 **User Action**: They enter the name of the song.  
 **Goal**: The particle system element analyzes the song and changes based on its features.
+
+# 5. Mixed Keyword and Tag-Based Search Page
+
+![Search Page](https://github.com/user-attachments/assets/7f9e4eff-aae9-4ab5-9497-ee5421e877e2)
+
+## Diagram Explanation:
+
+Describes how the search bar, page, and results should function and be displayed.
+
+- **Search bar**: Allows user to enter a search query.
+- **Search page**: Shows playlists for tags
+- **Search results page**: Shows results of search query with songs and playlists
+
+## Use Case:
+
+**Scenario**: A user wants to search for songs and playlists based on keywords or tags. 
+**User Action**: They enter a search query into the search bar. 
+**Goal**: The app returns songs and playlists that the user is looking for.
