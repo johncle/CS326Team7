@@ -86,6 +86,6 @@ Describes how the search bar, page, and results should function and be displayed
 
 ## Use Case:
 
-**Scenario**: A user wants to search for songs and playlists based on keywords or tags. 
-**User Action**: They enter a search query into the search bar. 
+**Scenario**: A user wants to search for songs and playlists based on keywords or tags.  
+**User Action**: They enter a search query into the search bar.  
 **Goal**: The app returns songs and playlists that the user is looking for.
