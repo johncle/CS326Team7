@@ -1,19 +1,16 @@
 .visualizor-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-}
-
-.canvas-container {
-  flex: 1;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.h2 {
-  color: #fff000;
+  height: 100vh; /* Take full viewport height */
+  width: 100vw; /* Take full viewport width */
   margin: 0;
-  padding: 10px;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+#visualizorCanvasContainer {
+  flex: 1; /* Take up all remaining space */
+  height: 100%; /* Fill parent height */
+  width: 100%;
+  position: absolute; /* Required for the Three.js canvas */
 }
