@@ -26,7 +26,8 @@
 - **Role**: Records detailed notes during meetings and ensures that action items are clearly communicated. Jimmy is responsible for distributing meeting minutes to the team after each session.
 - **Top 3 Commits**:
   1. [Initial Commit](https://github.com/johncle/CS326Team7/commit/22967a182c1cfcfe35b2293190716dfd135ae1d0): Created markdown report files for each member of the team
-
+  2. [Initial Commit](https://github.com/johncle/CS326Team7/commit/0ae395b84279e7bb066d7c7f336a25a37b5666ac): Create Communities Page Sequence Diagram
+  3. [Initial Commit](https://github.com/johncle/CS326Team7/commit/2a04a8ebeb11ef0699b97ff1c25cca6422a0a4e9): Implement UI for Communities page 
 ## Sidharth Jain - Quality Control
 
 - **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Sidharth is responsible for proofreading and ensuring the accuracy of all documents before submission.
