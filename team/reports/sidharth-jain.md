@@ -11,3 +11,9 @@
 - **Task**: Added UI Diagram
 - **Details**: Added UI Diagram in the `ui-diagrams.md` file for the audio visualisor
 - **Link to Commit**: [UI Update](https://github.com/johncle/CS326Team7/commit/6e001951e996431e2da3360ad8641e88f0750e73)
+
+### November 17, 2024
+
+- **Task**: Finished the Visualizor Implementation completely
+- **Details**: Debugged all the errors in the `VisualizorPage.js` file, fixing the overlay issues and adding the editing GUI to customize the particle system
+- **Link to Commit**: [Final Visualizor Commit](https://github.com/johncle/CS326Team7/commit/b2ecbc37fbaf20625239bf3404c2ac2d5b2b7bad)
