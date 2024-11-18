@@ -5,7 +5,7 @@ import { ProfilePage } from "../ProfilePage/ProfilePage.js";
 import { LoginPage } from "../LoginPage/LoginPage.js";
 import { Navbar } from "../Navbar/Navbar.js";
 import { EventHub } from "../../eventhub/EventHub.js";
-import { VisualizorPage } from "../THREEjs/VisualizorPage.js";
+import { VisualizorPage } from "../VisualizorPage/VisualizorPage.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component

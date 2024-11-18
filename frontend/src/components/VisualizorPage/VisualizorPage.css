@@ -1,0 +1,19 @@
+.visualizor-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.canvas-container {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.h2 {
+  color: #fff000;
+  margin: 0;
+  padding: 10px;
+}
