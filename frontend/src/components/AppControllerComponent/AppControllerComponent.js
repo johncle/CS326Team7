@@ -5,6 +5,7 @@ import { ProfilePage } from "../ProfilePage/ProfilePage.js";
 import { LoginPage } from "../LoginPage/LoginPage.js";
 import { Navbar } from "../Navbar/Navbar.js";
 import { EventHub } from "../../eventhub/EventHub.js";
+import { VisualizorPage } from "../VisualizorPage/VisualizorPage.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
@@ -18,6 +19,10 @@ export class AppControllerComponent {
   #communitiesPage = null;
   #profilePage = null;
   #loginPage = null;
+// <<<<<<< Pavel-SearchPage-frontend
+// =======
+//   #visualizorPage = null;
+// >>>>>>> frontend
 
   constructor() {
     this.#hub = EventHub.getInstance();
@@ -27,6 +32,10 @@ export class AppControllerComponent {
     this.#communitiesPage = new CommunitiesPage();
     this.#profilePage = new ProfilePage();
     this.#loginPage = new LoginPage();
+// <<<<<<< Pavel-SearchPage-frontend
+// =======
+//     this.#visualizorPage = new VisualizorPage();
+// >>>>>>> frontend
   }
 
   // Render the AppController component and return the container
@@ -88,7 +97,14 @@ export class AppControllerComponent {
         // do not render navbar for login page
         viewContainer.appendChild(this.#loginPage.render());
         break;
+// <<<<<<< Pavel-SearchPage-frontend
 
+// =======
+//       case "visualizor":
+//         viewContainer.appendChild(this.#navbar.render());
+//         viewContainer.appendChild(this.#visualizorPage.render());
+//         break;
+// >>>>>>> frontend
       default:
         // page not found, should be impossible with predefined page names but idk, show home page
         console.log(`page name '${this.#currentView}' is invalid`);

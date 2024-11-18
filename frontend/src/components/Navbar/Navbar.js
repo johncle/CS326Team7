@@ -50,6 +50,7 @@ export class Navbar extends BaseComponent {
             </button>
             <button class="nav-link" data-page="search">Search</button>
             <button class="nav-link" data-page="communities">Communities</button>
+            <button class="nav-link" data-page="visualizor">Visualizer</button>
             <button class="nav-link" data-page="profile">Profile</button>
             <button class="nav-link" data-page="login">Logout</button>
           </div>

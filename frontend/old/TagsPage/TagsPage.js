@@ -1,6 +1,6 @@
-import { BaseComponent } from "../BaseComponent/BaseComponent.js";
-import { EventHub } from "../../eventhub/EventHub.js";
-import { Events } from "../../eventhub/Events.js";
+import { BaseComponent } from "../../src/components/BaseComponent/BaseComponent.js";
+import { EventHub } from "../../src/eventhub/EventHub.js";
+import { Events } from "../../src/eventhub/Events.js";
 
 export class TagsPage extends BaseComponent {
   #container = null; // Private variable to store the container element
