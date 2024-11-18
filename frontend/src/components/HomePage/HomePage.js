@@ -49,22 +49,34 @@ export class HomePage extends BaseComponent {
       playlistList.render();
       playlistList.setPlaylists([
         {
-          icon: "icon1",
-          title: "title1",
-          category: "category1",
-          action: "action1",
+          icon: "/src/components/HomePage/playlist-1-picture.png",
+          title: "Cool Cat Playlist",
+          category: "Pop",
+          action: "Play!",
         },
         {
-          icon: "icon2",
-          title: "title2",
-          category: "category2",
-          action: "action2",
+          icon: "/src/components/HomePage/playlist-2-picture.png",
+          title: "Graduation",
+          category: "Nostalgia",
+          action: "Play!",
         },
         {
-          icon: "icon3",
-          title: "title3",
-          category: "category3",
-          action: "action3",
+          icon: "/src/components/HomePage/playlist-3-picture.png",
+          title: "Vent",
+          category: "Sad Songs",
+          action: "Play!",
+        },
+        {
+          icon: "/src/components/HomePage/playlist-4-picture.png",
+          title: "Discover Music",
+          category: "Trending",
+          action: "Play!",
+        },
+        {
+          icon: "/src/components/HomePage/playlist-5-picture.png",
+          title: "Motivational",
+          category: "Happy Songs",
+          action: "Play!",
         },
       ]);
       mainDiv.classList.add("categories");

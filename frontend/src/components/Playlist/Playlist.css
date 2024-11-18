@@ -88,7 +88,7 @@ body {
   background-color: #333;
   padding: 20px;
   border-radius: 10px;
-  text-align: center;
+  text-align: end;
 }
 
 .card span {
@@ -98,33 +98,124 @@ body {
 
 .playlist-grid {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
+}
+
+.your-playlist {
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .playlist-item {
-  display: grid;
-  grid-template-columns: 30px 1fr auto auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 10px;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
   background-color: #333;
   border-radius: 5px;
+  border-color: #1db954;
+  border: 1px solid #1db954;
   gap: 10px;
+  height: 200px;
+  width: 200px;
 }
 
-.playlist-icon {
-  font-size: 1.5em;
+.playlist-information {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+  width: 150px;
 }
 
 .playlist-title {
-  font-size: 1.1em;
-}
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
 
+}
+.playlist-name {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
 .playlist-info {
   color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+.playlist-button {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+.playlist-category {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
 }
 
 .playlist-action {
   color: #1db954;
   cursor: pointer;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+
+.playlist-image {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.playlist-icon {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+
+#playlistContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0px;
+  background-color: #333;
+  border-radius: 5px;
+  border-color: #1db954;
+  gap: 10px;
+  height: 220px;
+  width: 1300px;
 }

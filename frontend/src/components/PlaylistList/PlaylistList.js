@@ -39,7 +39,7 @@ export class PlaylistList extends BaseComponent {
   // Sets up the basic HTML structure of the component
   #setupContainerContent() {
     this.#container.innerHTML = `
-      <h2>Your Playlists</h2>
+      <div class="your-playlist"> <h2>Your Playlists</h2> </div>
       <div id="playlistContainer"></div>
     `;
   }
