@@ -1,0 +1,9 @@
+.playlist-list {
+  display: flex;
+  flex-direction: column;
+  height: 270px;
+  width: 1300px;
+  align-items: center;
+  justify-content: center;
+}
+

@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: white;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.nav a {
+  color: #bbb;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background 0.3s;
+}
+
+.nav a:hover, .nav a.active {
+  background-color: #555;
+  color: white;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #1e1e1e;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+}
+
+.curated-for-you h2, .playlist-grid h2 {
+  margin-bottom: 15px;
+}
+
+.card-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.card {
+  flex: 1;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: end;
+}
+
+.card span {
+  color: #bbb;
+  font-size: 0.9em;
+}
+
+.playlist-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.your-playlist {
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.playlist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+  background-color: #333;
+  border-radius: 5px;
+  border-color: #1db954;
+  border: 1px solid #1db954;
+  gap: 10px;
+  height: 200px;
+  width: 200px;
+}
+
+.playlist-information {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+  width: 150px;
+}
+
+.playlist-title {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+.playlist-name {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+.playlist-info {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+.playlist-button {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+.playlist-category {
+  color: #bbb;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+
+.playlist-action {
+  color: #1db954;
+  cursor: pointer;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+
+.playlist-image {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.playlist-icon {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+
+#playlistContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0px;
+  background-color: #333;
+  border-radius: 5px;
+  border-color: #1db954;
+  gap: 10px;
+  height: 220px;
+  width: 1300px;
+}

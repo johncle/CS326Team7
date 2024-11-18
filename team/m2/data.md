@@ -3,6 +3,7 @@
 ## Overview
 
 ### 1. User Profile
+
 - **Description**: Stores personal information about the user, including preferences, social connections, and music activity.
 - **Attributes**:
   - `user_id` (string): A unique identifier for the user.
@@ -16,6 +17,7 @@
 - **Data Source**: User input during registration, updates through profile editing, and system-generated data (for preferences and likes).
 
 ### 2. Chat
+
 - **Description**: Represents conversations between users, either one-on-one or within a group.
 - **Attributes**:
   - `is_group` (boolean): Indicates whether the chat is a group chat (3 or more participants).
@@ -25,6 +27,7 @@
 - **Data Source**: User input when sending messages, and system-generated when creating a new chat.
 
 ### 3. Song
+
 - **Description**: Stores detailed information about individual songs available on the platform.
 - **Attributes**:
   - `song_id` (string): A unique identifier for each song.
@@ -40,6 +43,7 @@
 - **Data Source**: Third-party music APIs for song data and user interactions (e.g., liking songs).
 
 ### 4. Playlist
+
 - **Description**: Represents user-created or system-generated collections of songs.
 - **Attributes**:
   - `playlist_id` (string): A unique identifier for the playlist.
@@ -51,6 +55,7 @@
 - **Data Source**: User-generated when creating playlists or system-generated (for personalized or event-based playlists).
 
 ### 5. Listening Session
+
 - **Description**: Represents a shared listening experience where users can listen to the same playlist simultaneously.
 - **Attributes**:
   - `session_id` (string): A unique identifier for the listening session.

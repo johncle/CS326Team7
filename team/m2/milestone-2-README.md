@@ -12,31 +12,31 @@ The following is an overview of what you need to do for this milestone. Each ste
 
 ### 1. Brainstorm and Refine Ideas
 
-   - Work as a team to brainstorm multiple ideas for your web application. Narrow these ideas down to a feasible and impactful project that aligns with the course requirements. Your application must solve a clear problem and offer meaningful features for your target users. Remember, this must be a **web application** and not simply a website. You may include social media features, but creating a full social media application is not allowed.
+- Work as a team to brainstorm multiple ideas for your web application. Narrow these ideas down to a feasible and impactful project that aligns with the course requirements. Your application must solve a clear problem and offer meaningful features for your target users. Remember, this must be a **web application** and not simply a website. You may include social media features, but creating a full social media application is not allowed.
 
 ### 2. Create a GitHub Repository
 
-   - One team member should create a **GitHub repository** for your project and add all team members. This repository will serve as the hub for your project’s code and documentation.
-   - Inside the repository, create a folder named `team/m2` where you will submit the markdown files that outline your proposal for this milestone.
+- One team member should create a **GitHub repository** for your project and add all team members. This repository will serve as the hub for your project’s code and documentation.
+- Inside the repository, create a folder named `team/m2` where you will submit the markdown files that outline your proposal for this milestone.
 
 ### 3. Markdown File Submission
 
-   Your submission must include the following markdown files, each addressing specific aspects of your project:
+Your submission must include the following markdown files, each addressing specific aspects of your project:
 
-   - `problem.md`: A markdown file describing the problem your application will solve and the proposed solution.
-   - `features.md`: A detailed list of the key features your application will have, with team members assigned to each feature.
-   - `users.md`: A markdown file that explains your target users and their specific needs.
-   - `ui-diagrams.md`: Diagrams and explanations of the UI, including how users will interact with the interface.
-   - `data.md`: A file that describes the types of data your application will handle, but without specifying storage methods.
-   - `roles.md`: A markdown file detailing each team member's role and their top 3 commits for this milestone submission, with links to those commits in GitHub and short descriptions of their contributions.
+- `problem.md`: A markdown file describing the problem your application will solve and the proposed solution.
+- `features.md`: A detailed list of the key features your application will have, with team members assigned to each feature.
+- `users.md`: A markdown file that explains your target users and their specific needs.
+- `ui-diagrams.md`: Diagrams and explanations of the UI, including how users will interact with the interface.
+- `data.md`: A file that describes the types of data your application will handle, but without specifying storage methods.
+- `roles.md`: A markdown file detailing each team member's role and their top 3 commits for this milestone submission, with links to those commits in GitHub and short descriptions of their contributions.
 
 ### 4. Team Roles and Commit Responsibilities
-   
-   Your team should assign specific management roles to each team member. As mentioned, each member must list their **top 3 commits** in the `roles.md` file, with links to the commits and a brief description of what was completed in each commit. These roles are **not technical responsibilities** (e.g., frontend or backend) but organizational roles such as meeting coordination, task management, and communication.
+
+Your team should assign specific management roles to each team member. As mentioned, each member must list their **top 3 commits** in the `roles.md` file, with links to the commits and a brief description of what was completed in each commit. These roles are **not technical responsibilities** (e.g., frontend or backend) but organizational roles such as meeting coordination, task management, and communication.
 
 ### 5. Team Member Reports
 
-   As part of this milestone and all future milestones, your team is required to set up a directory called `team/reports` in your GitHub repository. This directory will include a markdown file for each team member where they will document their contributions to the project over time.
+As part of this milestone and all future milestones, your team is required to set up a directory called `team/reports` in your GitHub repository. This directory will include a markdown file for each team member where they will document their contributions to the project over time.
 
 ## Markdown Files and Content
 
@@ -115,7 +115,6 @@ The `data.md` file is where your team will describe the types of data your web a
 Your description should include:
 
 1. **Data Types**: List and describe each type of data that your application will use. For example, user profiles, expenses, transactions, or settings. For each data type, explain what kind of information is captured.
-   
 2. **Attributes**: For each data type, list the key attributes or fields that will be stored. For example, for a "User Profile" data type, relevant attributes might include name, email, and user preferences. Include any relevant metadata, such as timestamps or IDs.
 
 3. **Relationships Between Data**: If applicable, explain how different types of data are related to each other. For example, a user profile might be related to multiple expense entries, or a savings goal might be related to a user’s transactions. This will help in understanding how your application organizes and uses data.
@@ -156,18 +155,20 @@ Instructions:
 1. Directory Setup:
    - In the root of your repository, create a folder named reports.
    - Each team member should create their own markdown file inside this directory. The file name must follow the format `FIRST-LAST.md`, where `FIRST` is the member’s first name and `LAST` is their last name. For example, if your name is Alice Johnson, your file will be named `alice-johnson.md`. **Please follow this format exactly**.
-   
 2. Purpose:
+
    - The `team/reports` folder is designed to track each team member’s contributions to the project as it progresses.
    - Every time a team member completes a task, makes a significant commit, or contributes to any aspect of the project, they should log the details of that contribution in their markdown file.
 
 3. Contribution Logging:
+
    - Each contribution should be timestamped and should include a brief description of the work that was completed. You should also link to any relevant GitHub commits or documents, if applicable.
    - Example entries might include:
-	 * Setting up a project repository.
-	 * Writing sections of documentation.
-	 * Implementing features or fixing bugs.
-	 * Managing communication or organizing tasks.
+
+   * Setting up a project repository.
+   * Writing sections of documentation.
+   * Implementing features or fixing bugs.
+   * Managing communication or organizing tasks.
 
 4. Review Process:
    - The `team/reports` folder will be used to assess individual contributions to the project during each milestone. Keeping it up to date is essential for showing your active participation.
@@ -188,27 +189,27 @@ The project proposal will be evaluated based on both **teamwork** (overall quali
 ### Teamwork (70% of total score, or 70 points)
 
 1. **Excellent (70 points)**
-   
+
    The proposal is exceptionally detailed, well-structured, and demonstrates strong planning and collaboration. All markdown files are clear, concise, and show thoughtful consideration of the problem, solution, features, and target users. UI diagrams are professional and well-aligned with the use cases, and the data is thoroughly described. The team management plan is comprehensive, and roles are clearly defined. The project demonstrates a high level of feasibility, creativity, and collaboration among all members.
 
 2. **Very Good (60 points)**
-   
+
    The proposal is well-organized and addresses all required elements, though there may be minor gaps in clarity or detail. The problem, solution, features, and target users are explained clearly but could benefit from additional depth or refinement. The UI diagrams and data descriptions are functional but may lack some sophistication or completeness. The team roles and management plan are solid, though some areas may need more structure or clarity. Overall, the project is feasible and demonstrates strong teamwork.
 
 3. **Good (50 points)**
-   
+
    The proposal covers the main components but lacks depth or clarity in several areas. The problem, solution, and features are present but may be underdeveloped or generic. UI diagrams and data descriptions are included but may be minimal or lacking detail. The team management plan exists, but the roles are not well-defined or clearly supported. Collaboration among team members is evident, but more effort is needed for a refined and cohesive proposal.
 
 4. **Adequate (40 points)**
-   
+
    The proposal is incomplete or disorganized. The problem and solution are vague or unclear, and features are only briefly mentioned. UI diagrams may be missing or lack meaningful detail, and the data description is incomplete or minimal. The team management plan is underdeveloped, and roles are not clearly assigned or explained. Collaboration appears weak, and the project lacks focus and feasibility.
 
 5. **Needs Improvement (30 points)**
-   
+
    The proposal is missing many critical components and is poorly structured. The problem, solution, and features are either absent or poorly defined, and UI diagrams and data descriptions are minimal or irrelevant. The team management plan is weak or nonexistent, and roles are not well-assigned. The proposal shows minimal evidence of collaboration or planning, and the project does not appear feasible.
 
 6. **Unacceptable (0 points)**
-   
+
    The proposal is either entirely missing or fails to meet even the basic requirements. No meaningful problem, solution, features, UI diagrams, or data descriptions are presented. There is no evidence of team collaboration, and roles are not assigned. The submission shows no effort or engagement from the team.
 
 ---
@@ -218,27 +219,27 @@ The project proposal will be evaluated based on both **teamwork** (overall quali
 Each team member will be assessed individually based on the quality and relevance of their contributions, as reflected in their commits to the project. Each individual’s score will be calculated separately, and the grading scale below will apply to **each team member**.
 
 1. **Excellent (30 points)**
-   
+
    The individual has made significant, high-quality contributions to the project, as demonstrated through multiple, well-documented commits. Each commit is meaningful, directly contributing to the project’s progress. The individual has played an active role in the team’s success, with commits reflecting thoughtful work and responsibility. The commit descriptions are clear, and the links provided demonstrate substantial and impactful contributions.
 
 2. **Very Good (25 points)**
-   
+
    The individual has made solid contributions to the project, as reflected in their commits. Commits are well-documented and show progress toward project goals. While there may be room for more substantial contributions or more detailed commit descriptions, the individual has clearly played an important role in the project’s development. The commits reflect active participation and demonstrate clear responsibility in their assigned role.
 
 3. **Good (20 points)**
-   
+
    The individual has made contributions to the project, but the commits may lack detail or significance. Some commits may be minor or not directly tied to the main objectives of the project. The individual has participated, but their contributions may not have been as substantial as others. Commit descriptions may be vague or lacking detail, and more effort could have been made to support the team’s overall progress.
 
 4. **Adequate (15 points)**
-   
+
    The individual has made minimal contributions, and the commits may lack substance or relevance to the project. The individual’s participation appears limited, and their role in the project is unclear. Commit descriptions are incomplete or missing, making it difficult to evaluate the individual’s work. More involvement and effort were needed for meaningful contribution.
 
 5. **Needs Improvement (10 points)**
-   
+
    The individual has contributed little to the project. Commits are either missing or irrelevant, and there is little evidence of meaningful participation. The individual’s role in the project is unclear, and the commit descriptions are insufficient. There is a lack of effort and engagement in contributing to the project’s progress.
 
 6. **Unacceptable (0 points)**
-   
+
    The individual has made no meaningful contributions to the project. Commits are either absent or completely irrelevant to the project’s goals. There is no evidence of participation or effort, and the commit descriptions, if any, provide no insight into the individual’s work. The individual has failed to contribute to the project.
 
 ---
