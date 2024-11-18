@@ -1,3 +1,4 @@
+// frontend/src/components/PlaylistComponent/PlaylistComponent.js
 import { BaseComponent } from "../BaseComponent/BaseComponent.js";
 
 export class PlaylistComponent extends BaseComponent {
@@ -8,18 +9,18 @@ export class PlaylistComponent extends BaseComponent {
   }
 
   render() {
-    const container = document.createElement('div');
-    container.className = 'playlist-container';
+    const container = document.createElement("div");
+    container.className = "playlist-container";
 
-    const title = document.createElement('h2');
+    const title = document.createElement("h2");
     title.textContent = this.playlist.name;
     container.appendChild(title);
 
-    const songList = document.createElement('ul');
-    this.playlist.songs.forEach(song => {
-      const songItem = document.createElement('li');
+    const songList = document.createElement("ul");
+    this.playlist.songs.forEach((song) => {
+      const songItem = document.createElement("li");
       songItem.textContent = song.title;
-      songItem.addEventListener('click', () => {
+      songItem.addEventListener("click", () => {
         // Handle song click event (e.g., play song)
         console.log(`Playing song: ${song.title}`);
       });
