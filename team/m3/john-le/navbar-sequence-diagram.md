@@ -2,7 +2,7 @@
 
 ## Description:
 
-The user can use the navigation bar on the left side of the screen to change between different views: Home, Tags, Communities, Profile, Login/Logout, potentially Search. The navbar is implemented in Navbar.js, but uses events (observer) to signal the app controller to switch views.
+The user can use the navigation bar on the left side of the screen to change between different views: Home, Search, Communities, Visualizer, Profile, Login/Logout. The navbar is implemented in Navbar.js, but uses events (observer) to signal the app controller to switch views.
 
 ## Diagram
 
@@ -20,13 +20,17 @@ sequenceDiagram
     Navbar->>AppController: Publish event SwitchPage("home")
     AppController->>User: Load and render HomePage on User's screen
 
-    User->>Navbar: Click on "Tags" navbar button
-    Navbar->>AppController: Publish event SwitchPage("tags")
-    AppController->>User: Load and render TagsPage on User's screen
+    User->>Navbar: Click on "Search" navbar button
+    Navbar->>AppController: Publish event SwitchPage("search")
+    AppController->>User: Load and render SearchPage on User's screen
 
     User->>Navbar: Click on "Communities" navbar button
     Navbar->>AppController: Publish event SwitchPage("communities")
     AppController->>User: Load and render CommunitiesPage on User's screen
+
+    User->>Navbar: Click on "Visualizer" navbar button
+    Navbar->>AppController: Publish event SwitchPage("visualizer")
+    AppController->>User: Load and render VisualizerPage on User's screen
 
     User->>Navbar: Click on "Profile" navbar button
     Navbar->>AppController: Publish event SwitchPage("profile")
