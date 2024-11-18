@@ -1,1 +1,15 @@
-[![](https://mermaid.ink/img/pako:eNp1Us1uwjAMfhUrp02wF8gBaaJMmzSkDsRl6sU0hka0SeckQwjx7kuBrpSfnBL7-3Gsby9yq0hI4egnkMkp0bhmrDID8dTIXue6RuNh4Yhvq3NCzosU13Tbm_yS8e9hedt5reuxNZ5tWTaiJ0Bj8DIaDTpJCTMyivjsAp1Nh4mMS8KnRQUJrTCUHtISd6V23t0hNW4SEu3qCLrH6A11aTExvhvpKxDvAI2Ccanzzbl8x2_QbkNCGpbRo-hLHNsnXotsWL1NSXizvEVWD6k9-NXc87jLljgjF7_r4Glq49AJenx-uKNFrdATLD5gq31xpSCGoiKuUKuYoX2jkQlfUEWZkPGqkDeZyMwh4jB4O9-ZXEjPgYaCbVgXQq6wdPEVji7n9LWQGJZva6t_ECntLU9PiT0G9_AHPuLyEQ?type=png)](https://mermaid.live/edit#pako:eNp1Us1uwjAMfhUrp02wF8gBaaJMmzSkDsRl6sU0hka0SeckQwjx7kuBrpSfnBL7-3Gsby9yq0hI4egnkMkp0bhmrDID8dTIXue6RuNh4Yhvq3NCzosU13Tbm_yS8e9hedt5reuxNZ5tWTaiJ0Bj8DIaDTpJCTMyivjsAp1Nh4mMS8KnRQUJrTCUHtISd6V23t0hNW4SEu3qCLrH6A11aTExvhvpKxDvAI2Ccanzzbl8x2_QbkNCGpbRo-hLHNsnXotsWL1NSXizvEVWD6k9-NXc87jLljgjF7_r4Glq49AJenx-uKNFrdATLD5gq31xpSCGoiKuUKuYoX2jkQlfUEWZkPGqkDeZyMwh4jB4O9-ZXEjPgYaCbVgXQq6wdPEVji7n9LWQGJZva6t_ECntLU9PiT0G9_AHPuLyEQ)
+sequenceDiagram
+    participant User
+    participant SearchPage
+    participant EventHub
+    participant AppController
+
+    User->>+SearchPage: Render Search Page
+    SearchPage->>SearchPage: Load Default Playlists
+    SearchPage->>User: Display Default Playlists
+
+    User->>SearchPage: Enter Search Query and Click Search
+    SearchPage->>+EventHub: Publish Search Query Event
+    EventHub->>+AppController: Forward Search Query Event
+    AppController->>SearchPage: Send Search Results (Mock Data)
+    SearchPage->>User: Update UI with Search Results
