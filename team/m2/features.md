@@ -113,7 +113,7 @@ Tag-based search allows users to fine-tune their discovery experience, making it
 
 **Point Value:** 4 points
 
-**Assigned to:** Pavel?
+**Assigned to:** Pavel Tverdokhlebov
 
 ## Music Page
 
