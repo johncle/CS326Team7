@@ -23,7 +23,7 @@ Music is not only a key source of personal enjoyment, but also an important way 
 
 ### General App Structure
 
-The app is structured as an event-driven single page application where the only html file in use is a barebones `index.html`, which sources `main.js`. This instantiates the App Controller in `AppControllerComponent.js` and creates a blank div for it. The App Controller is the main core of the app and handles nearly all of the functionality for loading components and handling events.
+The app is structured as an event-driven single page application where the only html file in use is a barebones `index.html`, which sources `main.js`. This instantiates the App Controller in `AppControllerComponent.js` and creates a blank div for it. The App Controller is the main core of the app and handles nearly all of the functionality for loading components and handling glevents.
 
 ### Components
 
@@ -36,6 +36,10 @@ To use it, import the component into the App Controller and render it by adding 
 Event handling is structured using the observer or publisher/subscriber pattern. It works by having a singleton EventHub that stores events in an internal object.
 
 - "Singleton" means there is only one central instance of this EventHub for the entire app, so please don't create new ones
-- You can get the EventHub instance anywhere in the app with `EventHub.getInstance()`
+- Instead, you can get the EventHub instance anywhere in the app with `EventHub.getInstance()`
 
 You can have a component subscribe (listen) to an event with `EventHub.subscribe(event, listener)` where `event` is a string and `listener` is a callback function describing what to do with incoming data. When any class publishes data to that event with `EventHub.publish(event, data)` where `data` is anything you want, all listeners to that event call their functions with that data.
+
+## Credits
+
+The sonar icon is taken from https://www.vecteezy.com/vector-art/15351244-sonar-vector-icon
