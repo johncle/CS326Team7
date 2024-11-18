@@ -26,6 +26,7 @@
 
 - **Role**: Manages the timing of all team activities. Pavel ensures that meetings start and end on time, keeps track of deadlines, and reminds the team of upcoming due dates
 - **Top 3 Commits**:
+- 1. [update SearchPage.js, SearchPage.css, AppControllerComponent.js](https://github.com/johncle/CS326Team7/commit/69267fb0954826c6a891c034224adac43fedba5d) Implemented search page frontend code and compenents like search bar, search button, preloaded recommended playlists, after clicking search songs and playlists show up.
 
 ## Jimmy - Note Taker
 
