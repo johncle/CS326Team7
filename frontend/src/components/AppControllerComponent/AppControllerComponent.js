@@ -5,6 +5,7 @@ import { ProfilePage } from "../ProfilePage/ProfilePage.js";
 import { LoginPage } from "../LoginPage/LoginPage.js";
 import { Navbar } from "../Navbar/Navbar.js";
 import { EventHub } from "../../eventhub/EventHub.js";
+import { SearchPage } from "../SearchPage/SearchPage.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
@@ -28,7 +29,7 @@ export class AppControllerComponent {
     this.#communitiesPage = new CommunitiesPage();
     this.#profilePage = new ProfilePage();
     this.#loginPage = new LoginPage();
-    // this.#searchPage = new SearchPage();
+    this.#searchPage = new SearchPage();
   }
 
   // Render the AppController component and return the container
@@ -92,8 +93,9 @@ export class AppControllerComponent {
         break;
       case "search":
         viewContainer.appendChild(this.#navbar.render());
-        // viewContainer.appendChild(this.#searchPage.render());
+        viewContainer.appendChild(this.#searchPage.render());
         break;
+
       default:
         // page not found, should be impossible with predefined page names but idk, show home page
         console.log(`page name '${this.#currentView}' is invalid`);
