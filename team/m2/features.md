@@ -45,3 +45,4 @@ This feature would enable users to chat with friends and community members direc
 This feature will generate real-time visual effects that react to the music the user is playing. The visualizer will display dynamic animations and visual patterns that change based on the beat, tempo, and intensity of the song. Users will have the option to customize the visualizations or choose from pre-designed themes. The Reactive Audio Visualizer enhances the listening experience by adding a visual dimension to music. It provides a more immersive and engaging way for users to enjoy their favorite songs.
 
 **Assigned to**: Sidharth Jain
+--------------------------Milestone-4--------------------------------
