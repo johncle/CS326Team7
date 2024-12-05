@@ -29,12 +29,49 @@ export class Playlist extends BaseComponent {
   #setupContainerContent() {
     const { icon, title, category, action } = this.#playlistData;
     this.#container.innerHTML = `
+      <div class="playlist-image">
+          <img src="${icon}" alt="Playlist Image" class="playlist-icon">
+      </div>
+      <div class="playlist-information">
+        <div class="playlist-name">
+          <span class="playlist-title">${title}</span>
+        </div>
+        <div class="playlist-category">
+          <span class="playlist-info">${category}</span>
+        </div>
+        <div class="playlist-button">
+          <span class="playlist-action">${action}</span>
+        </div>
+      </div>  
+    `;
+    this.#attachEventListeners();
+
+    /**
+     * `
       <span class="playlist-icon">${icon}</span>
       <span class="playlist-title">${title}</span>
       <span class="playlist-info">${category}</span>
       <span class="playlist-action">${action}</span>
     `;
-    this.#attachEventListeners();
+     * 
+     * 
+     * `
+          <div class="playlist-image">
+              <img src="${icon}" alt="Playlist Image">
+          </div>
+          <div class="playlist-information">
+              <div class="playlist-name">
+                <span class="playlist-title">${title}</span>
+              </div>
+              <div class="playlist-category">
+                <span class="playlist-info">${category}</span>
+              </div>
+              <div>
+      <span class="playlist-action">${action}</span>
+              </div>
+          </div>
+    `;
+     */
   }
 
   #attachEventListeners() {

@@ -1,5 +1,5 @@
 import { HomePage } from "../HomePage/HomePage.js";
-import { TagsPage } from "../TagsPage/TagsPage.js";
+import { SearchPage } from "../SearchPage/SearchPage.js";
 import { CommunitiesPage } from "../CommunitiesPage/CommunitiesPage.js";
 import { ProfilePage } from "../ProfilePage/ProfilePage.js";
 import { LoginPage } from "../LoginPage/LoginPage.js";
@@ -15,23 +15,21 @@ export class AppControllerComponent {
   // component instances
   #navbar = null;
   #homePage = null;
-  #tagsPage = null;
+  #searchPage = null;
   #communitiesPage = null;
   #profilePage = null;
   #loginPage = null;
-  #searchPage = null;
   #visualizorPage = null;
 
   constructor() {
     this.#hub = EventHub.getInstance();
     this.#navbar = new Navbar();
     this.#homePage = new HomePage();
-    this.#tagsPage = new TagsPage();
+    this.#searchPage = new SearchPage();
     this.#communitiesPage = new CommunitiesPage();
     this.#profilePage = new ProfilePage();
     this.#loginPage = new LoginPage();
     this.#visualizorPage = new VisualizorPage();
-    // this.#searchPage = new SearchPage();
   }
 
   // Render the AppController component and return the container
@@ -77,9 +75,9 @@ export class AppControllerComponent {
         viewContainer.appendChild(this.#navbar.render());
         viewContainer.appendChild(this.#homePage.render());
         break;
-      case "tags":
+      case "search":
         viewContainer.appendChild(this.#navbar.render());
-        viewContainer.appendChild(this.#tagsPage.render());
+        viewContainer.appendChild(this.#searchPage.render());
         break;
       case "communities":
         viewContainer.appendChild(this.#navbar.render());
@@ -92,10 +90,6 @@ export class AppControllerComponent {
       case "login":
         // do not render navbar for login page
         viewContainer.appendChild(this.#loginPage.render());
-        break;
-      case "search":
-        viewContainer.appendChild(this.#navbar.render());
-        // viewContainer.appendChild(this.#searchPage.render());
         break;
       case "visualizor":
         viewContainer.appendChild(this.#navbar.render());
