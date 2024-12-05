@@ -1,0 +1,27 @@
+{
+  "name": "sonar",
+  "version": "1.0.0",
+  "description": "cs326 project - team 7",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "cd .. && npx prettier --write backend && cd backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johncle/CS326Team7.git"
+  },
+  "author": "johncle",
+  "contributors": [],
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/johncle/CS326Team7/issues"
+  },
+  "homepage": "https://github.com/johncle/CS326Team7#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  }
+}
