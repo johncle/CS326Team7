@@ -84,6 +84,7 @@ export class VisualizorPage extends BaseComponent {
     init();
     animate();
 
+    /*
     function initGUI() {
       const gui = new GUI();
 
@@ -103,9 +104,10 @@ export class VisualizorPage extends BaseComponent {
           particles.setDrawRange(0, particleCount);
         });
     }
+        */
 
     function init() {
-      initGUI();
+      //initGUI();
 
       camera = new THREE.PerspectiveCamera(
         60,
