@@ -1,56 +1,56 @@
 .login-page {
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  display: flex; /* Enable Flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  background-color: #121212; /* Dark background */
-  color: #ffffff; /* White text */
+  height: 100vh; 
+  width: 100vw; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  background-color: #121212; 
+  color: #ffffff; 
   font-family: "Roboto", sans-serif;
 }
 
 .login-container {
-  text-align: center; /* Center-align all text */
-  background: #1e1e1e; /* Slightly lighter than the background */
+  text-align: center; 
+  background: #1e1e1e; 
   padding: 30px;
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Subtle shadow */
-  width: 350px; /* Wide enough for clean layout */
+  border-radius: 15px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); 
+  width: 350px; 
 }
 
 .login-container h1 {
   font-size: 2em;
   margin-bottom: 20px;
-  color: #ffffff; /* Bright white text */
+  color: #ffffff; 
 }
 
 .login-container h1 .sonar-highlight {
-  color: #ff0000; /* Red color for "Sonar" */
+  color: #ff0000; 
 }
 
 .spotify-login-button {
-  background-color: #1db954; /* Spotify Green */
-  color: #ffffff; /* White text */
-  padding: 10px; /* Smaller button */
+  background-color: #1db954;
+  color: #ffffff; 
+  padding: 10px; 
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1em; /* Smaller font */
-  width: 80%; /* Smaller width */
+  font-size: 1em; 
+  width: 80%; 
   margin-top: 15px;
   font-weight: bold;
-  transition: background-color 0.3s ease; /* Smooth hover transition */
+  transition: background-color 0.3s ease;
 }
 
 .spotify-login-button:hover {
-  background-color: #1ed760; /* Slightly lighter green on hover */
+  background-color: #1ed760; 
 }
 
 .home-link {
   display: block;
   margin-top: 15px;
   text-align: center;
-  color: #3a9bff; /* Accent blue for links */
+  color: #3a9bff;
   text-decoration: none;
   font-size: 0.9em;
 }
