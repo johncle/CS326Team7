@@ -1,0 +1,99 @@
+{
+  "audio_features": [
+    {
+      "id": "1",
+      "name": "Blinding Lights",
+      "artist": "The Weeknd",
+      "album": "After Hours",
+      "features": {
+        "danceability": 0.85,
+        "energy": 0.75,
+        "tempo": 170
+      }
+    },
+    {
+      "id": "2",
+      "name": "Shape of You",
+      "artist": "Ed Sheeran",
+      "album": "Divide",
+      "features": {
+        "danceability": 0.87,
+        "energy": 0.8,
+        "tempo": 95
+      }
+    },
+    {
+      "id": "3",
+      "name": "Bad Habits",
+      "artist": "Ed Sheeran",
+      "album": "Equals",
+      "features": {
+        "danceability": 0.8,
+        "energy": 0.78,
+        "tempo": 120
+      }
+    },
+    {
+      "id": "4",
+      "name": "Stay",
+      "artist": "The Kid LAROI & Justin Bieber",
+      "album": "Stay (Single)",
+      "features": {
+        "danceability": 0.92,
+        "energy": 0.85,
+        "tempo": 170
+      }
+    },
+    {
+      "id": "5",
+      "name": "Levitating",
+      "artist": "Dua Lipa",
+      "album": "Future Nostalgia",
+      "features": {
+        "danceability": 0.88,
+        "energy": 0.82,
+        "tempo": 103
+      }
+    },
+    {
+      "id": "6",
+      "name": "Save Your Tears",
+      "artist": "The Weeknd",
+      "album": "After Hours",
+      "features": {
+        "danceability": 0.8,
+        "energy": 0.76,
+        "tempo": 118
+      }
+    },
+    {
+      "id": "7",
+      "name": "Drivers License",
+      "artist": "Olivia Rodrigo",
+      "album": "SOUR",
+      "features": {
+        "danceability": 0.55,
+        "energy": 0.45,
+        "tempo": 144
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "1",
+      "name": "Pop Hits Playlist",
+      "tracks": [
+        "Blinding Lights",
+        "Shape of You",
+        "Bad Habits",
+        "Stay",
+        "Levitating"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Chill Vibes Playlist",
+      "tracks": ["Drivers License", "Save Your Tears", "Shape of You"]
+    }
+  ]
+}
