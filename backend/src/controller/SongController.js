@@ -110,4 +110,25 @@ export default class SongController {
       return res.status(500).json({ error: "Error updating song" });
     }
   }
+
+  // delete a song given id
+  async deleteSong(req, res) {
+    const { id } = req.params;
+
+    try {
+      if (id) {
+        const song = await this.model.delete({ id });
+        if (!song) {
+          return res.status(404).json({ error: "Song not found" });
+        }
+        return res.status(200).json({ message: `Song with id ${id} deleted` });
+      } else {
+        console.error("No song id given to delete");
+        return res.status(400).json({ error: "Song id is required" });
+      }
+    } catch (error) {
+      console.error("Error deleting song(s):", error);
+      return res.status(500).json({ error: "Error deleting song(s)" });
+    }
+  }
 }
