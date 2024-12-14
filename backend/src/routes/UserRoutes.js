@@ -47,6 +47,22 @@ class UserRoutes {
     this.router.get("/users/:id", async (req, res) => {
       await this.userController.getUser(req, res);
     });
+
+    // DESCRIPTION
+    //   Update a user's username
+    // REQUEST
+    //   PUT /users/:id
+    //   {
+    //     "username": "newUsername"
+    //   }
+    // RESPONSE
+    //   200 - OK: The user's username was updated
+    //   400 - Bad Request: Missing username
+    //   404 - Not Found: No user found with given id
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.put("/users/:id", async (req, res) => {
+      await this.userController.updateUsername(req, res);
+    });
   }
 
   getRouter() {

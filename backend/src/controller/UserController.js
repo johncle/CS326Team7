@@ -63,4 +63,25 @@ export default class UserController {
       return res.status(500).json({ error: "Error reading all users" });
     }
   }
+
+  // update a user's username given id and username
+  async updateUsername(req, res) {
+    const { id } = req.params;
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ error: "username is required" });
+    }
+
+    try {
+      const user = await this.model.update({ id, username });
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      return res.status(200).json(user);
+    } catch (error) {
+      console.error("Error updating user:", error);
+      return res.status(500).json({ error: "Error updating user" });
+    }
+  }
 }
