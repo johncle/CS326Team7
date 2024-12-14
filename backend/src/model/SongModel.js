@@ -67,4 +67,61 @@ export default class SongModel {
       as: "playlists", // alias Song.playlists[]
     });
   }
+
+  async init(models, fresh = false) {
+    if (fresh) {
+      await this.delete(); // clear all data
+
+      // initial song
+      await this.create({
+        id: "1QoyuMHNBe7lg3YW4Qtll4",
+        title: "St. Chroma (feat. Daniel Caesar)",
+        artistName: "Tyler, The Creator",
+        albumName: "CHROMAKOPIA",
+        albumId: "0U28P0QVB1QRxpqp5IHOlH",
+        coverUrl:
+          "https://i.scdn.co/image/ab67616d0000b273124e9249fada4ff3c3a0739c",
+        durationMs: 197019,
+      });
+    }
+
+    console.log("Song database initialized.");
+  }
+
+  async create(song) {
+    return await this.Song.create(song);
+  }
+
+  async read(id = null) {
+    if (id) {
+      return await this.Song.findByPk(id); // primary key (spotify id)
+    }
+    // else return all songs in db
+    return await this.Song.findAll();
+  }
+
+  async update(song) {
+    const songToUpdate = await this.Song.findByPk(song.id);
+    if (!songToUpdate) {
+      console.error("Song not found.");
+      return null;
+    }
+
+    await songToUpdate.update(song);
+    return songToUpdate;
+  }
+
+  async delete(song = null) {
+    if (song === null) {
+      // delete all songs
+      await this.Song.destroy({ truncate: true });
+      console.log("All songs deleted.");
+      return;
+    }
+
+    // delete specific song
+    await this.Song.destroy({ where: { id: song.id } });
+    console.log(`Song with id ${song.id} deleted.`);
+    return song;
+  }
 }
