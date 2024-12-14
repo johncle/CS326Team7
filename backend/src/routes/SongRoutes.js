@@ -29,6 +29,17 @@ class SongRoutes {
     this.router.post("/songs", async (req, res) => {
       await this.songController.addSong(req, res);
     });
+
+    // DESCRIPTION
+    //   Get all songs
+    // REQUEST
+    //   GET /songs
+    // RESPONSE
+    //   200 - OK: Returns a list of songs
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.get("/songs", async (req, res) => {
+      await this.songController.getAllSongs(req, res);
+    });
   }
 
   getRouter() {

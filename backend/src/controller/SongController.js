@@ -42,4 +42,15 @@ export default class SongController {
       return res.status(500).json({ error: "Error creating song" });
     }
   }
+
+  // get all songs
+  async getAllSongs(req, res) {
+    try {
+      const songs = await this.model.read();
+      return res.status(200).json(songs);
+    } catch (error) {
+      console.error("Error reading all songs:", error);
+      return res.status(500).json({ error: "Error reading all songs" });
+    }
+  }
 }
