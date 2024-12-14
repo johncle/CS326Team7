@@ -43,6 +43,26 @@ export default class SongController {
     }
   }
 
+  // get specific song by id
+  async getSong(req, res) {
+    const { id } = req.params;
+
+    try {
+      if (id) {
+        const song = await this.model.read(id);
+        if (!song) {
+          return res.status(404).json({ error: "Song not found" });
+        }
+        return res.status(200).json(song);
+      } else {
+        return res.status(400).json({ error: "Song id is required" });
+      }
+    } catch (error) {
+      console.error("Error reading song(s):", error);
+      return res.status(500).json({ error: "Error reading song(s)" });
+    }
+  }
+
   // get all songs
   async getAllSongs(req, res) {
     try {

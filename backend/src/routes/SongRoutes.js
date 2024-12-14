@@ -40,6 +40,18 @@ class SongRoutes {
     this.router.get("/songs", async (req, res) => {
       await this.songController.getAllSongs(req, res);
     });
+
+    // DESCRIPTION
+    //   Get a specific song by id
+    // REQUEST
+    //   GET /songs/:id
+    // RESPONSE
+    //   200 - OK: Returns the song data
+    //   404 - Not Found: No song found with given id
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.get("/songs/:id", async (req, res) => {
+      await this.songController.getSong(req, res);
+    });
   }
 
   getRouter() {
