@@ -73,4 +73,41 @@ export default class SongController {
       return res.status(500).json({ error: "Error reading all songs" });
     }
   }
+
+  // update a song's details given id
+  async updateSong(req, res) {
+    const { id } = req.params;
+    const { title, artistName, albumName, albumId, coverUrl, durationMs } =
+      req.body;
+
+    if (
+      !title ||
+      !artistName ||
+      !albumName ||
+      !albumId ||
+      !coverUrl ||
+      !durationMs
+    ) {
+      return res.status(400).json({ error: "All song details are required" });
+    }
+
+    try {
+      const song = await this.model.update({
+        id,
+        title,
+        artistName,
+        albumName,
+        albumId,
+        coverUrl,
+        durationMs,
+      });
+      if (!song) {
+        return res.status(404).json({ error: "Song not found" });
+      }
+      return res.status(200).json(song);
+    } catch (error) {
+      console.error("Error updating song:", error);
+      return res.status(500).json({ error: "Error updating song" });
+    }
+  }
 }

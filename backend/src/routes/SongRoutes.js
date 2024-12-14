@@ -52,6 +52,27 @@ class SongRoutes {
     this.router.get("/songs/:id", async (req, res) => {
       await this.songController.getSong(req, res);
     });
+
+    // DESCRIPTION
+    //   Update a song's details
+    // REQUEST
+    //   PUT /songs/:id
+    //   {
+    //     "title": "newTitle",
+    //     "artistName": "newArtistName",
+    //     "albumName": "newAlbumName",
+    //     "albumId": "newAlbumId",
+    //     "coverUrl": "newCoverUrl",
+    //     "durationMs": "newDurationMs"
+    //   }
+    // RESPONSE
+    //   200 - OK: The song was updated
+    //   400 - Bad Request: Missing required fields
+    //   404 - Not Found: No song found with given id
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.put("/songs/:id", async (req, res) => {
+      await this.songController.updateSong(req, res);
+    });
   }
 
   getRouter() {
