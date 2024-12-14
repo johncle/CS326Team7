@@ -75,6 +75,17 @@ class UserRoutes {
     this.router.delete("/users/:id", async (req, res) => {
       await this.userController.deleteUser(req, res);
     });
+
+    // DESCRIPTION
+    //   Delete all users
+    // REQUEST
+    //   DELETE /users
+    // RESPONSE
+    //   200 - OK: All users were deleted
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.delete("/users", async (req, res) => {
+      await this.userController.deleteAllUsers(req, res);
+    });
   }
 
   getRouter() {

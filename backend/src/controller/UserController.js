@@ -105,4 +105,18 @@ export default class UserController {
       return res.status(500).json({ error: "Error deleting user(s)" });
     }
   }
+
+  // delete all users
+  async deleteAllUsers(req, res) {
+    try {
+      await this.model.delete();
+      console.log("Deleted all users");
+      return res
+        .status(200)
+        .json({ message: "All users deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting all users:", error);
+      return res.status(500).json({ error: "Error deleting all users" });
+    }
+  }
 }
