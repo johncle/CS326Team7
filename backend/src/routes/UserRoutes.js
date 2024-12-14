@@ -63,6 +63,18 @@ class UserRoutes {
     this.router.put("/users/:id", async (req, res) => {
       await this.userController.updateUsername(req, res);
     });
+
+    // DESCRIPTION
+    //   Delete a specific user by id
+    // REQUEST
+    //   DELETE /users/:id
+    // RESPONSE
+    //   200 - OK: The user was deleted
+    //   404 - Not Found: No user found with given id
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.delete("/users/:id", async (req, res) => {
+      await this.userController.deleteUser(req, res);
+    });
   }
 
   getRouter() {
