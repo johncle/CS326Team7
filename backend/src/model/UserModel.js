@@ -46,4 +46,119 @@ export default class UserModel {
       as: "followedPlaylists", // create User.followedPlaylists[] field
     });
   }
+
+  async init(models, fresh = false) {
+    // sync models
+    this.models = models;
+
+    if (fresh) {
+      await this.delete(); // clear all data
+
+      // initial users
+      await this.create(
+        {
+          id: "jmperezperez",
+          username: "JMPerez²",
+          ownedPlaylists: [
+            {
+              id: "3cEYpjA9oz9GiPac4AsH4n",
+              title: "Spotify Web API Testing playlist",
+              ownerId: "jmperezperez",
+              coverUrl:
+                "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da848d0ce13d55f634e290f744ba",
+              snapshotId: "AAAAEur2+1I6iINI0+04uFfVLiVJraUQ",
+            },
+          ],
+          followedPlaylists: [],
+        },
+        {
+          // add User.ownedPlaylists
+          include: [
+            { model: this.models.Playlist, as: "ownedPlaylists" },
+            { model: this.models.Playlist, as: "followedPlaylists" },
+          ],
+        },
+      );
+
+      await this.create({
+        id: "smedjan",
+        username: "smedjan",
+        ownedPlaylists: [],
+        followedPlaylists: [],
+      });
+    }
+
+    console.log("User database initialized.");
+  }
+
+  async create(user) {
+    return await this.User.create(user);
+  }
+
+  async read(id = null) {
+    if (id) {
+      return await this.User.findByPk(id, {
+        // eager load ownedPlaylists and followedPlaylists
+        include: [
+          {
+            model: this.models.Playlist,
+            as: "ownedPlaylists",
+            attributes: ["id", "title"], // only show identifiers for space
+          },
+          {
+            model: this.models.Playlist,
+            as: "followedPlaylists",
+            attributes: ["id", "title"], // only show identifiers for space
+          },
+        ],
+      });
+    }
+
+    // else return all users in db
+    return await this.User.findAll({
+      // eager load ownedPlaylists and followedPlaylists
+      include: [
+        {
+          model: this.models.Playlist,
+          as: "ownedPlaylists",
+          attributes: ["id", "title"], // only show identifiers for space
+        },
+        {
+          model: this.models.Playlist,
+          as: "followedPlaylists",
+          attributes: ["id", "title"], // only show identifiers for space
+        },
+      ],
+    });
+  }
+
+  async update(user) {
+    const userToUpdate = await this.User.findByPk(user.id);
+    if (!userToUpdate) {
+      // user not found
+      return null;
+    }
+
+    await userToUpdate.update(user);
+    return userToUpdate;
+  }
+
+  async delete(user = null) {
+    if (user === null) {
+      // delete all users
+      await this.User.destroy({ truncate: true });
+      return;
+    }
+
+    // check if user exists
+    const userToDelete = await this.User.findByPk(user.id);
+    if (!userToDelete) {
+      // user not found
+      return null;
+    }
+
+    // delete specific user
+    await this.User.destroy({ where: { id: user.id } });
+    return user;
+  }
 }
