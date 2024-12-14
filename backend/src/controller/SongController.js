@@ -131,4 +131,18 @@ export default class SongController {
       return res.status(500).json({ error: "Error deleting song(s)" });
     }
   }
+
+  // delete all songs
+  async deleteAllSongs(req, res) {
+    try {
+      await this.model.delete();
+      console.log("Deleted all songs");
+      return res
+        .status(200)
+        .json({ message: "All songs deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting all songs:", error);
+      return res.status(500).json({ error: "Error deleting all songs" });
+    }
+  }
 }

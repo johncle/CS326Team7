@@ -85,6 +85,17 @@ class SongRoutes {
     this.router.delete("/songs/:id", async (req, res) => {
       await this.songController.deleteSong(req, res);
     });
+
+    // DESCRIPTION
+    //   Delete all songs
+    // REQUEST
+    //   DELETE /songs
+    // RESPONSE
+    //   200 - OK: All songs were deleted
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.delete("/songs", async (req, res) => {
+      await this.songController.deleteAllSongs(req, res);
+    });
   }
 
   getRouter() {
