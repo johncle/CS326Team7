@@ -32,4 +32,15 @@ export default class UserController {
       }
     }
   }
+
+  // get all users
+  async getAllUsers(req, res) {
+    try {
+      const users = await this.model.read();
+      return res.status(200).json(users);
+    } catch (error) {
+      console.error("Error reading all users:", error);
+      return res.status(500).json({ error: "Error reading all users" });
+    }
+  }
 }

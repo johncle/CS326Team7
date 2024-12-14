@@ -24,6 +24,17 @@ class UserRoutes {
     this.router.post("/users", async (req, res) => {
       await this.userController.addUser(req, res);
     });
+
+    // DESCRIPTION
+    //   Get all users
+    // REQUEST
+    //   GET /users
+    // RESPONSE
+    //   200 - OK: Returns a list of users
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.get("/users", async (req, res) => {
+      await this.userController.getAllUsers(req, res);
+    });
   }
 
   getRouter() {
