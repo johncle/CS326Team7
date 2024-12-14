@@ -33,6 +33,26 @@ export default class UserController {
     }
   }
 
+  // get specific user by id
+  async getUser(req, res) {
+    const { id } = req.params;
+
+    try {
+      if (id) {
+        const user = await this.model.read(id);
+        if (!user) {
+          return res.status(404).json({ error: "User not found" });
+        }
+        return res.status(200).json(user);
+      } else {
+        return res.status(400).json({ error: "user id is required" });
+      }
+    } catch (error) {
+      console.error("Error reading user(s):", error);
+      return res.status(500).json({ error: "Error reading user(s)" });
+    }
+  }
+
   // get all users
   async getAllUsers(req, res) {
     try {

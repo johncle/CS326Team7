@@ -35,6 +35,18 @@ class UserRoutes {
     this.router.get("/users", async (req, res) => {
       await this.userController.getAllUsers(req, res);
     });
+
+    // DESCRIPTION
+    //   Get a specific user by id
+    // REQUEST
+    //   GET /users/:id
+    // RESPONSE
+    //   200 - OK: Returns the user data
+    //   404 - Not Found: No user found with given id
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.get("/users/:id", async (req, res) => {
+      await this.userController.getUser(req, res);
+    });
   }
 
   getRouter() {
