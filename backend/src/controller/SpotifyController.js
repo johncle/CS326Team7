@@ -73,4 +73,41 @@ export default class SpotifyController {
         .json({ error: "Error during Spotify callback handling" });
     }
   }
+
+  // fetch user profile (https://developer.spotify.com/documentation/web-api/reference/get-users-profile)
+  async getUserProfile(req, res) {
+    const { userId } = req.params;
+
+    // access (bearer) token is sent in authorization header
+    const accessToken = req.headers["authorization"];
+    if (!accessToken) {
+      return res.status(401).json({ error: "Authorization token is required" });
+    }
+
+    try {
+      const response = await fetch(
+        `${this.spotifyApiBaseUrl}/users/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error fetching user profile from Spotify:", errorData);
+        return res
+          .status(400)
+          .json({ error: "Failed to fetch user profile from Spotify" });
+      }
+
+      const userProfile = await response.json();
+      return res.status(200).json(userProfile);
+    } catch (error) {
+      console.error("Error in getUserProfile method:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  }
 }
