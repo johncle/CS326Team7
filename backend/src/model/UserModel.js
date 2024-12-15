@@ -143,6 +143,22 @@ export default class UserModel {
     return userToUpdate;
   }
 
+  async updateWithExistingPlaylist(userId, playlistId) {
+    const user = await this.User.findByPk(userId);
+    if (!user) {
+      console.error("User not found");
+      return null;
+    }
+
+    const playlist = await this.models.Playlist.findByPk(playlistId);
+    if (!playlist) {
+      console.error("Playlist not found");
+      return null;
+    }
+
+    await user.addOwnedPlaylists(playlist);
+  }
+
   async delete(user = null) {
     if (user === null) {
       // delete all users
