@@ -1,6 +1,7 @@
 // Server.js
 import express from "express";
 import UserRoutes from "./routes/UserRoutes.js";
+import PlaylistRoutes from "./routes/PlaylistRoutes.js";
 import SongRoutes from "./routes/SongRoutes.js";
 import SpotifyRoutes from "./routes/SpotifyRoutes.js";
 import { initializeModels } from "./model/index.js";
@@ -47,6 +48,7 @@ class Server {
   // Setup routes by using imported TaskRoutes, prefix routes with /api
   setupRoutes() {
     this.app.use("/api", UserRoutes);
+    this.app.use("/api", PlaylistRoutes);
     this.app.use("/api", SongRoutes);
     this.app.use("/api", SpotifyRoutes);
   }
