@@ -22,7 +22,7 @@
 // route to be tested independently for correct handling of inputs and
 // outputs.
 import express from "express";
-import TaskController from "../controller/TaskController.js";
+import TaskController from "./TaskController.js";
 
 class TaskRoutes {
   constructor() {

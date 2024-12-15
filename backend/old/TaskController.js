@@ -23,7 +23,7 @@
 // handles input and output correctly, without dependencies on the
 // application's interface or data storage layers.
 
-import ModelFactory from "../model/ModelFactory.js";
+import ModelFactory from "./ModelFactory.js";
 
 class TaskController {
   constructor() {
