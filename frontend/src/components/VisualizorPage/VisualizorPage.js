@@ -1,317 +1,219 @@
 import { BaseComponent } from "../BaseComponent/BaseComponent.js";
-import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
-import Stats from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/libs/stats.module.js";
-import { GUI } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/libs/lil-gui.module.min.js";
-import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+import * as THREE from "three";
+import { GUI } from "dat.gui";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 
 export class VisualizorPage extends BaseComponent {
-  #container = null; // Private variable to store the container element
+  #container;
 
   constructor() {
     super();
     this.loadCSS("VisualizorPage");
   }
 
-  // Method to render the component and return the container
   render() {
-    if (this.#container) {
-      return this.#container;
-    }
+    if (this.#container) return this.#container;
 
-    this.#createContainer();
-    this.#setupContainerContent();
+    // Create the container element
+    this.#container = document.createElement("div");
+    this.#container.style.width = "100%";
+    this.#container.style.height = "100%";
+    this.#container.style.position = "absolute"; // Ensure it takes up the full space of its parent
+    this.#container.style.top = "0";
+    this.#container.style.left = "0";
 
-    // Ensure the container is appended to the DOM before initializing
-    requestAnimationFrame(() => {
-      this.#initializeParticleSystem();
-    });
+    // Append container to the DOM immediately
+    document.body.appendChild(this.#container);
+
+    // Ensure dimensions are valid with a slight delay
+    setTimeout(() => {
+      this.#checkAndInitialize();
+    }, 100);
 
     return this.#container;
   }
 
-  // Creates the container element for the component
-  #createContainer() {
-    this.#container = document.createElement("div");
+  #checkAndInitialize() {
+    const checkDimensions = () => {
+      if (this.#container.offsetWidth > 0 && this.#container.offsetHeight > 0) {
+        this.#initializeVisualizer();
+      } else {
+        console.warn("Container has zero size. Waiting...");
+        requestAnimationFrame(checkDimensions);
+      }
+    };
+    requestAnimationFrame(checkDimensions);
   }
 
-  // Sets up the basic HTML structure of the component
-  #setupContainerContent() {
-    this.#container.innerHTML = `
-      <div style="display: flex; flex-direction: column; height: 100%; width: 100%; id="outer">
-        <div id="visualizorCanvasContainer"></div>
-      </div>
-    `;
-  }
+  #initializeVisualizer() {
+    console.log("Initializing visualizer...");
 
-  // Initializes the Three.js particle system
-  #initializeParticleSystem() {
-    const container = document.querySelector("#visualizorCanvasContainer");
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(this.#container.offsetWidth, this.#container.offsetHeight);
+    renderer.setClearColor(0x000000, 1); // Black background
+    this.#container.appendChild(renderer.domElement);
 
-    // Check if the container exists
-    if (!container) {
-      console.error("visualizorCanvasContainer not found in the DOM");
-      return;
-    }
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      this.#container.offsetWidth / this.#container.offsetHeight,
+      0.1,
+      1000,
+    );
 
-    let group;
-    let stats;
-    const particlesData = [];
-    let camera, scene, renderer;
-    let positions, colors;
-    let particles;
-    let pointCloud;
-    let particlePositions;
-    let linesMesh;
-    let controls;
-    let lc = new THREE.Color("#c0a000");
-    let cs = new THREE.Color("#ffffff");
-
-    const maxParticleCount = 1000;
-    let particleCount = 500;
-    const r = 800;
-    const rHalf = r / 2;
-    let v3 = new THREE.Vector3();
-
-    const effectController = {
-      showDots: true,
-      showLines: true,
-      minDistance: 150,
-      limitConnections: false,
-      maxConnections: 20,
-      particleCount: 500,
+    const params = {
+      red: 1.0,
+      green: 1.0,
+      blue: 1.0,
+      threshold: 0.5,
+      strength: 0.5,
+      radius: 0.8,
     };
 
-    init();
+    const renderScene = new RenderPass(scene, camera);
+
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(
+        this.#container.offsetWidth,
+        this.#container.offsetHeight,
+      ),
+    );
+    bloomPass.threshold = params.threshold;
+    bloomPass.strength = params.strength;
+    bloomPass.radius = params.radius;
+
+    const bloomComposer = new EffectComposer(renderer);
+    bloomComposer.addPass(renderScene);
+    bloomComposer.addPass(bloomPass);
+
+    const outputPass = new OutputPass();
+    bloomComposer.addPass(outputPass);
+
+    camera.position.set(0, -2, 14);
+    camera.lookAt(0, 0, 0);
+
+    const uniforms = {
+      u_time: { type: "f", value: 0.0 },
+      u_frequency: { type: "f", value: 0.0 },
+      u_red: { type: "f", value: 1.0 },
+      u_green: { type: "f", value: 1.0 },
+      u_blue: { type: "f", value: 1.0 },
+    };
+
+    const vertexShader = `
+      uniform float u_time;
+      uniform float u_frequency;
+
+      void main() {
+        float noise = sin(u_time * 2.0 + position.x * 10.0) * u_frequency * 0.5; // Mix time and frequency
+        vec3 newPosition = position + normal * noise;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+      }
+    `;
+
+    const fragmentShader = `
+      uniform float u_red;
+      uniform float u_green;
+      uniform float u_blue;
+
+      void main() {
+        gl_FragColor = vec4(u_red, u_green, u_blue, 1.0);
+      }
+    `;
+
+    const geo = new THREE.IcosahedronGeometry(4, 30);
+    const mat = new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader,
+      fragmentShader,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+    mesh.material.wireframe = true;
+
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    const sound = new THREE.Audio(listener);
+
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load("./src/assets/Beats.mp3", function (buffer) {
+      sound.setBuffer(buffer);
+      window.addEventListener("click", function () {
+        sound.play();
+      });
+    });
+
+    const analyser = new THREE.AudioAnalyser(sound, 32);
+
+    const gui = new GUI();
+    gui.domElement.style.position = "absolute";
+    gui.domElement.style.top = "10px";
+    gui.domElement.style.right = "10px";
+    this.#container.appendChild(gui.domElement);
+
+    const colorsFolder = gui.addFolder("Colors");
+    colorsFolder.add(params, "red", 0, 1).onChange((value) => {
+      uniforms.u_red.value = Number(value);
+    });
+    colorsFolder.add(params, "green", 0, 1).onChange((value) => {
+      uniforms.u_green.value = Number(value);
+    });
+    colorsFolder.add(params, "blue", 0, 1).onChange((value) => {
+      uniforms.u_blue.value = Number(value);
+    });
+
+    const bloomFolder = gui.addFolder("Bloom");
+    bloomFolder.add(params, "threshold", 0, 1).onChange((value) => {
+      bloomPass.threshold = Number(value);
+    });
+    bloomFolder.add(params, "strength", 0, 3).onChange((value) => {
+      bloomPass.strength = Number(value);
+    });
+    bloomFolder.add(params, "radius", 0, 1).onChange((value) => {
+      bloomPass.radius = Number(value);
+    });
+
+    let mouseX = 0;
+    let mouseY = 0;
+    document.addEventListener("mousemove", (e) => {
+      const windowHalfX = window.innerWidth / 2;
+      const windowHalfY = window.innerHeight / 2;
+      mouseX = (e.clientX - windowHalfX) / 100;
+      mouseY = (e.clientY - windowHalfY) / 100;
+    });
+
+    const clock = new THREE.Clock();
+    function animate() {
+      camera.position.x += (mouseX - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY - camera.position.y) * 0.5;
+      camera.lookAt(scene.position);
+      uniforms.u_time.value = clock.getElapsedTime();
+      const frequency = analyser.getAverageFrequency();
+      uniforms.u_frequency.value = THREE.MathUtils.clamp(
+        frequency / 256,
+        0.0,
+        1.0,
+      );
+      bloomComposer.render();
+      requestAnimationFrame(animate);
+    }
     animate();
 
-    /*
-    function initGUI() {
-      const gui = new GUI();
+    window.addEventListener("resize", () => {
+      const width = this.#container.offsetWidth;
+      const height = this.#container.offsetHeight;
 
-      gui.add(effectController, "showDots").onChange(function (value) {
-        pointCloud.visible = value;
-      });
-      gui.add(effectController, "showLines").onChange(function (value) {
-        linesMesh.visible = value;
-      });
-      gui.add(effectController, "minDistance", 10, 300);
-      gui.add(effectController, "limitConnections");
-      gui.add(effectController, "maxConnections", 0, 30, 1);
-      gui
-        .add(effectController, "particleCount", 0, maxParticleCount, 1)
-        .onChange(function (value) {
-          particleCount = parseInt(value);
-          particles.setDrawRange(0, particleCount);
-        });
-    }
-        */
+      if (width === 0 || height === 0) return;
 
-    function init() {
-      //initGUI();
-
-      camera = new THREE.PerspectiveCamera(
-        60,
-        window.innerWidth / window.innerHeight,
-        1,
-        4000,
-      );
-      camera.position.z = 800;
-
-      scene = new THREE.Scene();
-
-      group = new THREE.Group();
-      scene.add(group);
-
-      const helper = new THREE.Mesh(
-        new THREE.IcosahedronGeometry(rHalf, 2),
-        new THREE.MeshBasicMaterial({ color: 0xff6600, wireframe: true }),
-      );
-      group.add(helper);
-
-      const segments = maxParticleCount * maxParticleCount;
-
-      positions = new Float32Array(segments * 3);
-      colors = new Float32Array(segments * 3);
-
-      const pMaterial = new THREE.PointsMaterial({
-        color: 0x00ff88,
-        size: 3,
-        blending: THREE.AdditiveBlending,
-        transparent: true,
-        sizeAttenuation: false,
-      });
-
-      particles = new THREE.BufferGeometry();
-      particlePositions = new Float32Array(maxParticleCount * 3);
-
-      for (let i = 0; i < maxParticleCount; i++) {
-        let rand = Math.random();
-        let radius = Math.sqrt(rHalf * rHalf * rand);
-        v3.randomDirection().setLength(radius);
-
-        particlePositions[i * 3] = v3.x;
-        particlePositions[i * 3 + 1] = v3.y;
-        particlePositions[i * 3 + 2] = v3.z;
-
-        particlesData.push({
-          velocity: new THREE.Vector3().randomDirection(),
-          numConnections: 0,
-        });
-      }
-
-      particles.setDrawRange(0, particleCount);
-      particles.setAttribute(
-        "position",
-        new THREE.BufferAttribute(particlePositions, 3).setUsage(
-          THREE.DynamicDrawUsage,
-        ),
-      );
-
-      pointCloud = new THREE.Points(particles, pMaterial);
-      group.add(pointCloud);
-
-      const geometry = new THREE.BufferGeometry();
-
-      geometry.setAttribute(
-        "position",
-        new THREE.BufferAttribute(positions, 3).setUsage(
-          THREE.DynamicDrawUsage,
-        ),
-      );
-      geometry.setAttribute(
-        "color",
-        new THREE.BufferAttribute(colors, 3).setUsage(THREE.DynamicDrawUsage),
-      );
-
-      geometry.computeBoundingSphere();
-
-      geometry.setDrawRange(0, 0);
-
-      const material = new THREE.LineBasicMaterial({
-        vertexColors: true,
-        blending: THREE.AdditiveBlending,
-        transparent: true,
-      });
-
-      linesMesh = new THREE.LineSegments(geometry, material);
-      group.add(linesMesh);
-
-      //
-
-      renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.outputEncoding = THREE.sRGBEncoding;
-
-      container.appendChild(renderer.domElement);
-
-      //
-
-      controls = new OrbitControls(camera, renderer.domElement);
-      controls.minDistance = 800;
-      controls.maxDistance = 3000;
-      controls.enableDamping = true;
-      controls.enablePan = false;
-
-      //
-
-      window.addEventListener("resize", onWindowResize);
-    }
-
-    function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
 
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    function animate() {
-      controls.update();
-
-      let vertexpos = 0;
-      let colorpos = 0;
-      let numConnected = 0;
-
-      for (let i = 0; i < particleCount; i++)
-        particlesData[i].numConnections = 0;
-
-      for (let i = 0; i < particleCount; i++) {
-        // get the particle
-        const particleData = particlesData[i];
-
-        particlePositions[i * 3] += particleData.velocity.x;
-        particlePositions[i * 3 + 1] += particleData.velocity.y;
-        particlePositions[i * 3 + 2] += particleData.velocity.z;
-
-        v3.fromArray(particlePositions, i * 3);
-        let v3len = v3.length();
-        v3.normalize().negate();
-        if (v3len > rHalf) particleData.velocity.reflect(v3);
-
-        if (
-          effectController.limitConnections &&
-          particleData.numConnections >= effectController.maxConnections
-        )
-          continue;
-
-        // Check collision
-        for (let j = i + 1; j < particleCount; j++) {
-          const particleDataB = particlesData[j];
-          if (
-            effectController.limitConnections &&
-            particleDataB.numConnections >= effectController.maxConnections
-          )
-            continue;
-
-          const dx = particlePositions[i * 3] - particlePositions[j * 3];
-          const dy =
-            particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
-          const dz =
-            particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
-          const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-          if (dist < effectController.minDistance) {
-            particleData.numConnections++;
-            particleDataB.numConnections++;
-
-            const alpha = 1.0 - dist / effectController.minDistance;
-
-            positions[vertexpos++] = particlePositions[i * 3];
-            positions[vertexpos++] = particlePositions[i * 3 + 1];
-            positions[vertexpos++] = particlePositions[i * 3 + 2];
-
-            positions[vertexpos++] = particlePositions[j * 3];
-            positions[vertexpos++] = particlePositions[j * 3 + 1];
-            positions[vertexpos++] = particlePositions[j * 3 + 2];
-
-            colors[colorpos++] = alpha * lc.r;
-            colors[colorpos++] = alpha * lc.g;
-            colors[colorpos++] = alpha * lc.b;
-
-            colors[colorpos++] = alpha * lc.r;
-            colors[colorpos++] = alpha * lc.g;
-            colors[colorpos++] = alpha * lc.b;
-
-            numConnected++;
-          }
-        }
-      }
-
-      linesMesh.geometry.setDrawRange(0, numConnected * 2);
-      linesMesh.geometry.attributes.position.needsUpdate = true;
-      linesMesh.geometry.attributes.color.needsUpdate = true;
-
-      pointCloud.geometry.attributes.position.needsUpdate = true;
-
-      requestAnimationFrame(animate);
-      render();
-    }
-
-    function render() {
-      const time = Date.now() * 0.001;
-
-      group.rotation.y = time * 0.1;
-      renderer.render(scene, camera);
-    }
+      renderer.setSize(width, height);
+      bloomComposer.setSize(width, height);
+    });
   }
 }
