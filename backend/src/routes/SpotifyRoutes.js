@@ -32,10 +32,12 @@ class SpotifyRoutes {
     });
 
     // DESCRIPTION
-    //   Fetch Spotify user profile using access token
+    //   Fetch Spotify user profile by id, needs access token
     //   see https://developer.spotify.com/documentation/web-api/reference/get-users-profile
     // REQUEST
-    //   GET /spotify/user
+    //   GET /spotify/user/:id
+    //   Params:
+    //       "id": string
     //   Headers:
     //     Authorization: Bearer <access_token>
     // RESPONSE
@@ -49,7 +51,7 @@ class SpotifyRoutes {
     //   401 - Unauthorized: Missing or invalid authorization token
     //   400 - Bad Request: Failed to fetch user profile from Spotify
     //   500 - Internal Server Error: Unexpected error during profile retrieval
-    this.router.get("/spotify/user", async (req, res) => {
+    this.router.get("/spotify/user/:id", async (req, res) => {
       await this.spotifyController.getUserProfile(req, res);
     });
   }
