@@ -9,7 +9,7 @@ import { VisualizorPage } from "../VisualizorPage/VisualizorPage.js";
 
 export class AppControllerComponent {
   #container = null; // Private container for the component
-  #currentView = "login"; // Track the current view ("home" | "tags" | "communities" | "profile" | "login" | "search")
+  #currentView = "login"; // Track the current view ("home" | "search" | "communities" | "profile" | "login")
   #hub = null; // EventHub instance for managing events
 
   // component instances
@@ -30,6 +30,7 @@ export class AppControllerComponent {
     this.#profilePage = new ProfilePage();
     this.#loginPage = new LoginPage();
     this.#visualizorPage = new VisualizorPage();
+
   }
 
   // Render the AppController component and return the container
@@ -91,10 +92,12 @@ export class AppControllerComponent {
         // do not render navbar for login page
         viewContainer.appendChild(this.#loginPage.render());
         break;
+
       case "visualizor":
         viewContainer.appendChild(this.#navbar.render());
         viewContainer.appendChild(this.#visualizorPage.render());
         break;
+
       default:
         // page not found, should be impossible with predefined page names but idk, show home page
         console.log(`page name '${this.#currentView}' is invalid`);

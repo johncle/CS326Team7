@@ -131,3 +131,7 @@ dist
 
 # config files
 frontend/src/config/
+
+# sqlite files
+*.sqlite
+*.db
