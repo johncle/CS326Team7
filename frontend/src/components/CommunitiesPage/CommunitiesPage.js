@@ -39,9 +39,14 @@ export class CommunitiesPage extends BaseComponent {
         <ul class="posts-list" id="posts-list"></ul>
       </div>
       <div class="create-post-section post-form">
+        <label for="post-title">Title</label>
         <input type="text" id="post-title" placeholder="Title" />
+        <label for="post-content">Content</label>
         <textarea id="post-content" placeholder="Content"></textarea>
-        <input type="text" id="post-song" placeholder="Song URL" />
+        <label for="post-song">Spotify Song ID</label>
+        <input type="text" id="post-song" placeholder="Spotify Song ID" />
+        <label for="post-song-title">Song Title</label>
+        <input type="text" id="post-song-title" placeholder="Song Title" />
         <button id="submit-post">Submit</button>
       </div>
     `;
@@ -59,20 +64,21 @@ export class CommunitiesPage extends BaseComponent {
   #handleSubmitPost() {
     const title = this.#container.querySelector("#post-title").value;
     const content = this.#container.querySelector("#post-content").value;
-    const song = this.#container.querySelector("#post-song").value;
+    const songId = this.#container.querySelector("#post-song").value;
+    const songTitle = this.#container.querySelector("#post-song-title").value;
 
-    if (title && content && song) {
+    if (title && content && songId && songTitle) {
       fetch('http://localhost:3000/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, content, song })
+        body: JSON.stringify({ title, content, songId, songTitle })
       })
       .then(response => response.json())
       .then(data => {
         console.log('Post created:', data); // Add this line
-        this.#posts.push({ id: data.id, title, content, song });
+        this.#posts.push({ id: data.id, title, content, songId, songTitle });
         this.#renderPosts();
       })
       .catch(error => console.error('Error:', error));
@@ -100,7 +106,8 @@ export class CommunitiesPage extends BaseComponent {
         <li class="post-item">
           <h3>${post.title}</h3>
           <p>${post.content}</p>
-          <button onclick="window.open('${post.song}', '_blank')">Play Song</button>
+          <p><strong>Song:</strong> ${post.songTitle}</p>
+          <button onclick="window.open('https://open.spotify.com/track/${post.songId}', '_blank')">Play Song</button>
         </li>
       `
       )

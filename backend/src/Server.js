@@ -4,6 +4,7 @@ import UserRoutes from "./routes/UserRoutes.js";
 import PlaylistRoutes from "./routes/PlaylistRoutes.js";
 import SongRoutes from "./routes/SongRoutes.js";
 import SpotifyRoutes from "./routes/SpotifyRoutes.js";
+import PostRoutes from "./routes/PostRoutes.js";
 import { initializeModels } from "./model/index.js";
 
 class Server {
@@ -23,12 +24,6 @@ class Server {
 
     // accept data from HTML forms through POST requests
     this.app.use(express.urlencoded({ extended: true }));
-
-    // NOTE:
-    // These middleware functions are built-in Express middleware. They are
-    // used to process incoming requests before they are sent to the routes.
-    // There are many middleware functions available in Express, and you can
-    // also create custom middleware functions.
 
     // api key authorization
     const API_KEY = "super-secret"; // TODO: move to .env
@@ -51,6 +46,7 @@ class Server {
     this.app.use("/api", PlaylistRoutes);
     this.app.use("/api", SongRoutes);
     this.app.use("/api", SpotifyRoutes);
+    this.app.use("/api", PostRoutes);
   }
 
   // Start the server on a specified port

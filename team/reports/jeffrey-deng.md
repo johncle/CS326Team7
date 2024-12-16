@@ -35,3 +35,9 @@
 - **Task** Playlist View
 - **Details**: Finished `Playlist.js, Playlist.css, Homepage.js` for milestone 3
 - **Link to Commit**: [Initial Commit](https://github.com/johncle/CS326Team7/commit/cdd7ecfd6beaefdd433176b0dd14657b73565b79)
+
+### December 15, 2024
+
+- **Task** Communities View
+- **Details**: Finished `CommunitiesPage.js, CommunitiesPage.css` for milestone 4
+- **Link to Commit**: [Initial Commit](https://github.com/johncle/CS326Team7/commit/06cedd03ebd761c4ac022c844e69ac5d6041a528)
