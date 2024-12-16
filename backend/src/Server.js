@@ -1,5 +1,6 @@
 // Server.js
 import express from "express";
+import "dotenv/config";
 import UserRoutes from "./routes/UserRoutes.js";
 import PlaylistRoutes from "./routes/PlaylistRoutes.js";
 import SongRoutes from "./routes/SongRoutes.js";
@@ -31,7 +32,7 @@ class Server {
     // also create custom middleware functions.
 
     // api key authorization
-    const API_KEY = "super-secret"; // TODO: move to .env
+    const API_KEY = process.env.API_KEY;
 
     const validateApiKey = (req, res, next) => {
       const apiKey = req.headers["x-api-key"];
