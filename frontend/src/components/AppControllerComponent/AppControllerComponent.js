@@ -8,11 +8,11 @@ import { EventHub } from "../../eventhub/EventHub.js";
 import { VisualizorPage } from "../VisualizorPage/VisualizorPage.js";
 
 export class AppControllerComponent {
-  #container = null; // Private container for the component
-  #currentView = "login"; // Track the current view ("home" | "search" | "communities" | "profile" | "login")
+  #container = null; // Main container for the component
+  #currentView = "login"; // Track the current view
   #hub = null; // EventHub instance for managing events
 
-  // component instances
+  // Component instances
   #navbar = null;
   #homePage = null;
   #searchPage = null;
@@ -30,7 +30,6 @@ export class AppControllerComponent {
     this.#profilePage = new ProfilePage();
     this.#loginPage = new LoginPage();
     this.#visualizorPage = new VisualizorPage();
-
   }
 
   // Render the AppController component and return the container
@@ -49,11 +48,12 @@ export class AppControllerComponent {
   #createContainer() {
     this.#container = document.createElement("div");
     this.#container.classList.add("app-controller");
+    this.#container.style.height = "100vh"; // Full viewport height
   }
 
   // Sets up the HTML structure for the container
   #setupContainerContent() {
-    this.#container.innerHTML = `<div id="viewContainer"></div>`;
+    this.#container.innerHTML = `<div id="viewContainer" class="view-container"></div>`;
   }
 
   // Attaches the necessary event listeners
@@ -89,17 +89,15 @@ export class AppControllerComponent {
         viewContainer.appendChild(this.#profilePage.render());
         break;
       case "login":
-        // do not render navbar for login page
+        // Do not render navbar for login page
         viewContainer.appendChild(this.#loginPage.render());
         break;
-
       case "visualizor":
         viewContainer.appendChild(this.#navbar.render());
         viewContainer.appendChild(this.#visualizorPage.render());
         break;
-
       default:
-        // page not found, should be impossible with predefined page names but idk, show home page
+        // Page not found, show home page
         console.log(`page name '${this.#currentView}' is invalid`);
         viewContainer.appendChild(this.#navbar.render());
         viewContainer.appendChild(this.#homePage.render());

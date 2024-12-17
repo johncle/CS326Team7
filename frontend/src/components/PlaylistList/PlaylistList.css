@@ -1,9 +1,75 @@
 .playlist-list {
   display: flex;
   flex-direction: column;
-  height: 270px;
-  width: 1300px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 90%;
+  position: relative;
+  height: auto;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.playlist-title h2 {
+  color: #1db954;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.playlist-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+#playlistContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.playlist-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  height: 220px;
+  align-items: center;
+  text-align: center;
+}
+
+.scroll-button {
+  background-color: #333;
+  color: #1db954;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.left-button {
+  margin-right: 10px;
+}
+
+.right-button {
+  margin-left: 10px;
+}
+
+.scroll-button:hover {
+  background-color: #555;
 }
 

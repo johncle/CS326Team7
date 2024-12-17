@@ -1,3 +1,8 @@
+
+
+
+
+
 // Server.js
 import express from "express";
 import "dotenv/config";
@@ -5,8 +10,8 @@ import UserRoutes from "./routes/UserRoutes.js";
 import PlaylistRoutes from "./routes/PlaylistRoutes.js";
 import SongRoutes from "./routes/SongRoutes.js";
 import SpotifyRoutes from "./routes/SpotifyRoutes.js";
+import PostRoutes from "./routes/PostRoutes.js";
 import { initializeModels } from "./model/index.js";
-
 import cors from "cors";
 
 class Server {
@@ -16,23 +21,25 @@ class Server {
     this.setupRoutes();
   }
 
+
   // Configure middleware for static files and JSON parsing
   configureMiddleware() {
+    // Enable CORS with default settings
+    this.app.use(cors()); // Add this line
+
+
     // Serve static files from the frontend
     this.app.use(cors());
     this.app.use(express.static("../../frontend/src"));
 
+
     // Parse JSON bodies, limited to 10mb
     this.app.use(express.json({ limit: "10mb" }));
 
-    // accept data from HTML forms through POST requests
+
+    // Accept data from HTML forms through POST requests
     this.app.use(express.urlencoded({ extended: true }));
 
-    // NOTE:
-    // These middleware functions are built-in Express middleware. They are
-    // used to process incoming requests before they are sent to the routes.
-    // There are many middleware functions available in Express, and you can
-    // also create custom middleware functions.
 
     // api key authorization
     const API_KEY = process.env.API_KEY;
@@ -45,9 +52,11 @@ class Server {
       next();
     };
 
-    // protect api routes
+
+    // Protect API routes
     // this.app.use(validateApiKey);
   }
+
 
   // Setup routes by using imported TaskRoutes, prefix routes with /api
   setupRoutes() {
@@ -55,7 +64,9 @@ class Server {
     this.app.use("/api", PlaylistRoutes);
     this.app.use("/api", SongRoutes);
     this.app.use("/api", SpotifyRoutes);
+    this.app.use("/api", PostRoutes);
   }
+
 
   // Start the server on a specified port
   start(port = 3000) {
@@ -65,6 +76,7 @@ class Server {
   }
 }
 
+
 // Initialize and start the server
 console.log("Starting server...");
 await initializeModels();
@@ -73,4 +85,8 @@ const server = new Server();
 const app = server.app;
 const runningServer = server.start();
 
+
 export { app, runningServer };
+
+
+

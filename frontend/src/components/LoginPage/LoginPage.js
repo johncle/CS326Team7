@@ -3,14 +3,15 @@ import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 
 export class LoginPage extends BaseComponent {
-  #container = null;
-  #hub = EventHub.getInstance();
+  #container = null; // Container element for the login page
+  #hub = EventHub.getInstance(); // EventHub instance for managing events
 
   constructor() {
     super();
     this.loadCSS("LoginPage");
   }
 
+  // Render the login page and return the container
   render() {
     if (this.#container) return this.#container;
 
@@ -18,7 +19,13 @@ export class LoginPage extends BaseComponent {
     this.#container.classList.add("login-page");
     this.#container.id = "login-page";
 
-    this.#container.innerHTML = `
+    // Center the login page
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("login-wrapper");
+    this.#container.appendChild(wrapper);
+
+    // HTML structure
+    wrapper.innerHTML = `
       <div class="login-container">
         <h1>Welcome to <span class="sonar-highlight">Sonar</span></h1>
         <button id="spotify-login" class="spotify-login-button">
@@ -31,6 +38,7 @@ export class LoginPage extends BaseComponent {
 
     return this.#container;
   }
+
 
   #generateRandomString(length) {
     const possible =
@@ -56,6 +64,8 @@ export class LoginPage extends BaseComponent {
     const hashed = await sha256(codeVerifier);
     return base64encode(hashed);
   }
+
+  // Attach event listeners to the login page
   #attachEventListeners() {
     const spotifyLoginButton = this.#container.querySelector("#spotify-login");
     spotifyLoginButton.addEventListener("click", async () => {

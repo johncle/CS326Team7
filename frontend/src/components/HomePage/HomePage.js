@@ -5,20 +5,19 @@ import { Playlist } from "../Playlist/Playlist.js";
 import { PlaylistList } from "../PlaylistList/PlaylistList.js";
 
 export class HomePage extends BaseComponent {
-  #container = null; // Private variable to store the container element
-  #categories = null; // { categoryName: playlists[] }, group playlists by category
+  #container = null; // Container element for the homepage
+  #categories = null; // Group playlists by category
 
   constructor() {
     super();
     this.loadCSS("HomePage");
     this.#categories = {
-      "Curated for you": new PlaylistList(),
-      "Discover New": new PlaylistList(),
-      Trending: new PlaylistList(),
+      "Your Playlists": new PlaylistList("Your Playlists"),
+      "Discover New": new PlaylistList("Discover New"),
     };
   }
 
-  // Method to render the component and return the container
+  // Render the component and return the container
   render() {
     if (this.#container) {
       return this.#container;
@@ -31,20 +30,19 @@ export class HomePage extends BaseComponent {
     return this.#container;
   }
 
-  // Creates the container element for the component
+  // Create the container element for the component
   #createContainer() {
     this.#container = document.createElement("div");
   }
 
-  // Sets up the basic HTML structure of the component
+  // Set up the basic HTML structure of the component
   #setupContainerContent() {
     this.#container.innerHTML = `
-      <div id="homepage"></div>
+      <div id="homepage" class="homepage"></div>
     `;
     const mainDiv = this.#container.querySelector("#homepage");
 
     Object.entries(this.#categories).forEach((category) => {
-      // console.log(category);
       const playlistList = category[1];
       playlistList.render();
       playlistList.setPlaylists([
@@ -82,9 +80,6 @@ export class HomePage extends BaseComponent {
       mainDiv.classList.add("categories");
       mainDiv.appendChild(playlistList.render());
     });
-
-    // div.appendChild(this.#playlistList.render());
-    // this.#playlistList.setPlaylists(this.#playlists);
   }
 
   /**
@@ -93,10 +88,10 @@ export class HomePage extends BaseComponent {
    */
   #getPlaylists() {}
 
-  // Attaches the event listeners to the component
+  // Attach event listeners to the component
   #attachEventListeners() {
     const hub = EventHub.getInstance();
-    // hub.subscribe(Events.NewTask, (taskData) => {
+    // Example: hub.subscribe(Events.NewTask, (taskData) => {
     //   this.#tasks.push(taskData);
     //   this.#renderTasks();
     // });
