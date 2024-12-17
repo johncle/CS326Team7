@@ -1,44 +1,31 @@
-/**
- * Create a Song model in Sequelize with attributes for title, artist, album, duration, cover image
- * url, spotify album id, spotify id. Add model-level validation for required fields and CRUD
- * operations.
- * - Each song can be in multiple playlists
- */
-
 import { DataTypes } from "sequelize";
 
 export default class SongModel {
   // load instance of sequelize
   constructor(sequelize) {
-    // Define the Song model (based on https://developer.spotify.com/documentation/web-api/reference/get-track)
+    // Define the Song model
     this.Song = sequelize.define("Song", {
-      // id (from spotify)
       id: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
       },
-      // name
       title: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      // artists[0].name
       artistName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      // album.name
       albumName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      // album.id
       albumId: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      // album.images[0].url
       coverUrl: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -46,7 +33,6 @@ export default class SongModel {
           isUrl: true,
         },
       },
-      // duration_ms
       durationMs: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -58,21 +44,21 @@ export default class SongModel {
     });
   }
 
-  // set up associations for index.js (once)
+  // set up associations for index.js
   associate(models) {
     this.Song.belongsToMany(models.Playlist, {
-      through: "PlaylistSong", // join table name
+      through: "PlaylistSong",
       foreignKey: "songId",
       otherKey: "playlistId",
-      as: "playlists", // alias Song.playlists[]
+      as: "playlists",
     });
   }
 
   async init(models, fresh = false) {
     if (fresh) {
-      await this.delete(); // clear all data
+      await this.delete(); // Clear all existing data
 
-      // initial song
+      // Initial songs
       await this.create({
         id: "1QoyuMHNBe7lg3YW4Qtll4",
         title: "St. Chroma (feat. Daniel Caesar)",
@@ -82,6 +68,17 @@ export default class SongModel {
         coverUrl:
           "https://i.scdn.co/image/ab67616d0000b273124e9249fada4ff3c3a0739c",
         durationMs: 197019,
+      });
+
+      // Add Beats.mp3 as a test song
+      await this.create({
+        id: "Beats", // ID must match filename Beats.mp3
+        title: "Test Beats",
+        artistName: "Test Artist",
+        albumName: "Test Album",
+        albumId: "12345",
+        coverUrl: "https://via.placeholder.com/150", // Placeholder image URL
+        durationMs: 240000,
       });
     }
 
@@ -94,9 +91,8 @@ export default class SongModel {
 
   async read(id = null) {
     if (id) {
-      return await this.Song.findByPk(id); // primary key (spotify id)
+      return await this.Song.findByPk(id);
     }
-    // else return all songs in db
     return await this.Song.findAll();
   }
 
@@ -113,13 +109,11 @@ export default class SongModel {
 
   async delete(song = null) {
     if (song === null) {
-      // delete all songs
       await this.Song.destroy({ truncate: true });
       console.log("All songs deleted.");
       return;
     }
 
-    // delete specific song
     await this.Song.destroy({ where: { id: song.id } });
     console.log(`Song with id ${song.id} deleted.`);
     return song;

@@ -101,3 +101,46 @@ body {
   font-weight: 900;
   font-style: italic;
 }
+
+/* Container styling */
+.song-selector {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  max-width: 300px;
+}
+
+/* Heading */
+.song-selector h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* List styling */
+.song-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.song-item {
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.song-item:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-style: italic;
+}

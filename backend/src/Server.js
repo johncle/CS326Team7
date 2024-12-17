@@ -5,14 +5,14 @@
 
 // Server.js
 import express from "express";
-import cors from "cors"; // Add this line
+import "dotenv/config";
 import UserRoutes from "./routes/UserRoutes.js";
 import PlaylistRoutes from "./routes/PlaylistRoutes.js";
 import SongRoutes from "./routes/SongRoutes.js";
 import SpotifyRoutes from "./routes/SpotifyRoutes.js";
 import PostRoutes from "./routes/PostRoutes.js";
 import { initializeModels } from "./model/index.js";
-
+import cors from "cors";
 
 class Server {
   constructor() {
@@ -29,6 +29,7 @@ class Server {
 
 
     // Serve static files from the frontend
+    this.app.use(cors());
     this.app.use(express.static("../../frontend/src"));
 
 
@@ -40,9 +41,8 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
 
 
-    // API key authorization
-    const API_KEY = "super-secret"; // TODO: move to .env
-
+    // api key authorization
+    const API_KEY = process.env.API_KEY;
 
     const validateApiKey = (req, res, next) => {
       const apiKey = req.headers["x-api-key"];

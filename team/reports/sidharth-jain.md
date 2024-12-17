@@ -17,3 +17,9 @@
 - **Task**: Finished the Visualizor Implementation completely
 - **Details**: Debugged all the errors in the `VisualizorPage.js` file, fixing the overlay issues and adding the editing GUI to customize the particle system
 - **Link to Commit**: [Final Visualizor Commit](https://github.com/johncle/CS326Team7/commit/b2ecbc37fbaf20625239bf3404c2ac2d5b2b7bad)
+
+### December 16, 2024
+
+- **Task**: Finished the backend implementation
+- **Details**: Created new SongRoutes to fetch and serve song file data to the visualizor. Added a SongSelector component to select which song to visualise.
+- **Link to Commit**: [Backend Commit](https://github.com/johncle/CS326Team7/commit/1a157d9686b3bc1515ca86d1787854f1c3a440af)
