@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/johncle/CS326Team7#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "sequelize": "^6.37.5",

@@ -6,12 +6,19 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 
+import SongSelector from "./SongSelector.js";
+import { underline } from "colorette";
+
 export class VisualizorPage extends BaseComponent {
   #container;
 
   constructor() {
     super();
     this.loadCSS("VisualizorPage");
+    this.loadSong = this.#loadSong.bind(this);
+    this.audioLoader = new THREE.AudioLoader();
+    this.listener = new THREE.AudioListener();
+    this.audio = null;
   }
 
   render() {
@@ -26,12 +33,10 @@ export class VisualizorPage extends BaseComponent {
     this.#container.style.left = "0";
 
     // Append container to the DOM immediately
-    document.body.appendChild(this.#container);
+    //document.body.appendChild(this.#container);
 
     // Ensure dimensions are valid with a slight delay
-    setTimeout(() => {
-      this.#checkAndInitialize();
-    }, 100);
+    this.#checkAndInitialize();
 
     return this.#container;
   }
@@ -48,8 +53,35 @@ export class VisualizorPage extends BaseComponent {
     requestAnimationFrame(checkDimensions);
   }
 
-  #initializeVisualizer() {
+  #loadSong(fileUrl) {
+    this.audioLoader.load(
+      fileUrl,
+      (buffer) => {
+        if (this.audio) this.audio.stop();
+
+        this.audio = new THREE.Audio(this.listener);
+        this.audio.setBuffer(buffer);
+        this.audio.setLoop(false);
+        this.audio.play();
+      },
+      undefined,
+      (error) => {
+        console.error("Error loading song:", error);
+      },
+    );
+  }
+
+  async #initializeVisualizer() {
     console.log("Initializing visualizer...");
+
+    const songSelector = new SongSelector(this.loadSong);
+    const selectorDiv = await songSelector.render();
+
+    selectorDiv.style.position = "absolute";
+    selectorDiv.style.top = "10px";
+    selectorDiv.style.left = "10px";
+    selectorDiv.style.zIndex = "100"; // Ensure it stays on top of the canvas
+    this.#container.appendChild(selectorDiv);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(this.#container.offsetWidth, this.#container.offsetHeight);
@@ -63,6 +95,7 @@ export class VisualizorPage extends BaseComponent {
       0.1,
       1000,
     );
+    camera.attach(this.listener);
 
     const params = {
       red: 1.0,
@@ -202,18 +235,5 @@ export class VisualizorPage extends BaseComponent {
       requestAnimationFrame(animate);
     }
     animate();
-
-    window.addEventListener("resize", () => {
-      const width = this.#container.offsetWidth;
-      const height = this.#container.offsetHeight;
-
-      if (width === 0 || height === 0) return;
-
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize(width, height);
-      bloomComposer.setSize(width, height);
-    });
   }
 }
