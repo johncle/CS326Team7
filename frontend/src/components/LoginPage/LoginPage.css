@@ -1,29 +1,27 @@
-/* Login Page Styles */
 .login-page {
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  display: flex; /* Enable Flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  background-color: #121212; /* Dark background */
-  color: #ffffff; /* White text */
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  color: #ffffff;
   font-family: "Roboto", sans-serif;
 }
 
-
 .login-container {
-  background: #1e1e1e; /* Slightly lighter than the background */
+  background: #1e1e1e;
   padding: 30px;
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Subtle shadow */
-  width: 350px; /* Wide enough for clean layout */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  width: 350px;
 }
 
 .login-container h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.8em;
-  color: #ffffff; /* Bright white text */
+  color: #ffffff;
 }
 
 .login-container form {
@@ -34,48 +32,152 @@
 .login-container label {
   margin-bottom: 5px;
   font-size: 0.9em;
-  color: #b3b3b3; /* Subtle gray for labels */
+  color: #b3b3b3;
 }
 
 .login-container input {
   margin-bottom: 15px;
   padding: 12px;
-  border: none; /* No border for cleaner input fields */
+  border: none;
   border-radius: 10px;
   font-size: 1em;
-  background-color: #2a2a2a; /* Dark input field background */
-  color: #ffffff; /* White input text */
+  background-color: #2a2a2a;
+  color: #ffffff;
 }
 
 .login-container input:focus {
   outline: none;
-  box-shadow: 0 0 5px #1db954; /* Subtle blue glow on focus */
+  box-shadow: 0 0 5px #1db954;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
 .home-link {
   display: block;
   margin-top: 15px;
   text-align: center;
-  color: #3a9bff; /* Accent blue for links */
+  color: #3a9bff;
   text-decoration: none;
 }
 
 .home-link:hover {
   text-decoration: underline;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .spotify-login-button {
-  background-color: #1db954; /* Spotify Green */
-  color: #ffffff; /* White text */
+  background-color: #1db954;
+  color: #ffffff;
   padding: 12px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-size: 1em;
-  width: 100%; /* Full width like other buttons */
-  margin-top: 15px; /* Space between buttons */
+  width: 100%;
+  margin-top: 15px;
 }
 
 .spotify-login-button:hover {
-  background-color: #1ed760; /* Slightly lighter green on hover */
+  background-color: #1ed760;
+}
+
+.login-button {
+  background-color: #1db954;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.login-button:hover {
+  background-color: #1ed760;
+}
+
+.create-account-container {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  width: 350px;
+  display: none;
+}
+
+.create-account-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #ffffff;
+}
+
+.create-account-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-account-container label {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #b3b3b3;
+}
+
+.create-account-container input {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.create-account-container input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #1db954;
+}
+
+.create-account-container .spotify-login-button,
+.create-account-container .submit-account-button,
+.create-account-container .back-to-login-button {
+  background-color: #1db954;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.create-account-container .spotify-login-button:hover,
+.create-account-container .submit-account-button:hover,
+.create-account-container .back-to-login-button:hover {
+  background-color: #1ed760;
+}
+
+.create-account-button {
+  background-color: #1db954;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+  margin-top: 15px;
+  display: block;
+  text-align: center;
+}
+
+.create-account-button:hover {
+  background-color: #1ed760;
 }
