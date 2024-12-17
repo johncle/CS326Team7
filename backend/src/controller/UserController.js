@@ -81,6 +81,33 @@ export default class UserController {
       }
       return res.status(200).json(user);
     } catch (error) {
+      if (error.name === "SequelizeUniqueConstraintError") {
+        return res
+          .status(400)
+          .json({ error: `User with username '${username}' already exists` });
+      } else {
+        console.error("Error updating user:", error);
+        return res.status(500).json({ error: "Error updating user" });
+      }
+    }
+  }
+
+  // Update a user's password given their ID and new password
+  async updatePassword(req, res) {
+    const { id } = req.params;
+    const { password } = req.body;
+
+    if (!password) {
+      return res.status(400).json({ error: "password is required" });
+    }
+
+    try {
+      const user = await this.model.update({ id, password });
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      return res.status(200).json(user);
+    } catch (error) {
       console.error("Error updating user:", error);
       return res.status(500).json({ error: "Error updating user" });
     }

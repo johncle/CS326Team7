@@ -124,6 +124,38 @@ class UserRoutes {
     this.router.get("/spotify/login", async (req, res) => {
       await this.userController.spotifyLogin(req, res);
     });
+
+    // DESCRIPTION
+    //   Update a user's username
+    // REQUEST
+    //   PUT /users/:id/username
+    //   {
+    //     "username": "newUsername"
+    //   }
+    // RESPONSE
+    //   200 - OK: The user's username was updated
+    //   400 - Bad Request: Missing username
+    //   404 - Not Found: No user found with given id
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.put("/users/:id/username", async (req, res) => {
+      await this.userController.updateUsername(req, res);
+    });
+
+    // DESCRIPTION
+    //   Update a user's password
+    // REQUEST
+    //   PUT /users/:id/password
+    //   {
+    //     "password": "newPassword"
+    //   }
+    // RESPONSE
+    //   200 - OK: The user's password was updated
+    //   400 - Bad Request: Missing password
+    //   404 - Not Found: No user found with given id
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.put("/users/:id/password", async (req, res) => {
+      await this.userController.updatePassword(req, res);
+    });
   }
 
   getRouter() {
