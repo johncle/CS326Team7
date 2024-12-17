@@ -16,12 +16,11 @@ class PostRoutes {
     //   {
     //     "title": "Post Title",
     //     "content": "Post Content",
-    //     "songId": "Spotify Song ID",
-    //     "songTitle": "Song Title"
+    //     "songQuery": "Spotify Song Query"
     //   }
     // RESPONSE
     //   201 - Created: The post was created successfully
-    //   400 - Bad Request: Missing title, content, songId, or songTitle
+    //   400 - Bad Request: Missing title, content, or songQuery
     //   500 - Internal Server Error: Server encountered an error
     this.router.post("/posts", async (req, res) => {
       await this.postController.addPost(req, res);
@@ -57,12 +56,11 @@ class PostRoutes {
     //   {
     //     "title": "New Title",
     //     "content": "New Content",
-    //     "songId": "New Spotify Song ID",
-    //     "songTitle": "New Song Title"
+    //     "songQuery": "New Spotify Song Query"
     //   }
     // RESPONSE
     //   200 - OK: The post was updated
-    //   400 - Bad Request: Missing title, content, songId, or songTitle
+    //   400 - Bad Request: Missing title, content, or songQuery
     //   404 - Not Found: No post found with given id
     //   500 - Internal Server Error: Server encountered an error
     this.router.put("/posts/:id", async (req, res) => {

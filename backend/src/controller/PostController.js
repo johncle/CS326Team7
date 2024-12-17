@@ -1,23 +1,26 @@
 import { Post } from "../model/index.js";
+import SpotifyController from "./SpotifyController.js";
 
 export default class PostController {
   constructor() {
     this.model = Post;
+    this.spotifyController = new SpotifyController();
   }
 
   // add new post
   async addPost(req, res) {
-    const { title, content, songId, songTitle } = req.body;
-
-    // validate input
-    if (!title || !content || !songId || !songTitle) {
-      return res.status(400).json({ error: "title, content, songId, and songTitle are required" });
+    if (!req.body || !req.body.content || !req.body.userId) {
+      return res.status(400).json({ error: "content and userId are required" });
     }
 
+    const { content, userId } = req.body;
     try {
-      // create post
-      const post = await this.model.create({ title, content, songId, songTitle });
-      return res.status(201).json(post);
+      const post = await this.model.create({
+        content,
+        userId,
+      });
+      console.log(`created post for user ${userId}`);
+      return res.status(201).json(post); // return created post
     } catch (error) {
       console.error("Error creating post:", error);
       return res.status(500).json({ error: "Error creating post" });
@@ -29,43 +32,43 @@ export default class PostController {
     const { id } = req.params;
 
     try {
-      // read post
-      const post = await this.model.read(id);
-      if (!post) {
-        return res.status(404).json({ error: "Post not found" });
+      if (id) {
+        const post = await this.model.read(id);
+        if (!post) {
+          return res.status(404).json({ error: "Post not found" });
+        }
+        return res.status(200).json(post);
+      } else {
+        return res.status(400).json({ error: "post id is required" });
       }
-      return res.status(200).json(post);
     } catch (error) {
-      console.error("Error reading post:", error);
-      return res.status(500).json({ error: "Error reading post" });
+      console.error("Error reading post(s):", error);
+      return res.status(500).json({ error: "Error reading post(s)" });
     }
   }
 
   // get all posts
   async getAllPosts(req, res) {
     try {
-      // read all posts
       const posts = await this.model.read();
       return res.status(200).json(posts);
     } catch (error) {
-      console.error("Error reading posts:", error);
-      return res.status(500).json({ error: "Error reading posts" });
+      console.error("Error reading all posts:", error);
+      return res.status(500).json({ error: "Error reading all posts" });
     }
   }
 
-  // update a post given id and new data
+  // update a post's content given id and content
   async updatePost(req, res) {
     const { id } = req.params;
-    const { title, content, songId, songTitle } = req.body;
+    const { content } = req.body;
 
-    // validate input
-    if (!title || !content || !songId || !songTitle) {
-      return res.status(400).json({ error: "title, content, songId, and songTitle are required" });
+    if (!content) {
+      return res.status(400).json({ error: "content is required" });
     }
 
     try {
-      // update post
-      const post = await this.model.update({ id, title, content, songId, songTitle });
+      const post = await this.model.update({ id, content });
       if (!post) {
         return res.status(404).json({ error: "Post not found" });
       }
@@ -81,24 +84,30 @@ export default class PostController {
     const { id } = req.params;
 
     try {
-      // delete post
-      const post = await this.model.delete({ id });
-      if (!post) {
-        return res.status(404).json({ error: "Post not found" });
+      if (id) {
+        const post = await this.model.delete({ id });
+        if (!post) {
+          return res.status(404).json({ error: "Post not found" });
+        }
+        return res.status(200).json({ message: `Post with id ${id} deleted` });
+      } else {
+        console.error("No post id given to delete");
+        return res.status(400).json({ error: "post id is required" });
       }
-      return res.status(200).json({ message: `Post with id ${id} deleted` });
     } catch (error) {
-      console.error("Error deleting post:", error);
-      return res.status(500).json({ error: "Error deleting post" });
+      console.error("Error deleting post(s):", error);
+      return res.status(500).json({ error: "Error deleting post(s)" });
     }
   }
 
   // delete all posts
   async deleteAllPosts(req, res) {
     try {
-      // delete all posts
       await this.model.delete();
-      return res.status(200).json({ message: "All posts deleted successfully" });
+      console.log("Deleted all posts");
+      return res
+        .status(200)
+        .json({ message: "All posts deleted successfully" });
     } catch (error) {
       console.error("Error deleting all posts:", error);
       return res.status(500).json({ error: "Error deleting all posts" });

@@ -43,11 +43,9 @@ export class CommunitiesPage extends BaseComponent {
         <input type="text" id="post-title" placeholder="Title" />
         <label for="post-content">Content</label>
         <textarea id="post-content" placeholder="Content"></textarea>
-        <label for="post-song">Spotify Song ID</label>
-        <input type="text" id="post-song" placeholder="Spotify Song ID" />
-        <label for="post-song-title">Song Title</label>
-        <input type="text" id="post-song-title" placeholder="Song Title" />
-        <button id="submit-post">Submit</button>
+        <label for="post-song-query">Spotify Song Query</label>
+        <input type="text" id="post-song-query" placeholder="Spotify Song Query" />
+        <button id="submit-post">Post</button>
       </div>
     `;
     this.#renderPosts();
@@ -64,21 +62,20 @@ export class CommunitiesPage extends BaseComponent {
   #handleSubmitPost() {
     const title = this.#container.querySelector("#post-title").value;
     const content = this.#container.querySelector("#post-content").value;
-    const songId = this.#container.querySelector("#post-song").value;
-    const songTitle = this.#container.querySelector("#post-song-title").value;
+    const songQuery = this.#container.querySelector("#post-song-query").value;
 
-    if (title && content && songId && songTitle) {
+    if (title && content && songQuery) {
       fetch('http://localhost:3000/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, content, songId, songTitle })
+        body: JSON.stringify({ title, content, songQuery })
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Post created:', data); // Add this line
-        this.#posts.push({ id: data.id, title, content, songId, songTitle });
+        console.log('Post created:', data); 
+        this.#posts.push({ id: data.id, title, content, songId: data.songId, songTitle: data.songTitle });
         this.#renderPosts();
       })
       .catch(error => console.error('Error:', error));
