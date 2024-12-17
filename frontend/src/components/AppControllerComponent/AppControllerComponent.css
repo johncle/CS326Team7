@@ -1,6 +1,6 @@
 .login-page {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,6 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  flex-direction: row;
 }
 
 .login-container {
@@ -86,4 +85,16 @@
 
 .spotify-login-button:hover {
   background-color: #1ed760;
+}
+
+.view-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.navbar {
+  width: 20em;
 }

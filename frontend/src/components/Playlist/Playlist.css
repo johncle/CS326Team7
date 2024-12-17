@@ -115,15 +115,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  align-content: center;
-  padding: 0px;
-  background-color: #333;
-  border-radius: 5px;
-  border-color: #1db954;
+  background-color: #1e1e1e;
+  border-radius: 10px;
   border: 1px solid #1db954;
-  gap: 10px;
-  height: 200px;
-  width: 200px;
+  padding: 10px; /* Reduce padding */
+  margin: 10px;
+  width: 150px; /* Reduce width */
+  height: 200px; /* Reduce height */
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center; /* Center text */
+}
+
+.playlist-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .playlist-information {
@@ -135,32 +140,19 @@ body {
 }
 
 .playlist-title {
-  color: #bbb;
-  font-size: 20px;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-
+  color: #fff;
+  font-size: 16px; /* Reduce font size */
+  margin-top: 5px; /* Reduce margin */
+  text-align: center; /* Center text */
 }
-.playlist-name {
-  color: #bbb;
-  font-size: 20px;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
 
-}
 .playlist-info {
   color: #bbb;
-  font-size: 20px;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-
+  font-size: 12px; /* Reduce font size */
+  margin-top: 5px; /* Reduce margin */
+  text-align: center; /* Center text */
 }
+
 .playlist-button {
   color: #bbb;
   font-size: 20px;
@@ -183,18 +175,26 @@ body {
 .playlist-action {
   color: #1db954;
   cursor: pointer;
-  font-size: 20px;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
+  font-size: 14px; /* Reduce font size */
+  margin-top: 5px; /* Reduce margin */
+  text-align: center; /* Center text */
+  transition: color 0.3s;
+}
 
+.playlist-action:hover {
+  color: #1ed760;
 }
 
 .playlist-image {
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.playlist-image img {
+  border-radius: 10px;
+  width: 80px; /* Reduce image size */
+  height: 80px; /* Reduce image size */
 }
 
 .playlist-icon {

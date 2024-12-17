@@ -1,12 +1,10 @@
-/* large screen, left vertical navbar */
-/* @media (min-width: 992px) { */
 .navbar,
 .navbar-collapse,
 .navbar-expand-lg .navbar-nav {
   flex-direction: column;
 }
 .navbar {
-  width: 12em;
+  width: 20em;
   height: 100vh;
   background-color: var(--primary-color);
   color: var(--text-color);
@@ -22,4 +20,3 @@ form input {
 .logo {
   width: 25%;
 }
-/* } */

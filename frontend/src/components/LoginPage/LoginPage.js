@@ -3,14 +3,15 @@ import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 
 export class LoginPage extends BaseComponent {
-  #container = null;
-  #hub = EventHub.getInstance();
+  #container = null; // Container element for the login page
+  #hub = EventHub.getInstance(); // EventHub instance for managing events
 
   constructor() {
     super();
     this.loadCSS("LoginPage"); // Load the CSS file for this component
   }
 
+  // Render the login page and return the container
   render() {
     if (this.#container) return this.#container;
 
@@ -19,8 +20,13 @@ export class LoginPage extends BaseComponent {
     this.#container.classList.add("login-page");
     this.#container.id = "login-page";
 
+    // Center the login page
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("login-wrapper");
+    this.#container.appendChild(wrapper);
+
     // HTML structure
-    this.#container.innerHTML = `
+    wrapper.innerHTML = `
       <div class="login-container">
         <h1>Login</h1>
         <form id="login-form">
@@ -51,6 +57,7 @@ export class LoginPage extends BaseComponent {
     return this.#container;
   }
 
+  // Attach event listeners to the login page
   #attachEventListeners() {
     // Handle navigation to HomePage
     const goToHomepageBtn = this.#container.querySelector("#go-to-homepage");
