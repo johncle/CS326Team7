@@ -1,5 +1,7 @@
 import express from "express";
 import SongController from "../controller/SongController.js";
+import path from "path";
+import fs from "fs";
 
 class SongRoutes {
   constructor() {
@@ -11,88 +13,66 @@ class SongRoutes {
   initializeRoutes() {
     // DESCRIPTION
     //   Add a new song
-    // REQUEST
-    //   POST /songs
-    //   {
-    //     "id": "songId",
-    //     "title": "Song Title",
-    //     "artistName": "Artist Name",
-    //     "albumName": "Album Name",
-    //     "albumId": "Album Id",
-    //     "coverUrl": "Cover Image URL",
-    //     "durationMs": "Duration in ms"
-    //   }
-    // RESPONSE
-    //   201 - Created: The song was created successfully
-    //   400 - Bad Request: Missing required fields
-    //   500 - Internal Server Error: Server encountered an error
     this.router.post("/songs", async (req, res) => {
       await this.songController.addSong(req, res);
     });
 
     // DESCRIPTION
     //   Get all songs
-    // REQUEST
-    //   GET /songs
-    // RESPONSE
-    //   200 - OK: Returns a list of songs
-    //   500 - Internal Server Error: Server encountered an error
     this.router.get("/songs", async (req, res) => {
       await this.songController.getAllSongs(req, res);
     });
 
     // DESCRIPTION
     //   Get a specific song by id
-    // REQUEST
-    //   GET /songs/:id
-    // RESPONSE
-    //   200 - OK: Returns the song data
-    //   404 - Not Found: No song found with given id
-    //   500 - Internal Server Error: Server encountered an error
+
     this.router.get("/songs/:id", async (req, res) => {
       await this.songController.getSong(req, res);
     });
 
     // DESCRIPTION
-    //   Update a song's details
+    //   Serve the song file given a song ID
     // REQUEST
-    //   PUT /songs/:id
-    //   {
-    //     "title": "newTitle",
-    //     "artistName": "newArtistName",
-    //     "albumName": "newAlbumName",
-    //     "albumId": "newAlbumId",
-    //     "coverUrl": "newCoverUrl",
-    //     "durationMs": "newDurationMs"
-    //   }
+    //   GET /songs/:id/file
     // RESPONSE
-    //   200 - OK: The song was updated
-    //   400 - Bad Request: Missing required fields
-    //   404 - Not Found: No song found with given id
-    //   500 - Internal Server Error: Server encountered an error
+    //   200 - OK: Returns the song file
+    //   404 - Not Found: If the file doesn't exist
+    //   500 - Internal Server Error: If the server encounters an error
+    this.router.get("/songs/:id/file", (req, res) => {
+      const { id } = req.params;
+      const songPath = path.resolve(`./src/uploads/songs/${id}.mp3`); // File path
+      console.log(`Serving song file for song ID: ${songPath}`);
+
+      fs.access(songPath, fs.constants.F_OK, (err) => {
+        if (err) {
+          console.error(`Song file not found: ${songPath}`);
+          return res.status(404).json({ error: "Song file not found" });
+        }
+
+        // Serve the file
+        res.sendFile(songPath, (err) => {
+          if (err) {
+            console.error(`Error serving song file: ${err.message}`);
+            return res.status(500).json({ error: "Error serving song file" });
+          }
+        });
+      });
+    });
+
+    // DESCRIPTION
+    //   Update a song's details
     this.router.put("/songs/:id", async (req, res) => {
       await this.songController.updateSong(req, res);
     });
 
     // DESCRIPTION
     //   Delete a specific song by id
-    // REQUEST
-    //   DELETE /songs/:id
-    // RESPONSE
-    //   200 - OK: The song was deleted
-    //   404 - Not Found: No song found with given id
-    //   500 - Internal Server Error: Server encountered an error
     this.router.delete("/songs/:id", async (req, res) => {
       await this.songController.deleteSong(req, res);
     });
 
     // DESCRIPTION
     //   Delete all songs
-    // REQUEST
-    //   DELETE /songs
-    // RESPONSE
-    //   200 - OK: All songs were deleted
-    //   500 - Internal Server Error: Server encountered an error
     this.router.delete("/songs", async (req, res) => {
       await this.songController.deleteAllSongs(req, res);
     });

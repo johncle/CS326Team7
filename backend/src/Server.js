@@ -7,6 +7,8 @@ import SongRoutes from "./routes/SongRoutes.js";
 import SpotifyRoutes from "./routes/SpotifyRoutes.js";
 import { initializeModels } from "./model/index.js";
 
+import cors from "cors";
+
 class Server {
   constructor() {
     this.app = express();
@@ -17,6 +19,7 @@ class Server {
   // Configure middleware for static files and JSON parsing
   configureMiddleware() {
     // Serve static files from the frontend
+    this.app.use(cors());
     this.app.use(express.static("../../frontend/src"));
 
     // Parse JSON bodies, limited to 10mb
