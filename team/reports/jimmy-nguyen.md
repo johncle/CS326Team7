@@ -17,3 +17,10 @@
 - **Task**: Create Communities Page Sequence Diagram
 - **Details**: Create Communities Page Sequence Diagram
 - **Link to Commit**: [Initial Commit](https://github.com/johncle/CS326Team7/commit/0ae395b84279e7bb066d7c7f336a25a37b5666ac)
+
+### December 16, 2024
+
+- **Task**: Update Communities Page component
+- **Details**: Update Communities Page component
+- **Link to Commit**: [Initial Commit](https://github.com/johncle/CS326Team7/commit/e847927e1a87ba9d9cc0fe014a7251fc939fa98c)
+

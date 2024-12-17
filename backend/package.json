@@ -4,10 +4,14 @@
   "description": "cs326 project - team 7",
   "main": "main.js",
   "type": "module",
+  "jest": {
+    "transform": {},
+    "testEnvironment": "node"
+  },
   "scripts": {
-    "dev": "vite",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "cd .. && npx prettier --write frontend && cd frontend"
+    "start": "node src/Server.js",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage --detectOpenHandles",
+    "prettier": "cd .. && npx prettier --write backend && cd backend"
   },
   "repository": {
     "type": "git",
@@ -21,9 +25,13 @@
   },
   "homepage": "https://github.com/johncle/CS326Team7#readme",
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "vite": "^5.4.11"
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }

@@ -1,3 +1,31 @@
+# How to run Sonar
+
+## Setting up Spotify API
+
+Our app uses spotify's API, which requires us to create an app on Spotify. You can get a spotify API client ID and client secret by following their tutorial: https://developer.spotify.com/documentation/web-api, specifically steps 1 and 2 of "Getting Started". You can ignore step 3.
+
+We use an .env file to store API keys which contains the following values:
+
+```
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+API_KEY=sonar1
+```
+
+Create an .env file as above, pasting in your spotify client id and secret into those values, and set API_KEY to `sonar1`.
+
+## Running locally
+
+1. Clone our repository with `git clone https://github.com/johncle/CS326Team7/`
+2. Cd into the git repo and paste in the .env file at the root
+3. Open `frontend/` in one terminal and `backend/` in another
+4. On frontend, run `npm i && npm run dev`
+5. On backend, run `npm i && npm start`
+
+Now you can go to localhost:5173 on your browser to run our app!
+
+# Sonar
+
 ## Problem Description
 
 Music is something that is universally enjoyed, but sometimes listening to the same songs repeatedly can get boring. When people want to discover new music, finding songs they actually like isn't always easy. They may not know where to look, or when they do, they might be unhappy with the recommendations they get. With so much music out there, finding new tracks that fit their tastes can feel frustrating and time-consuming.
