@@ -1,11 +1,18 @@
+
+
+
+
+
 // Server.js
 import express from "express";
+import cors from "cors"; // Add this line
 import UserRoutes from "./routes/UserRoutes.js";
 import PlaylistRoutes from "./routes/PlaylistRoutes.js";
 import SongRoutes from "./routes/SongRoutes.js";
 import SpotifyRoutes from "./routes/SpotifyRoutes.js";
 import PostRoutes from "./routes/PostRoutes.js";
 import { initializeModels } from "./model/index.js";
+
 
 class Server {
   constructor() {
@@ -14,19 +21,28 @@ class Server {
     this.setupRoutes();
   }
 
+
   // Configure middleware for static files and JSON parsing
   configureMiddleware() {
+    // Enable CORS with default settings
+    this.app.use(cors()); // Add this line
+
+
     // Serve static files from the frontend
     this.app.use(express.static("../../frontend/src"));
+
 
     // Parse JSON bodies, limited to 10mb
     this.app.use(express.json({ limit: "10mb" }));
 
-    // accept data from HTML forms through POST requests
+
+    // Accept data from HTML forms through POST requests
     this.app.use(express.urlencoded({ extended: true }));
 
-    // api key authorization
+
+    // API key authorization
     const API_KEY = "super-secret"; // TODO: move to .env
+
 
     const validateApiKey = (req, res, next) => {
       const apiKey = req.headers["x-api-key"];
@@ -36,9 +52,11 @@ class Server {
       next();
     };
 
-    // protect api routes
+
+    // Protect API routes
     // this.app.use(validateApiKey);
   }
+
 
   // Setup routes by using imported TaskRoutes, prefix routes with /api
   setupRoutes() {
@@ -49,6 +67,7 @@ class Server {
     this.app.use("/api", PostRoutes);
   }
 
+
   // Start the server on a specified port
   start(port = 3000) {
     return this.app.listen(port, () => {
@@ -56,6 +75,7 @@ class Server {
     });
   }
 }
+
 
 // Initialize and start the server
 console.log("Starting server...");
@@ -65,4 +85,8 @@ const server = new Server();
 const app = server.app;
 const runningServer = server.start();
 
+
 export { app, runningServer };
+
+
+

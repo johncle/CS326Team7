@@ -10,9 +10,9 @@
 import { DataTypes } from "sequelize";
 
 export default class PostModel {
-  // load instance of sequelize
+  // Load instance of sequelize
   constructor(sequelize) {
-    // define the Post model
+    // Define the Post model
     this.Post = sequelize.define("Post", {
       id: {
         type: DataTypes.INTEGER,
@@ -27,31 +27,27 @@ export default class PostModel {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      songId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      songTitle: {
+      songLink: {
         type: DataTypes.STRING,
         allowNull: false,
       },
     });
   }
 
-  // initialize the model
+  // Initialize the model
   async init(fresh = false) {
     if (fresh) {
-      await this.delete(); // clear all data
+      await this.delete(); // Clear all data
     }
     console.log("Post database initialized.");
   }
 
-  // create a new post
+  // Create a new post
   async create(post) {
     return await this.Post.create(post);
   }
 
-  // read post(s)
+  // Read post(s)
   async read(id = null) {
     if (id) {
       return await this.Post.findByPk(id);
@@ -59,25 +55,26 @@ export default class PostModel {
     return await this.Post.findAll();
   }
 
-  // update a post
+  // Update a post
   async update(post) {
     const postToUpdate = await this.Post.findByPk(post.id);
     if (!postToUpdate) {
-      return null; // post not found
+      return null; // Post not found
     }
     await postToUpdate.update(post);
     return postToUpdate;
   }
 
-  // delete post(s)
+
+  // Delete post(s)
   async delete(post = null) {
     if (post === null) {
-      await this.Post.destroy({ truncate: true }); // delete all posts
+      await this.Post.destroy({ truncate: true }); // Delete all posts
       return;
     }
     const postToDelete = await this.Post.findByPk(post.id);
     if (!postToDelete) {
-      return null; // post not found
+      return null; // Post not found
     }
     await this.Post.destroy({ where: { id: post.id } });
     return post;
