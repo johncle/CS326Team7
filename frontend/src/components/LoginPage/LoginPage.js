@@ -59,6 +59,7 @@ export class LoginPage extends BaseComponent {
             placeholder="Create a username"
             required
           />
+          <p id="username-error" class="error-message" style="display: none;">Username is required.</p>
           <label for="new-password">Password</label>
           <input
             type="password"
@@ -67,6 +68,7 @@ export class LoginPage extends BaseComponent {
             placeholder="Create a password"
             required
           />
+          <p id="password-error" class="error-message" style="display: none;">Password is required.</p>
           <label for="email">Email</label>
           <input
             type="email"
@@ -75,9 +77,9 @@ export class LoginPage extends BaseComponent {
             placeholder="Enter your email"
             required
           />
+          <p id="email-error" class="error-message" style="display: none;">Email is required.</p>
         </form>
-        <button id="link-spotify" class="spotify-login-button">Link Spotify Account</button>
-        <button id="submit-account" class="submit-account-button">Submit</button>
+        <button id="finish-account" class="spotify-login-button">Link Spotify Account</button>
         <button id="back-to-login" class="back-to-login-button">Back to Login</button>
       </div>
     `;
@@ -109,45 +111,67 @@ export class LoginPage extends BaseComponent {
     });
 
     // Handle account creation
-    const submitAccountBtn = this.#container.querySelector("#submit-account");
-    submitAccountBtn.addEventListener("click", async () => {
+    const finishAccountBtn = this.#container.querySelector("#finish-account");
+    finishAccountBtn.addEventListener("click", async () => {
       const username = this.#container.querySelector("#new-username").value;
       const password = this.#container.querySelector("#new-password").value;
       const email = this.#container.querySelector("#email").value;
 
-      const response = await fetch("/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password, email }),
-      });
+      const usernameError = this.#container.querySelector("#username-error");
+      const passwordError = this.#container.querySelector("#password-error");
+      const emailError = this.#container.querySelector("#email-error");
 
-      if (response.ok) {
-        alert("Account created successfully!");
-        this.#container.querySelector(".create-account-container").style.display = "none";
-        this.#container.querySelector(".login-container").style.display = "block";
+      let valid = true;
+
+      if (!username) {
+        usernameError.style.display = "block";
+        valid = false;
       } else {
-        alert("Failed to create account.");
+        usernameError.style.display = "none";
       }
-    });
 
-    // Handle Spotify account linking
-    const linkSpotifyBtn = this.#container.querySelector("#link-spotify");
-    linkSpotifyBtn.addEventListener("click", async () => {
-      const response = await fetch("/api/spotify/login", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        this.#spotifyAuthWindow = window.open(data.url, "SpotifyAuth", "width=600,height=800");
-        window.addEventListener("message", this.#handleSpotifyAuthMessage.bind(this), false);
+      if (!password) {
+        passwordError.style.display = "block";
+        valid = false;
       } else {
-        alert("Failed to initiate Spotify login.");
+        passwordError.style.display = "none";
+      }
+
+      if (!email) {
+        emailError.style.display = "block";
+        valid = false;
+      } else {
+        emailError.style.display = "none";
+      }
+
+      if (valid) {
+        const response = await fetch("/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password, email }),
+        });
+
+        if (response.ok) {
+          alert("Account created successfully! Please link your Spotify account.");
+          const spotifyResponse = await fetch("/api/spotify/login", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (spotifyResponse.ok) {
+            const data = await spotifyResponse.json();
+            this.#spotifyAuthWindow = window.open(data.url, "SpotifyAuth", "width=600,height=800");
+            window.addEventListener("message", this.#handleSpotifyAuthMessage.bind(this), false);
+          } else {
+            alert("Failed to initiate Spotify login.");
+          }
+        } else {
+          alert("Failed to create account.");
+        }
       }
     });
 

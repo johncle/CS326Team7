@@ -144,6 +144,13 @@
   box-shadow: 0 0 5px #1db954;
 }
 
+.create-account-container .error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
 .create-account-container .spotify-login-button,
 .create-account-container .submit-account-button,
 .create-account-container .back-to-login-button {
