@@ -14,3 +14,12 @@
   width: 100%;
   position: absolute; /* Required for the Three.js canvas */
 }
+
+/* Visualizer container */
+.visualizor-container {
+  position: relative; /* Constrain the canvas within this container */
+  width: 100%;
+  height: 100%; /* Let it occupy the parent's space */
+  overflow: hidden; /* Prevent overflowing elements */
+  background-color: black; /* Optional: For visual clarity */
+}

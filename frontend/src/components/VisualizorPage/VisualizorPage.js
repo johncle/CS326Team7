@@ -25,11 +25,12 @@ export class VisualizorPage extends BaseComponent {
 
     // Create the container element
     this.#container = document.createElement("div");
+    this.#container.className = "visualizor-container";
     this.#container.style.width = "100%";
     this.#container.style.height = "100%";
-    //this.#container.style.position = "relative"; // Ensure it takes up the full space of its parent
-    //his.#container.style.top = "0";
-    //this.#container.style.left = "0";
+    this.#container.style.position = "absolute"; // Ensure it takes up the full space of its parent
+    this.#container.style.top = "0";
+    this.#container.style.left = "0";
 
     // Append container to the DOM immediately
     document.body.appendChild(this.#container);
@@ -73,7 +74,6 @@ export class VisualizorPage extends BaseComponent {
   async #initializeVisualizer() {
     console.log("Initializing visualizer...");
 
-    /*
     const songSelector = new SongSelector(this.loadSong);
     const selectorDiv = await songSelector.render();
 
@@ -82,8 +82,6 @@ export class VisualizorPage extends BaseComponent {
     selectorDiv.style.left = "10px";
     selectorDiv.style.zIndex = "100"; // Ensure it stays on top of the canvas
     this.#container.appendChild(selectorDiv);
-
-    */
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(this.#container.offsetWidth, this.#container.offsetHeight);
