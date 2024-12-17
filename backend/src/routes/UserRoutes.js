@@ -86,6 +86,44 @@ class UserRoutes {
     this.router.delete("/users", async (req, res) => {
       await this.userController.deleteAllUsers(req, res);
     });
+
+    // DESCRIPTION
+    //   User login
+    // REQUEST
+    //   POST /login
+    //   {
+    //     "username": "username",
+    //     "password": "password"
+    //   }
+    // RESPONSE
+    //   200 - OK: Login successful
+    //   401 - Unauthorized: Invalid username or password
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.post("/login", async (req, res) => {
+      await this.userController.login(req, res);
+    });
+
+    // DESCRIPTION
+    //   Link Spotify account
+    // REQUEST
+    //   GET /spotify/link
+    // RESPONSE
+    //   200 - OK: Returns Spotify authorization URL
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.get("/spotify/link", async (req, res) => {
+      await this.userController.linkSpotifyAccount(req, res);
+    });
+
+    // DESCRIPTION
+    //   Spotify login
+    // REQUEST
+    //   GET /spotify/login
+    // RESPONSE
+    //   200 - OK: Redirect to Spotify login
+    //   500 - Internal Server Error: Server encountered an error
+    this.router.get("/spotify/login", async (req, res) => {
+      await this.userController.spotifyLogin(req, res);
+    });
   }
 
   getRouter() {

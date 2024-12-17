@@ -24,6 +24,14 @@ export default class UserModel {
         type: DataTypes.STRING,
         allowNull: true, // spotify display_name is nullable
       },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      spotifyId: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     });
   }
 

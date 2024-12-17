@@ -60,6 +60,7 @@ export class LoginPage extends BaseComponent {
             required
           />
           <p id="username-error" class="error-message" style="display: none;">Username is required.</p>
+          <p id="username-taken-error" class="error-message" style="display: none;">Username is already taken.</p>
           <label for="new-password">Password</label>
           <input
             type="password"
@@ -118,6 +119,7 @@ export class LoginPage extends BaseComponent {
       const email = this.#container.querySelector("#email").value;
 
       const usernameError = this.#container.querySelector("#username-error");
+      const usernameTakenError = this.#container.querySelector("#username-taken-error");
       const passwordError = this.#container.querySelector("#password-error");
       const emailError = this.#container.querySelector("#email-error");
 
@@ -154,6 +156,7 @@ export class LoginPage extends BaseComponent {
         });
 
         if (response.ok) {
+          usernameTakenError.style.display = "none";
           alert("Account created successfully! Please link your Spotify account.");
           const spotifyResponse = await fetch("/api/spotify/login", {
             method: "GET",
@@ -168,6 +171,13 @@ export class LoginPage extends BaseComponent {
             window.addEventListener("message", this.#handleSpotifyAuthMessage.bind(this), false);
           } else {
             alert("Failed to initiate Spotify login.");
+          }
+        } else if (response.status === 400) {
+          const errorData = await response.json();
+          if (errorData.error.includes("already exists")) {
+            usernameTakenError.style.display = "block";
+          } else {
+            alert("Failed to create account.");
           }
         } else {
           alert("Failed to create account.");

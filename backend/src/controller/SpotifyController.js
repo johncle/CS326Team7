@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-// controller for handling spotify API requests
+// Controller for handling Spotify API requests
 export default class SpotifyController {
   constructor() {
     this.CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
@@ -10,9 +10,9 @@ export default class SpotifyController {
   }
 
   /**
-   * code modified from frontend/src/components/LoginPage/callback.js
-   * takes in code and code verifier generated from client
-   * returns: { access_token, refresh_token, expires_in } (from spotify response)
+   * Exchange authorization code for access and refresh tokens
+   * @param {Object} req - The request object
+   * @param {Object} res - The response object
    */
   async getAccessToken(req, res) {
     const code = req.body;
@@ -20,7 +20,7 @@ export default class SpotifyController {
       return res.status(400).json({ error: "Authorization code is required" });
     }
 
-    // pass code verifier from frontend
+    // Pass code verifier from frontend
     const codeVerifier = req.body.code_verifier;
     if (!codeVerifier) {
       return res.status(400).json({ error: "Code verifier is required" });
@@ -31,6 +31,7 @@ export default class SpotifyController {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${Buffer.from(`${this.CLIENT_ID}:${this.CLIENT_SECRET}`).toString('base64')}`
       },
       body: new URLSearchParams({
         client_id: this.CLIENT_ID,
@@ -60,7 +61,7 @@ export default class SpotifyController {
           .json({ error: "Access token not received in response." });
       }
 
-      // send tokens to client
+      // Send tokens to client
       return res.status(200).json({
         access_token: data.access_token,
         refresh_token: data.refresh_token,
@@ -74,11 +75,15 @@ export default class SpotifyController {
     }
   }
 
-  // fetch user profile (https://developer.spotify.com/documentation/web-api/reference/get-users-profile)
+  /**
+   * Fetch user profile from Spotify
+   * @param {Object} req - The request object
+   * @param {Object} res - The response object
+   */
   async getUserProfile(req, res) {
     const { userId } = req.params;
 
-    // access (bearer) token is sent in authorization header
+    // Access (bearer) token is sent in authorization header
     const accessToken = req.headers["authorization"];
     if (!accessToken) {
       return res.status(401).json({ error: "Authorization token is required" });

@@ -1,31 +1,32 @@
 import { User } from "../model/index.js";
+import SpotifyController from "./SpotifyController.js";
 
 export default class UserController {
   constructor() {
     this.model = User;
+    this.spotifyController = new SpotifyController();
   }
 
-  // add new user
+  // Add a new user to the database
   async addUser(req, res) {
-    if (!req.body || !req.body.username || !req.body.id) {
-      return res.status(400).json({ error: "username and id are required" });
+    if (!req.body || !req.body.username || !req.body.password) {
+      return res.status(400).json({ error: "username and password are required" });
     }
 
-    const { username, id, ownedPlaylists, followedPlaylists } = req.body;
+    const { username, password, email } = req.body;
     try {
       const user = await this.model.create({
-        id,
         username,
-        ownedPlaylists: ownedPlaylists ?? [],
-        followedPlaylists: followedPlaylists ?? [],
+        password,
+        email,
       });
-      console.log(`created user ${username} with id ${id}`);
-      return res.status(201).json(user); // return created user
+      console.log(`Created user ${username}`);
+      return res.status(201).json(user); // Return the created user
     } catch (error) {
       if (error.name === "SequelizeUniqueConstraintError") {
         return res
           .status(400)
-          .json({ error: `User with id '${id}' already exists` });
+          .json({ error: `User with username '${username}' already exists` });
       } else {
         console.error("Error creating user:", error);
         return res.status(500).json({ error: "Error creating user" });
@@ -33,7 +34,7 @@ export default class UserController {
     }
   }
 
-  // get specific user by id
+  // Get a specific user by ID
   async getUser(req, res) {
     const { id } = req.params;
 
@@ -53,7 +54,7 @@ export default class UserController {
     }
   }
 
-  // get all users
+  // Get all users from the database
   async getAllUsers(req, res) {
     try {
       const users = await this.model.read();
@@ -64,7 +65,7 @@ export default class UserController {
     }
   }
 
-  // update a user's username given id and username
+  // Update a user's username given their ID and new username
   async updateUsername(req, res) {
     const { id } = req.params;
     const { username } = req.body;
@@ -85,7 +86,7 @@ export default class UserController {
     }
   }
 
-  // delete a user given id
+  // Delete a user given their ID
   async deleteUser(req, res) {
     const { id } = req.params;
 
@@ -106,7 +107,7 @@ export default class UserController {
     }
   }
 
-  // delete all users
+  // Delete all users from the database
   async deleteAllUsers(req, res) {
     try {
       await this.model.delete();
@@ -118,5 +119,37 @@ export default class UserController {
       console.error("Error deleting all users:", error);
       return res.status(500).json({ error: "Error deleting all users" });
     }
+  }
+
+  // User login
+  async login(req, res) {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: "username and password are required" });
+    }
+
+    try {
+      const user = await this.model.User.findOne({ where: { username } });
+
+      if (!user || user.password !== password) {
+        return res.status(401).json({ error: "Invalid username or password" });
+      }
+
+      return res.status(200).json({ message: "Login successful" });
+    } catch (error) {
+      console.error("Error logging in user:", error);
+      return res.status(500).json({ error: "Error logging in user" });
+    }
+  }
+
+  // Link Spotify account
+  async linkSpotifyAccount(req, res) {
+    await this.spotifyController.linkSpotifyAccount(req, res);
+  }
+
+  // Spotify login
+  async spotifyLogin(req, res) {
+    await this.spotifyController.spotifyLogin(req, res);
   }
 }
