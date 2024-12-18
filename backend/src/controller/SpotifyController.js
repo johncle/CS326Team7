@@ -15,15 +15,18 @@ export default class SpotifyController {
    * returns: { access_token, refresh_token, expires_in } (from spotify response)
    */
   async getAccessToken(req, res) {
-    const code = req.body;
+    const code = req.query.code;
+    console.log("code:", code);
     if (!code) {
       return res.status(400).json({ error: "Authorization code is required" });
     }
 
-    // pass code verifier from frontend
-    const codeVerifier = req.body.code_verifier;
+    // pass code verifier from session storage
+    const codeVerifier = req.session.codeVerifier;
     if (!codeVerifier) {
-      return res.status(400).json({ error: "Code verifier is required" });
+      return res
+        .status(400)
+        .json({ error: "Code verifier not in session storage" });
     }
 
     // Token exchange request
@@ -35,7 +38,7 @@ export default class SpotifyController {
       body: new URLSearchParams({
         client_id: this.CLIENT_ID,
         grant_type: "authorization_code",
-        code,
+        code: code,
         redirect_uri: this.REDIRECT_URI,
         code_verifier: codeVerifier,
       }),
@@ -48,6 +51,7 @@ export default class SpotifyController {
       );
 
       if (!response.ok) {
+        console.log(await response.text());
         return res
           .status(response.status)
           .json({ error: "Token request failed" });
@@ -59,13 +63,14 @@ export default class SpotifyController {
           .status(400)
           .json({ error: "Access token not received in response." });
       }
+      console.log(data);
 
-      // send tokens to client
-      return res.status(200).json({
-        access_token: data.access_token,
-        refresh_token: data.refresh_token,
-        expires_in: data.expires_in,
-      });
+      // redirect client to homepage with tokens
+      res.redirect(
+        `http://localhost:5173/?access_token=${encodeURIComponent(
+          data.access_token,
+        )}&refresh_token=${encodeURIComponent(data.refresh_token)}&expires_in=${encodeURIComponent(data.expires_in)}`,
+      );
     } catch (error) {
       console.error("Error in getAccessToken method:", error);
       return res

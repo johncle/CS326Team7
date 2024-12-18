@@ -39,7 +39,6 @@ export class LoginPage extends BaseComponent {
     return this.#container;
   }
 
-
   #generateRandomString(length) {
     const possible =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -69,8 +68,8 @@ export class LoginPage extends BaseComponent {
   #attachEventListeners() {
     const spotifyLoginButton = this.#container.querySelector("#spotify-login");
     spotifyLoginButton.addEventListener("click", async () => {
-      const clientId = "97b13cdb7b4e499abd6f07c6652c1035";
-      const redirectUri = "http://localhost:5173/callback";
+      const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+      const redirectUri = "http://localhost:3000/api/spotify/callback";
       const scopes = ["user-read-private", "user-read-email"];
 
       const codeVerifier = this.#generateRandomString(128);
@@ -78,10 +77,18 @@ export class LoginPage extends BaseComponent {
 
       const codeChallenge = await this.#generateCodeChallenge(codeVerifier);
       const spotifyAuthUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(
-        redirectUri
+        redirectUri,
       )}&scope=${encodeURIComponent(
-        scopes.join(" ")
+        scopes.join(" "),
       )}&code_challenge=${codeChallenge}&code_challenge_method=S256`;
+
+      // send code_verifier to backend before requesting spotify access token
+      await fetch("http://localhost:3000/api/spotify/store-code-verifier", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ codeVerifier }),
+        credentials: "include",
+      });
 
       window.location.href = spotifyAuthUrl;
     });
